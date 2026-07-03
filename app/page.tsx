@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight, Check, ShieldCheck, FileText, Scale, Lock, GitBranch,
   BookOpen, Network, Database, ClipboardCheck, Gauge, Building2,
@@ -22,25 +23,43 @@ function GhostBtn({ href, children, dark = false }: { href: string; children: Re
   return <Link href={href} className={`inline-block rounded-md border px-6 py-3 text-sm font-semibold transition-colors ${dark ? "border-white/25 text-white hover:bg-white/10" : "border-gray-300 text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800"}`}>{children}</Link>;
 }
 
-/* Reusable dashed image space. `onDark` tunes the border/label for navy sections. */
+/*
+ * Image slot used across the page. Pass a real `src` and it renders with
+ * next/image (fill + object-cover) — same mechanism as the Animals & Music
+ * and Platform pages. Leave `src` empty/undefined and it falls back to the
+ * dashed placeholder box so the layout still looks intentional until the
+ * real asset is dropped in.
+ */
 function ImageSpace({
+  src,
+  alt = "",
   className = "",
   label = "Image",
   rounded = "rounded-2xl",
   onDark = false,
   circle = false,
 }: {
+  src?: string;
+  alt?: string;
   className?: string;
   label?: string;
   rounded?: string;
   onDark?: boolean;
   circle?: boolean;
 }) {
+  const shape = circle ? "rounded-full" : rounded;
+
+  if (src) {
+    return (
+      <div className={`relative overflow-hidden ${shape} ${className}`}>
+        <Image src={src} alt={alt || label} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`flex items-center justify-center border-2 border-dashed ${
-        circle ? "rounded-full" : rounded
-      } ${
+      className={`flex items-center justify-center border-2 border-dashed ${shape} ${
         onDark
           ? "border-white/20 bg-white/5"
           : "border-gray-300 bg-gray-50 dark:border-gray-700 dark:bg-gray-800"
@@ -56,7 +75,18 @@ function ImageSpace({
 }
 
 /* ── data ── */
-const personas = ["Student / Career Explorer", "Junior Accountant", "Business Owner", "Operations Leader", "Finance Manager", "Tax Director", "Audit Partner", "CFO"];
+// Each persona now carries an `img` field so the avatar grid can render
+// real headshots. Leave `img` as "" to keep the placeholder circle.
+const personas = [
+  { name: "Student / Career Explorer", img: "/images/div.rc-photo.png" },
+  { name: "Junior Accountant", img: "/images/div.rc-photo (1).png" },
+  { name: "Business Owner", img: "/images/div.rc-photo (2).png" },
+  { name: "Operations Leader", img: "/images/div.rc-photo (3).png" },
+  { name: "Finance Manager", img: "/images/div.rc-photo (4).png" },
+  { name: "Tax Director", img: "/images/div.rc-photo (5).png" },
+  { name: "Audit Partner", img: "/images/div.rc-photo (6).png" },
+  { name: "CFO", img: "/images/div.rc-photo (7).png" },
+];
 
 const engineNodes = [
   { icon: BookOpen, title: "Source Library", desc: "Authoritative, curated, and continuously updated sources into standards and rulings." },
@@ -92,13 +122,15 @@ const pillars = [
   { icon: ClipboardCheck, title: "QA Release Gates", desc: "Threshold-based release approval, regression detection, and every release logged." },
 ];
 
+// Each team now carries an `img` field for the section's 16:9 thumbnail.
+// Leave `img` as "" to keep the labeled placeholder.
 const teams = [
-  { icon: Building2, title: "Accounting Firms", desc: "Support answers with citations, review queues, and evidence for client-facing work." },
-  { icon: Users, title: "Enterprise Finance Teams", desc: "Improve consistency across an escalating policy, reporting workflows, and internal controls." },
-  { icon: Calculator, title: "Tax Professionals", desc: "Structure tax research, jurisdiction checks, deadline workflows, and source citations." },
-  { icon: ClipboardCheck, title: "Audit Teams", desc: "Support audit planning, evidence requirements, workpapers, and reviewer escalation." },
-  { icon: FileText, title: "Payroll & Compliance", desc: "Track filing, documentation, and controlled record grounding with audit evidence." },
-  { icon: GraduationCap, title: "Accounting Education", desc: "Deliver grounded learning support, topic maps, and academic integrity safeguards." },
+  { icon: Building2, title: "Accounting Firms", desc: "Support answers with citations, review queues, and evidence for client-facing work.", img: "/images/ttsg.png" },
+  { icon: Users, title: "Enterprise Finance Teams", desc: "Improve consistency across an escalating policy, reporting workflows, and internal controls.", img: "/images/div.sol-avatar.png" },
+  { icon: Calculator, title: "Tax Professionals", desc: "Structure tax research, jurisdiction checks, deadline workflows, and source citations.", img: "/images/ndn.png" },
+  { icon: ClipboardCheck, title: "Audit Teams", desc: "Support audit planning, evidence requirements, workpapers, and reviewer escalation.", img: "/images/AS.png" },
+  { icon: FileText, title: "Payroll & Compliance", desc: "Track filing, documentation, and controlled record grounding with audit evidence.", img: "/images/DD.png" },
+  { icon: GraduationCap, title: "Accounting Education", desc: "Deliver grounded learning support, topic maps, and academic integrity safeguards.", img: "/images/PP.png" },
 ];
 
 const faqs = [
@@ -136,7 +168,13 @@ export default function Page() {
 
           {/* Hero image + floating card */}
           <div className="relative">
-            <ImageSpace className="h-72 w-full" label="Hero image" onDark />
+            <ImageSpace
+              src="/images/Senior audit professional reviewing financial statements.png"
+              alt="Accounting professional working with ZoikoLogia"
+              className="h-72 w-full"
+              label="Hero image"
+              onDark
+            />
             <div className="absolute -bottom-6 right-4 w-64 rounded-xl border border-white/10 bg-[#0a1626] p-4 shadow-xl">
               <p className="mb-3 text-xs font-semibold text-white">Kriton&trade; AI Advisor</p>
               <ul className="space-y-2">
@@ -172,9 +210,9 @@ export default function Page() {
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               {personas.map((p) => (
-                <div key={p} className="rounded-xl border border-gray-200 bg-white p-4 text-center dark:border-gray-700 dark:bg-gray-800">
-                  <ImageSpace className="mx-auto mb-3 h-16 w-16" circle label="" />
-                  <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">{p}</p>
+                <div key={p.name} className="rounded-xl border border-gray-200 bg-white p-4 text-center dark:border-gray-700 dark:bg-gray-800">
+                  <ImageSpace src={p.img} alt={p.name} className="mx-auto mb-3 h-30 w-30" label="" />
+                  <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">{p.name}</p>
                 </div>
               ))}
             </div>
@@ -342,7 +380,13 @@ export default function Page() {
             </p>
             <div className="mt-6"><AmberBtn href="/book-a-demo">Book a Demo</AmberBtn></div>
           </div>
-          <ImageSpace className="h-56 w-full" label="Team image" onDark />
+          <ImageSpace
+            src="/images/zoikologia/team-collaboration.png"
+            alt="ZoikoLogia team collaborating during close"
+            className="h-56 w-full"
+            label="Team image"
+            onDark
+          />
         </div>
       </section>
 
@@ -353,8 +397,8 @@ export default function Page() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {teams.map((t) => (
               <div key={t.title} className="flex flex-col rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
-                <ImageSpace className="mb-4 aspect-[16/9] w-full" label={t.title} rounded="rounded-lg" />
-                <t.icon className="mb-3 h-7 w-7" style={{ color: AMBER }} />
+                <ImageSpace src={t.img} alt={t.title} className="mb-3 h-10 w-10" label={t.title} rounded="rounded-lg" />
+          
                 <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">{t.title}</h3>
                 <p className="mb-4 flex-1 text-sm text-gray-600 dark:text-gray-300">{t.desc}</p>
                 <Link href="/solutions" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: AMBER }}>Solutions for {t.title.split(" ")[0]} <ArrowRight className="h-4 w-4" /></Link>

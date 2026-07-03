@@ -1,7 +1,5 @@
-
-
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -40,11 +38,16 @@ export default function ZoikoLogiaHeader() {
 
       {/* Main bar */}
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-xl font-extrabold tracking-tight text-white">
-            Zoiko<span style={{ color: AMBER }}>Logia</span>
-          </span>
-        </Link>
+        <Link href="/" className="flex items-center">
+  <Image
+    src="/images/Rectangle 1.png"
+    alt="ZoikoLogia"
+    width={180}
+    height={50}
+    priority
+    className="h-10 w-auto"
+  />
+</Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 lg:flex">
