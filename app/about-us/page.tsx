@@ -1,12 +1,12 @@
-// ✅ No curly braces for a default export
+import ZoikoLogiaHome from "./ZoikoLogiaHome";
 
-import About from "./Aboutus";
+
 
 
 export default function Page() {
   return (
     <>
-      <About />
+     <ZoikoLogiaHome/>
     </>
   );
 }

@@ -11,7 +11,7 @@ import {
 const AMBER = "#e0a92e";
 const NAVY = "#0d1b2e";
 
-// ── small helpers ──
+/* ── small helpers ── */
 function SectionEyebrow({ children }: { children: React.ReactNode }) {
   return <p className="mb-3 text-center text-xs font-semibold uppercase tracking-widest" style={{ color: AMBER }}>{children}</p>;
 }
@@ -22,7 +22,40 @@ function GhostBtn({ href, children, dark = false }: { href: string; children: Re
   return <Link href={href} className={`inline-block rounded-md border px-6 py-3 text-sm font-semibold transition-colors ${dark ? "border-white/25 text-white hover:bg-white/10" : "border-gray-300 text-gray-800 hover:bg-gray-50 dark:border-gray-600 dark:text-gray-100 dark:hover:bg-gray-800"}`}>{children}</Link>;
 }
 
-// ── data ──
+/* Reusable dashed image space. `onDark` tunes the border/label for navy sections. */
+function ImageSpace({
+  className = "",
+  label = "Image",
+  rounded = "rounded-2xl",
+  onDark = false,
+  circle = false,
+}: {
+  className?: string;
+  label?: string;
+  rounded?: string;
+  onDark?: boolean;
+  circle?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-center justify-center border-2 border-dashed ${
+        circle ? "rounded-full" : rounded
+      } ${
+        onDark
+          ? "border-white/20 bg-white/5"
+          : "border-gray-300 bg-gray-50 dark:border-gray-700 dark:bg-gray-800"
+      } ${className}`}
+    >
+      {label ? (
+        <span className={`text-[10px] font-medium uppercase tracking-widest ${onDark ? "text-gray-500" : "text-gray-400"}`}>
+          {label}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
+/* ── data ── */
 const personas = ["Student / Career Explorer", "Junior Accountant", "Business Owner", "Operations Leader", "Finance Manager", "Tax Director", "Audit Partner", "CFO"];
 
 const engineNodes = [
@@ -69,9 +102,9 @@ const teams = [
 ];
 
 const faqs = [
-  { q: "Is ZoikoLogia a chatbot?", a: "No. ZoikoLogia is a governed accounting-intelligence system where Kriton™ operates as its judgment interface. The platform includes source governance, accounting knowledge, RAG, safety controls, audit logging, and provider due diligence underneath every response." },
+  { q: "Is ZoikoLogia a chatbot?", a: "No. ZoikoLogia is a governed accounting-intelligence system where Kriton\u2122 operates as its judgment interface. The platform includes source governance, accounting knowledge, RAG, safety controls, audit logging, and provider due diligence underneath every response." },
   { q: "How does ZoikoLogia reduce hallucination risk?", a: "Retrieval is gated by governed sources. If no approved source supports an answer, the system returns a controlled no-source state rather than guessing, and every answer carries citations and confidence." },
-  { q: "Does ZoikoLogia handle privacy?", a: "Yes — tenant isolation, encryption, regional routing, redaction, and DPA workflows are enforced by the platform, with a trust center documenting controls." },
+  { q: "Does ZoikoLogia handle privacy?", a: "Yes \u2014 tenant isolation, encryption, regional routing, redaction, and DPA workflows are enforced by the platform, with a trust center documenting controls." },
   { q: "Can ZoikoLogia be used by enterprises?", a: "Yes. Provider due diligence, audit evidence ledgers, QA release gates, and jurisdiction controls are built for enterprise procurement and compliance review." },
 ];
 
@@ -92,22 +125,20 @@ export default function Page() {
               An accounting intelligence,<br /><span style={{ color: AMBER }}>governed by design.</span>
             </h1>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-gray-300">
-              Kriton™ helps accounting professionals work through tax, audit, payroll, and compliance questions —
+              Kriton&trade; helps accounting professionals work through tax, audit, payroll, and compliance questions —
               grounded in real sources, not model memory.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <AmberBtn href="/book-a-demo">Book a Demo</AmberBtn>
-              <GhostBtn href="/kriton" dark>See Kriton™ in action <ArrowRight className="ml-1 inline h-4 w-4" /></GhostBtn>
+              <GhostBtn href="/kriton" dark>See Kriton&trade; in action <ArrowRight className="ml-1 inline h-4 w-4" /></GhostBtn>
             </div>
           </div>
 
           {/* Hero image + floating card */}
           <div className="relative">
-            <div className="flex h-72 items-center justify-center rounded-2xl border-2 border-dashed border-white/20 bg-white/5">
-              <span className="text-sm text-gray-500">Hero image</span>
-            </div>
+            <ImageSpace className="h-72 w-full" label="Hero image" onDark />
             <div className="absolute -bottom-6 right-4 w-64 rounded-xl border border-white/10 bg-[#0a1626] p-4 shadow-xl">
-              <p className="mb-3 text-xs font-semibold text-white">Kriton™ AI Advisor</p>
+              <p className="mb-3 text-xs font-semibold text-white">Kriton&trade; AI Advisor</p>
               <ul className="space-y-2">
                 {["Source-backed answers", "Confidence & citations", "Human escalation", "Audit evidence"].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-xs text-gray-300"><Check className="h-3.5 w-3.5" style={{ color: AMBER }} /> {f}</li>
@@ -126,7 +157,7 @@ export default function Page() {
               <SectionEyebrow>Built for practitioners</SectionEyebrow>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Accounting intelligence for the people who ask, prepare, review, govern, and value.</h2>
               <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-                ZoikoLogia™ with Kriton™ is built for professionals who carry judgment: business leaders who need
+                ZoikoLogia&trade; with Kriton&trade; is built for professionals who carry judgment: business leaders who need
                 financial clarity, and teams who are building accounting knowledge — all governed by the same source-backed,
                 evidence-heavy controls.
               </p>
@@ -142,7 +173,7 @@ export default function Page() {
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               {personas.map((p) => (
                 <div key={p} className="rounded-xl border border-gray-200 bg-white p-4 text-center dark:border-gray-700 dark:bg-gray-800">
-                  <div className="mx-auto mb-3 h-16 w-16 rounded-full border-2 border-dashed border-gray-200 dark:border-gray-700" />
+                  <ImageSpace className="mx-auto mb-3 h-16 w-16" circle label="" />
                   <p className="text-xs font-semibold text-gray-800 dark:text-gray-100">{p}</p>
                 </div>
               ))}
@@ -178,12 +209,12 @@ export default function Page() {
       <section className="bg-[#0d1b2e] py-20">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-2 text-center text-3xl font-bold text-white">
-            ZoikoLogia™ is the intelligence system. <span style={{ color: AMBER }}>Kriton™ is the judgment interface.</span>
+            ZoikoLogia&trade; is the intelligence system. <span style={{ color: AMBER }}>Kriton&trade; is the judgment interface.</span>
           </h2>
           <p className="mb-12 text-center text-sm text-gray-400">A governed intelligence layer powers the advisor professionals rely on.</p>
           <div className="grid gap-6 lg:grid-cols-2">
-            <LayerCard title="ZoikoLogia™ Platform Layer" items={platformLayer} />
-            <LayerCard title="Kriton™ AI Advisor Layer" items={kritonLayer} />
+            <LayerCard title="ZoikoLogia&trade; Platform Layer" items={platformLayer} />
+            <LayerCard title="Kriton&trade; AI Advisor Layer" items={kritonLayer} />
           </div>
         </div>
       </section>
@@ -192,7 +223,7 @@ export default function Page() {
       <section className="bg-gray-50 py-20 dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-6">
           <h2 className="mb-2 text-center text-3xl font-bold text-gray-900 dark:text-white">Nine systems. One governed intelligence layer.</h2>
-          <p className="mb-12 text-center text-sm text-gray-600 dark:text-gray-300">Every capability below operates as a control point, not a feature checkbox — each one gates what Kriton™ is allowed to say, cite, or escalate.</p>
+          <p className="mb-12 text-center text-sm text-gray-600 dark:text-gray-300">Every capability below operates as a control point, not a feature checkbox — each one gates what Kriton&trade; is allowed to say, cite, or escalate.</p>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {systems.map((s) => (
               <div key={s.tag} className="flex flex-col rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
@@ -216,7 +247,7 @@ export default function Page() {
             <SectionEyebrow>Auditable by default</SectionEyebrow>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Every answer arrives with its own paper trail.</h2>
             <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-              Reviewers don't have to take Kriton™'s word for it. Every response opens into the source bundle, the risk
+              Reviewers don't have to take Kriton&trade;'s word for it. Every response opens into the source bundle, the risk
               classification, the jurisdiction context, and the human-review state behind it.
             </p>
             <ul className="mt-6 space-y-3">
@@ -244,7 +275,7 @@ export default function Page() {
       <section className="bg-gray-50 py-20 dark:bg-gray-900">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="mb-2 text-center text-3xl font-bold text-gray-900 dark:text-white">An AI advisor for accounting workflows — not a generic chatbot.</h2>
-          <p className="mb-10 text-center text-sm text-gray-600 dark:text-gray-300">Kriton™ helps users reason across questions, structure workpapers, and identify when human review is required — governed by source authority, risk classification, and audit evidence at every step.</p>
+          <p className="mb-10 text-center text-sm text-gray-600 dark:text-gray-300">Kriton&trade; helps users reason across questions, structure workpapers, and identify when human review is required — governed by source authority, risk classification, and audit evidence at every step.</p>
           <div className="mb-6 flex flex-wrap justify-center gap-2 border-b border-gray-200 dark:border-gray-700">
             {workflowTabs.map((t, i) => (
               <button key={t} type="button" onClick={() => setTab(i)} className={`-mb-px border-b-2 px-4 pb-2 text-sm font-semibold transition-colors ${tab === i ? "text-gray-900 dark:text-white" : "border-transparent text-gray-400 hover:text-gray-600"}`} style={tab === i ? { borderColor: AMBER } : undefined}>{t}</button>
@@ -304,16 +335,14 @@ export default function Page() {
       <section className="bg-[#0d1b2e] py-16">
         <div className="mx-auto grid max-w-7xl items-center gap-8 px-6 lg:grid-cols-2">
           <div>
-            <h2 className="text-3xl font-bold text-white">Kriton™ sits inside the close, not next to it.</h2>
+            <h2 className="text-3xl font-bold text-white">Kriton&trade; sits inside the close, not next to it.</h2>
             <p className="mt-4 text-sm leading-relaxed text-gray-300">
               Controllers use Workflow Mode to draft the review. Reviewers use Review Mode to sign off. The difference is
               that in the same run — and nothing that isn't source-backed gets out.
             </p>
             <div className="mt-6"><AmberBtn href="/book-a-demo">Book a Demo</AmberBtn></div>
           </div>
-          <div className="flex h-56 items-center justify-center rounded-2xl border-2 border-dashed border-white/20 bg-white/5">
-            <span className="text-sm text-gray-500">Team image</span>
-          </div>
+          <ImageSpace className="h-56 w-full" label="Team image" onDark />
         </div>
       </section>
 
@@ -324,6 +353,7 @@ export default function Page() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {teams.map((t) => (
               <div key={t.title} className="flex flex-col rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+                <ImageSpace className="mb-4 aspect-[16/9] w-full" label={t.title} rounded="rounded-lg" />
                 <t.icon className="mb-3 h-7 w-7" style={{ color: AMBER }} />
                 <h3 className="mb-2 text-base font-bold text-gray-900 dark:text-white">{t.title}</h3>
                 <p className="mb-4 flex-1 text-sm text-gray-600 dark:text-gray-300">{t.desc}</p>
@@ -358,7 +388,7 @@ export default function Page() {
           <SectionEyebrow>Bring governed intelligence in</SectionEyebrow>
           <h2 className="text-3xl font-bold text-white">Bring source-backed intelligence into professional accounting workflows.</h2>
           <p className="mx-auto mt-4 max-w-xl text-sm text-gray-300">
-            ZoikoLogia™ with Kriton™ gives accounting and finance teams a governed way to work — across tax, audit,
+            ZoikoLogia&trade; with Kriton&trade; gives accounting and finance teams a governed way to work — across tax, audit,
             payroll, and compliance — with source authority, privacy, and auditability built in.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
@@ -373,7 +403,7 @@ export default function Page() {
   );
 }
 
-// ── sub-components ──
+/* ── sub-components ── */
 function EngineCard({ icon: Icon, title, desc }: { icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>; title: string; desc: string }) {
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800">
