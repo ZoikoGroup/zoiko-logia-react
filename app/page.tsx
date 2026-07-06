@@ -381,7 +381,7 @@ export default function Page() {
             <div className="mt-6"><AmberBtn href="/book-a-demo">Book a Demo</AmberBtn></div>
           </div>
           <ImageSpace
-            src="/images/zoikologia/team-collaboration.png"
+            src="/images/Finance professionals reviewing governed source documentation.png"
             alt="ZoikoLogia team collaborating during close"
             className="h-56 w-full"
             label="Team image"

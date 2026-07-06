@@ -112,7 +112,7 @@ function IconTile({
 // Leave `img` as "" to keep the placeholder circle.
 const personas = [
   { n: 1, name: "Student /\nCareer Explorer", desc: "Learns the foundation.", tag: "Learning / Exploration", img: "/images/Student exploring accounting fundamentals.png" },
-  { n: 2, name: "Junior\nAccountant", desc: "Builds professional confidence.", tag: "Learning / Workflow", img: "/images/Junior accountant building professional skillss.png" },
+  { n: 2, name: "Junior\nAccountant", desc: "Builds professional confidence.", tag: "Learning / Workflow", img: "/images/Junior accountant building professional skills.png" },
   { n: 3, name: "Business\nOwner", desc: "Reads the financials with confidence.", tag: "Business /\nNon-accounting", img: "/images/Business owner reviewing financial statementsd.png" },
   { n: 4, name: "Operations\nLeader", desc: "Asks the right financial questions.", tag: "Business /\nNon-accounting", img: "/images/Operations leader analyzing a financial question.png" },
   { n: 5, name: "Finance\nManager", desc: "Prepares the workpaper.", tag: "Professional\nWorkflow", img: "/images/Finance manager preparing a workpaper.png" },
@@ -285,7 +285,7 @@ export function ZoikoLogiaHome() {
               </div>
             </div>
             <ImagePlaceholder
-              src="/images/zoikologia/who-we-are-team.png"
+              src="/images/Accounting professionals collaborating.png"
               alt="ZoikoLogia team collaborating"
               className="aspect-[4/3] w-full"
               label="Team image"
@@ -386,7 +386,7 @@ export function ZoikoLogiaHome() {
             </div>
 
             <ImagePlaceholder
-              src="/images/zoikologia/kriton-advisor.png"
+              src="/images/div.split-photo.png"
               alt="Kriton AI advisor in use"
               className="aspect-[4/3] w-full self-start"
               label="Advisor image"
