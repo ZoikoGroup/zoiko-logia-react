@@ -43,7 +43,7 @@ export default  function FinanceLeaders() {
 
           {/* Portrait image slot */}
           <div className="relative aspect-[4/3] w-full max-w-sm overflow-hidden rounded-xl justify-self-center lg:justify-self-end">
-            <Image src="/images/testpic.png" alt="CFO / finance leader" fill sizes="(max-width:1024px) 100vw, 20rem" className="object-cover" />
+            <Image src="/images/div.role-hero-photo.png" alt="CFO / finance leader" fill sizes="(max-width:1024px) 100vw, 20rem" className="object-cover" />
           </div>
         </div>
       </section>
