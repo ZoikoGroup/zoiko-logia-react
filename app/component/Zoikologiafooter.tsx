@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 
 const AMBER = "#e0a92e";
@@ -64,7 +64,16 @@ export default function ZoikoLogiaFooter() {
           {/* Brand */}
           <div>
             <span className="text-xl font-extrabold tracking-tight text-white">
-              Zoiko<span style={{ color: AMBER }}>Logia</span>
+               <Link href="/" className="flex items-center">
+  <Image
+    src="/images/Rectangle 1.png"
+    alt="ZoikoLogia"
+    width={180}
+    height={50}
+    priority
+    className="h-10 w-auto"
+  />
+</Link>
             </span>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-400">
               Source-backed accounting intelligence, governed by design. Powered by Kriton™, the judgment interface for

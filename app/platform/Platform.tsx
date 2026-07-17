@@ -1,16 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
-/* ------------------------------------------------------------------ */
-/*  ZoikoLogia — Platform landing page (single-file component)         */
-/*  Header & footer omitted · images are dashed placeholders          */
-/*  Palette: navy #071a33 · cream #f7f3ea · sand #efe8d6               */
-/*           amber #f59a23 · orange #d9720f · teal #0d9488 · ink #16233d */
-/*  Fonts are loaded inline below — no page-level wiring required.     */
-/* ------------------------------------------------------------------ */
-
-/* Loads the display + body faces and exposes them as CSS variables    */
 function Fonts() {
   return (
     <style>{`
@@ -43,22 +35,43 @@ function Eyebrow({
   );
 }
 
-function ImagePlaceholder({
+// ─── IMAGE HELPER ───────────────────────────────────────────────────────────
+//
+// Same mechanism as the Animals & Music page: pass a real `src` and it
+// renders with next/image (fill + object-cover). Leave `src` empty/undefined
+// and it falls back to a labeled dashed placeholder so the layout still
+// looks intentional until the real asset is dropped in.
+
+function PlatformImage({
+  src,
+  alt,
   className = "",
-  label = "Image",
   rounded = "rounded-xl",
+  label,
 }: {
+  src?: string;
+  alt: string;
   className?: string;
-  label?: string;
   rounded?: string;
+  label?: string;
 }) {
   return (
-    <div
-      className={`flex items-center justify-center border-2 border-dashed border-black/15 bg-black/[0.03] ${rounded} ${className}`}
-    >
-      <span className="text-[10px] font-medium uppercase tracking-widest text-black/30">
-        {label}
-      </span>
+    <div className={`relative overflow-hidden ${rounded} ${className}`}>
+      {src ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width:1024px) 100vw, 50vw"
+          className="object-cover"
+        />
+      ) : (
+        <div className="absolute inset-0 flex items-center justify-center border-2 border-dashed border-black/15 bg-black/[0.03]">
+          <span className="text-[10px] font-medium uppercase tracking-widest text-black/30">
+            {label ?? alt}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
@@ -134,9 +147,7 @@ function OutlineButton({
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Data                                                              */
-/* ------------------------------------------------------------------ */
+
 
 const platformCards = [
   {
@@ -181,14 +192,16 @@ const kritonCards = [
   { title: "Human Escalation", body: "Clarification, limitation language, or human decision support.", link: "Explore Human Escalation" },
 ];
 
+// Added `img` for each card so the section can render real photography.
+// Leave any `img` as "" to fall back to the labeled placeholder.
 const serveCards = [
-  { title: "Accounting Firms", body: "Research, client explanations, and review workflows.", label: "Firm" },
-  { title: "Enterprise Finance Teams", body: "Policy consistency and review evidence.", label: "Enterprise" },
-  { title: "Tax Professionals", body: "Jurisdiction-aware research and escalation.", label: "Tax" },
-  { title: "Audit & Assurance Teams", body: "Evidence requirements and audit trail support.", label: "Audit" },
-  { title: "Payroll & Compliance", body: "Jurisdiction-aware workflow guidance.", label: "Payroll" },
-  { title: "Accounting Education", body: "Concept pathways and practice guidance.", label: "Education" },
-  { title: "AI Governance Teams", body: "Evaluate professional AI controls.", label: "Governance" },
+  { title: "Accounting Firms", body: "Research, client explanations, and review workflows.", label: "Firm", img: "/images/Accounting firm staff collaborating.png" },
+  { title: "Enterprise Finance Teams", body: "Policy consistency and review evidence.", label: "Enterprise", img: "/images/Enterprise finance team reviewing reports.png" },
+  { title: "Tax Professionals", body: "Jurisdiction-aware research and escalation.", label: "Tax", img: "/images/Tax professional reviewing documentation.png" },
+  { title: "Audit & Assurance Teams", body: "Evidence requirements and audit trail support.", label: "Audit", img: "/images/Audit and assurance team at work.png" },
+  { title: "Payroll & Compliance", body: "Jurisdiction-aware workflow guidance.", label: "Payroll", img: "/images/Payroll and compliance team working.png" },
+  { title: "Accounting Education", body: "Concept pathways and practice guidance.", label: "Education", img: "/images/Accounting educator guiding a learner.png" },
+  { title: "AI Governance Teams", body: "Evaluate professional AI controls.", label: "Governance", img: "/images/AI governance team reviewing platform controls.png" },
 ];
 
 const steps = [
@@ -279,7 +292,12 @@ export function Platform() {
 
           {/* Right: image + overlaid controls card */}
           <div className="relative">
-            <ImagePlaceholder className="aspect-[4/3] w-full" label="Hero image" />
+            <PlatformImage
+              src="/images/Finance professional reviewing a source-backed answer from Kriton.png"
+              alt="Accounting professional working with ZoikoLogia"
+              className="aspect-[4/3] w-full"
+              label="Hero image"
+            />
             <div className="absolute inset-x-4 bottom-4 rounded-xl border border-white/10 bg-[#0a1424]/95 p-5 backdrop-blur sm:inset-x-6 sm:bottom-6">
               <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-300">
                 <span className="inline-block h-3.5 w-3.5 rounded-[3px] border border-slate-500" />
@@ -399,7 +417,9 @@ export function Platform() {
                 key={c.title}
                 className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5"
               >
-                <ImagePlaceholder
+                <PlatformImage
+                  src={c.img}
+                  alt={c.title}
                   className="aspect-[16/10] w-full"
                   rounded="rounded-none"
                   label={c.label}
