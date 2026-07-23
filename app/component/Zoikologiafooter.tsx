@@ -60,24 +60,41 @@ export default function ZoikoLogiaFooter() {
   return (
     <footer className="bg-[#0a1626] text-gray-300">
       <div className="mx-auto max-w-7xl px-6 py-14">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_repeat(5,1fr)]">
+        {/* Brand column widened (1.8fr) so the logo lockup has room and won't spill into "Platform". */}
+        <div className="grid gap-10 lg:grid-cols-[1.8fr_repeat(5,1fr)]">
+
           {/* Brand */}
           <div>
-            <span className="text-xl font-extrabold tracking-tight text-white">
-               <Link href="/" className="flex items-center">
-  <Image
-    src="/images/Rectangle 1.png"
-    alt="ZoikoLogia"
-    width={180}
-    height={50}
-    priority
-    className="h-10 w-auto"
-  />
-</Link>
-            </span>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-gray-400">
-              Source-backed accounting intelligence, governed by design. Powered by Kriton™, the judgment interface for
-              professional accounting workflows.
+            {/* flex-wrap = safety net: if the two marks can't fit on one line, "with Kriton"
+                drops BELOW the logo instead of overflowing sideways. */}
+            <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
+              <Link href="/" className="flex shrink-0 items-center">
+                <Image
+                  src="/images/Rectangle 1.png"
+                  alt="ZoikoLogia"
+                  width={210}
+                  height={50}
+                  priority
+                  className="block h-9 w-auto"
+                />
+              </Link>
+              <Image
+                src="/images/with Kriton.png"
+                alt="with Kriton"
+                width={150}
+                height={40}
+                className="block h-5 w-auto shrink-0"
+              />
+            </div>
+
+            <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.15em] text-[#0d9488]">
+              Governed AI Accounting Intelligence Platform
+            </p>
+
+            <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-400">
+              ZoikoLogia<sup className="align-super text-[0.6em]">™</sup> with Kriton
+              <sup className="align-super text-[0.6em]">™</sup> is a governed AI accounting intelligence platform designed to
+              support source-backed accounting, tax, audit, payroll, compliance, finance, and learning workflows.
             </p>
           </div>
 

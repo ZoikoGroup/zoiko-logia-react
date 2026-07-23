@@ -148,7 +148,7 @@ export default function Page() {
                   <span className={`text-[10px] font-bold uppercase tracking-[0.12em] ${STATUS_META[d.status].cls}`}>{STATUS_META[d.status].label}</span>
                 </div>
                 <h3 className="mt-3 text-base font-bold">{d.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{d.body}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-white">{d.body}</p>
               </div>
             ))}
           </div>
