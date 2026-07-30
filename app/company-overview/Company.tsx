@@ -364,5 +364,3 @@ export default function Company() {
     </main>
   );
 }
-
-export { CompanyOverview };
