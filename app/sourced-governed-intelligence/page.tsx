@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import {
   ArrowRight,
@@ -15,16 +14,20 @@ import {
   Layers,
 } from "lucide-react";
 
-
+/*
+  ZoikoLogia — Kriton page body (app/.../page.tsx)
+  Site header/nav and footer are omitted here — they come from the shared layout.
+  <Photo/> blocks are reserved image slots; pass a `src` prop to drop in a real image,
+  otherwise the icon placeholder is shown.
+  Brand tokens: cream #faf7f0 · navy #0f1a30 · amber #e8912a · teal #0d9488 · serif headings
+*/
 
 // ---- reusable image placeholder -------------------------------------------
 function Photo({
-  src,
   className = "",
   label = "",
   tone = "cream",
 }: {
-  src: string;
   className?: string;
   label?: string;
   tone?: "cream" | "navy";
@@ -35,12 +38,11 @@ function Photo({
       : "bg-[#efe9dc] text-[#0f1a30]/30 ring-1 ring-[#0f1a30]/10";
   return (
     <div className={`relative overflow-hidden rounded-lg ${base} ${className}`}>
-      <Image
-        src={src}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src=""
         alt={label || "photograph"}
-        fill
-        sizes="(max-width: 768px) 100vw, 33vw"
-        className="object-cover"
+        className="absolute inset-0 h-full w-full object-cover"
       />
     </div>
   );
@@ -194,7 +196,7 @@ export default function Page() {
               review, filings, opinions, determinations, or statutory obligations.
             </p>
           </div>
-          <Photo src="images/Overlay+Border.png" tone="navy" label="Advisor presenting to a client team" className="aspect-[4/3] w-full" />
+          <Photo tone="navy" label="Advisor presenting to a client team" className="aspect-[4/3] w-full" />
         </div>
 
         {/* capability strip */}
@@ -217,8 +219,8 @@ export default function Page() {
 
       {/* twin image band -------------------------------------------------- */}
       <section className="mx-auto grid max-w-6xl gap-5 px-6 py-12 md:grid-cols-2">
-        <Photo src="/images/team-collaborating.png" label="Team collaborating" className="aspect-[16/9] w-full" />
-        <Photo src="/images/advisors-in-discussion.png" label="Advisors in discussion" className="aspect-[16/9] w-full" />
+        <Photo label="Team collaborating" className="aspect-[16/9] w-full" />
+        <Photo label="Advisors in discussion" className="aspect-[16/9] w-full" />
       </section>
 
       {/* THE GAP ---------------------------------------------------------- */}
@@ -233,7 +235,7 @@ export default function Page() {
           stages — admission, scope, context, retrieval — around the answer, so
           what informed it is a controlled decision rather than an afterthought.
         </p>
-        <Photo src="/images/team-in-a-glass-meeting-room.png" label="Team in a glass meeting room" className="mt-10 aspect-[21/9] w-full" />
+        <Photo label="Team in a glass meeting room" className="mt-10 aspect-[21/9] w-full" />
       </section>
 
       {/* OPERATING MODEL -------------------------------------------------- */}
@@ -259,9 +261,9 @@ export default function Page() {
         </ol>
 
         <div className="mt-6 grid gap-5 md:grid-cols-3">
-          <Photo src="/images/working-session.png" label="Working session" className="aspect-[4/3] w-full" />
-          <Photo src="/images/reviewing-evidence.png" label="Reviewing evidence" className="aspect-[4/3] w-full" />
-          <Photo src="/images/client-meeting.png" label="Client meeting" className="aspect-[4/3] w-full" />
+          <Photo label="Working session" className="aspect-[4/3] w-full" />
+          <Photo label="Reviewing evidence" className="aspect-[4/3] w-full" />
+          <Photo label="Client meeting" className="aspect-[4/3] w-full" />
         </div>
       </section>
 
@@ -285,7 +287,7 @@ export default function Page() {
             ))}
           </dl>
         </div>
-        <Photo src="/images/partners-reviewing-a-source.png" label="Partners reviewing a source" className="aspect-[3/4] w-full md:sticky md:top-8" />
+        <Photo label="Partners reviewing a source" className="aspect-[3/4] w-full md:sticky md:top-8" />
       </section>
 
       {/* CONTEXT CONTROLS (navy) ------------------------------------------ */}
@@ -302,7 +304,7 @@ export default function Page() {
           </p>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1.1fr]">
-            <Photo src="/images/judicial-context.png" tone="navy" label="Judicial context" className="aspect-[4/3] w-full" />
+            <Photo tone="navy" label="Judicial context" className="aspect-[4/3] w-full" />
             <div className="grid gap-4 sm:grid-cols-2">
               {contextControls.map(([Icon, title, desc]) => (
                 <div key={title} className="rounded-lg bg-white/5 p-5 ring-1 ring-white/10">
@@ -328,7 +330,7 @@ export default function Page() {
         </p>
 
         <div className="mt-10 grid gap-6 rounded-xl bg-white p-4 ring-1 ring-[#0f1a30]/10 md:grid-cols-2 md:p-6">
-          <Photo src="/images/advisory-session.png" label="Advisory session" className="aspect-[4/3] w-full" />
+          <Photo label="Advisory session" className="aspect-[4/3] w-full" />
           <div>
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#0f1a30]/40">
               Source Ledger
@@ -389,9 +391,9 @@ export default function Page() {
         </div>
 
         <div className="mt-6 grid gap-5 md:grid-cols-3">
-          <Photo src="/images/team-standup.png" label="Team standup" className="aspect-[4/3] w-full" />
-          <Photo src="/images/presenting-findings.png" label="Presenting findings" className="aspect-[4/3] w-full" />
-          <Photo src="/images/collaboration.png" label="Collaboration" className="aspect-[4/3] w-full" />
+          <Photo label="Team standup" className="aspect-[4/3] w-full" />
+          <Photo label="Presenting findings" className="aspect-[4/3] w-full" />
+          <Photo label="Collaboration" className="aspect-[4/3] w-full" />
         </div>
       </section>
 
@@ -412,7 +414,7 @@ export default function Page() {
               <TaskCard key={title} title={title} desc={desc} link={link} />
             ))}
           </div>
-          <Photo src="/images/practitioner-at-work.png" label="Practitioner at work" className="aspect-[3/4] w-full self-center" />
+          <Photo label="Practitioner at work" className="aspect-[3/4] w-full self-center" />
           <div className="grid gap-5">
             {tasks.slice(2).map(([title, desc, link]) => (
               <TaskCard key={title} title={title} desc={desc} link={link} />
@@ -439,7 +441,7 @@ export default function Page() {
                 </a>
               </div>
             ))}
-            <Photo src="/images/team-portrait.png" tone="navy" label="Team portrait" className="aspect-[3/4] w-full" />
+            <Photo tone="navy" label="Team portrait" className="aspect-[3/4] w-full" />
           </div>
         </div>
       </section>
