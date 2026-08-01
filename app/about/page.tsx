@@ -1,829 +1,433 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
-import {
-  ShieldCheck,
-  FileSearch,
-  Scale,
-  Users,
-  Lock,
-  ClipboardCheck,
-  ArrowRight,
-  Plus,
-  Minus,
-  Check,
-  Menu,
-  X,
-} from "lucide-react";
 
-/**
- * ZoikoLogia — About page
- * Rebuilt from design. Uses the ZoikoLogia design system:
- *   cream #faf7f0 · navy #0f1a30 · amber #e8912a · teal #0d9488
- * Cream/navy bands are set via Tailwind classes with dark: variants
- * (never inline style={{ backgroundColor }}) so dark mode stays safe.
- *
- * Images are rendered as <Placeholder /> blocks so the page drops in and
- * renders with no missing assets. Swap each for next/image when art is ready.
- */
+const INK = "#16233d";
+const NAVY = "#0f1a30";
+const AMBER = "#e8912a";
 
-/* ---------- small building blocks ---------- */
+/*
+  ZoikoLogia™ — About page body (app/.../page.tsx)
+  Header/nav and footer omitted — provided by the shared layout.
+  Swap the /images/*.png paths for your real filenames.
+*/
 
-function Eyebrow({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+function ImageSlot({ src, alt, ratio = "aspect-[4/3]", rounded = "rounded-xl", className = "" }:
+  { src: string; alt: string; ratio?: string; rounded?: string; className?: string }) {
   return (
-    <p
-      className={`text-xs font-semibold uppercase tracking-[0.2em] text-[#e8912a] ${className}`}
-    >
-      {children}
-    </p>
-  );
-}
-
-function Placeholder({
-  className = "",
-  label,
-  tone = "cream",
-}: {
-  className?: string;
-  label?: string;
-  tone?: "cream" | "navy";
-}) {
-  const tones =
-    tone === "navy"
-      ? "bg-gradient-to-br from-[#16233f] to-[#0b1526] text-slate-500"
-      : "bg-gradient-to-br from-[#efe9dc] to-[#e3dccc] dark:from-[#16233f] dark:to-[#0b1526] text-[#0f1a30]/30 dark:text-slate-500";
-  return (
-    <div
-      role="img"
-      aria-label={label ?? "ZoikoLogia imagery"}
-      className={`relative overflow-hidden rounded-2xl ring-1 ring-black/5 dark:ring-white/10 ${tones} ${className}`}
-    >
-      <div className="absolute inset-0 flex items-center justify-center text-[11px] font-medium uppercase tracking-widest">
-        {label ?? "Image"}
-      </div>
+    <div className={`relative w-full overflow-hidden bg-slate-200 dark:bg-gray-800 ${ratio} ${rounded} ${className}`}>
+      <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
     </div>
   );
 }
 
-function AmberButton({
-  children,
-  href = "#",
-}: {
-  children: React.ReactNode;
-  href?: string;
-}) {
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center gap-2 rounded-lg bg-[#e8912a] px-6 py-3 text-sm font-semibold text-[#0f1a30] transition-colors hover:bg-[#d17f1e] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e8912a]"
-    >
-      {children}
-    </a>
-  );
+// ─── DATA ──────────────────────────────────────────────────────────────────────
+const WHO_WE_ARE: [string, string][] = [
+  ["We are source governed", "Every answer traces to an approved, versioned source — never open-ended generation."],
+  ["We are profession aware", "The system reflects how accounting, tax, audit, and finance work is actually done."],
+  ["We are enterprise minded", "Tenant isolation, access control, and release governance are built in from the start."],
+  ["We are built for responsible AI use", "Risk classification, escalation, and audit evidence are part of every interaction."],
+];
+
+const PRINCIPLES: [string, string][] = [
+  ["Source authority", "Approved, versioned sources only."],
+  ["Context first", "Framework, jurisdiction, and period resolved before meaning."],
+  ["Risk classified", "Every response graded before it is drafted."],
+  ["Evidence recorded", "Source bundle and reviewer trail preserved."],
+  ["Human decision", "Qualified review remains the final call."],
+];
+
+const NEEDS: [string, string][] = [
+  ["Source-backed guidance", "Answers grounded in approved sources, with citations attached."],
+  ["Something you can interpret", "Assumptions and limitations are made explicit, not hidden."],
+  ["Risk you can inspect", "Every response is classified before it is drafted."],
+  ["Professional boundary respect", "It supports judgement; it never replaces qualified review."],
+  ["Audit & compliance traceability", "Source bundle, model run, and reviewer trail are preserved."],
+  ["Provider trust", "Governance is built into the product, not bolted on afterward."],
+];
+
+const HELPS: [string, string][] = [
+  ["Source-backed accounting guidance", "Cited, in-scope guidance drawn from approved sources."],
+  ["Accounting knowledge organization", "Concepts, relationships, and context kept structured."],
+  ["Risk-aware interpretation", "Higher-risk matters flagged before an answer is drafted."],
+  ["Audit-ready evidence", "A preserved record aligned to workpaper standards."],
+];
+
+const AUDIENCE: [string, string][] = [
+  ["Accounting firms", "Workflow and review support for engagement teams."],
+  ["Tax professionals", "Jurisdiction-scoped terminology and treatment structure."],
+  ["Payroll & compliance teams", "Rule-change tracing bound to the correct period and basis."],
+  ["Technology & governance teams", "Governed AI that fits your stack and control model."],
+];
+
+const GOVERNANCE_FIRST: [string, string][] = [
+  ["Source authority before answer generation", "No answer is drafted until an approved source is in scope."],
+  ["Context before interpretation", "Framework, jurisdiction, entity, and period are resolved first."],
+  ["Risk classification before response", "Every question is graded — low to restricted — before drafting."],
+  ["Evidence before acceptance", "The source bundle and reasoning are recorded for review."],
+];
+
+const BACKEND: [string, string][] = [
+  ["Identity & tenancy", "Per-tenant isolation and role-based access."],
+  ["Source registry", "Approved, versioned sources with attributed authority."],
+  ["Ontology service", "Governed concepts and typed relationships."],
+  ["Risk classifier", "Low / medium / high / restricted grading per question."],
+  ["Evidence ledger", "Append-only record of bundles, runs, and reviews."],
+  ["Escalation & review", "Human routing for flagged and restricted matters."],
+  ["Release governance", "Controlled promotion of sources and policy."],
+  ["Audit & observability", "Traceability across every interaction."],
+];
+
+const RECKLESS: string[] = [
+  "We do not treat fluency as truth.",
+  "We do not hide uncertainty.",
+  "We do not bypass professional judgment.",
+  "We do not answer without a source.",
+  "We do not release without governance.",
+];
+
+const PRIVACY: [string, string][] = [
+  ["Tenant isolation", "Each organization's data is separated at the platform boundary."],
+  ["Encryption in transit and at rest", "Standard protection applied across the data path."],
+  ["Role-based access controls", "Access follows role, policy, and configured conditions."],
+  ["Auditable records", "Governed interactions are preserved for later review."],
+];
+
+const JUDGMENT: [string, string, string][] = [
+  ["Source-backed explanation", "Assembles cited, in-scope guidance.", "Deciding how it applies."],
+  ["Risk classification", "Flags higher-risk matters for review.", "Accepting or escalating the risk."],
+  ["Drafting support", "Produces source-bound drafts.", "Final wording and sign-off."],
+  ["Evidence trail", "Preserves the record for review.", "The professional conclusion or opinion."],
+  ["Escalation", "Routes restricted questions to a person.", "The decision at the end of the route."],
+];
+
+const SOURCE_TAGS: string[] = [
+  "Accounting standards", "Tax legislation", "Regulatory guidance", "Firm methodology",
+  "Approved commentary", "Internal policy", "Framework mappings", "Versioned interpretations",
+];
+
+const FAQS: [string, string][] = [
+  ["What is ZoikoLogia™?", "ZoikoLogia™ is a governed AI platform for accounting and professional work. It connects source authority, ontology, risk classification, evidence, and human review so answers can be trusted and traced."],
+  ["How is ZoikoLogia™ different from a general AI tool?", "General tools generate open-ended text. ZoikoLogia™ answers only from approved, versioned sources, classifies risk before drafting, attaches citations, and preserves an evidence trail — governance is the product, not an add-on."],
+  ["Is ZoikoLogia™ regulated or certified?", "ZoikoLogia™ supports qualified professionals; it does not issue binding determinations or certify compliance. Regulatory responsibility and sign-off remain with your team."],
+  ["Who is Kriton™?", "Kriton™ is the AI advisor inside ZoikoLogia™ — the interface where questions are asked and answers are reviewed, built on the governed platform underneath."],
+  ["Does ZoikoLogia™ store our data?", "Data is held under per-tenant isolation with encryption and role-based access. Governed interactions are recorded for auditability; configuration is set to your organization's standards."],
+  ["How does ZoikoLogia™ handle high-risk questions?", "High-risk or restricted questions are flagged, limited, or routed to human review before any answer reaches the user, with the reasoning captured as evidence."],
+];
+
+// ─── inline SVG helpers ─────────────────────────────────────────────────────────
+function Chevron({ open }: { open: boolean }) {
+  return <svg viewBox="0 0 24 24" className={`h-4 w-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+function Check({ className = "h-4 w-4" }: { className?: string }) {
+  return <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+}
+function XMark({ className = "h-4 w-4" }: { className?: string }) {
+  return <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
 
-function OutlineButton({
-  children,
-  href = "#",
-  onNavy = false,
-}: {
-  children: React.ReactNode;
-  href?: string;
-  onNavy?: boolean;
-}) {
-  const base =
-    "inline-flex items-center gap-2 rounded-lg border px-6 py-3 text-sm font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e8912a]";
-  const skin = onNavy
-    ? "border-white/25 text-white hover:bg-white/10"
-    : "border-[#0f1a30]/20 text-[#0f1a30] hover:bg-[#0f1a30]/5 dark:border-white/25 dark:text-white dark:hover:bg-white/10";
-  return (
-    <a href={href} className={`${base} ${skin}`}>
-      {children}
-    </a>
-  );
-}
+const eyebrowAmber = "flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#d9720f]";
+const eyebrowLight = "flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#f0a54a]";
+const serifH = "font-serif leading-tight";
+const tealLink = "text-sm font-semibold text-[#0d9488] hover:underline";
 
-/* A bold label + supporting line, with an amber check. Used in list columns. */
-function CheckPoint({
-  title,
-  body,
-}: {
-  title: string;
-  body: string;
-}) {
-  return (
-    <div className="flex gap-3">
-      <span className="mt-1 flex h-5 w-5 flex-none items-center justify-center rounded-full bg-[#e8912a]/15 text-[#e8912a]">
-        <Check className="h-3 w-3" strokeWidth={3} />
-      </span>
-      <div>
-        <h3 className="font-semibold text-[#0f1a30] dark:text-white">{title}</h3>
-        <p className="mt-1 text-sm leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-          {body}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------- data ---------- */
-
-const NAV = ["About", "Governance", "Platform", "Kriton™", "Who It's For", "Company"];
-
-const WHO_WE_ARE = [
-  {
-    title: "We are source-governed",
-    body: "Answers are grounded in real, verified source material to reduce the risk of confident-but-wrong claims.",
-  },
-  {
-    title: "We are profession-aware",
-    body: "We reflect professional accounting standards, ethics, and the way qualified practitioners actually work.",
-  },
-  {
-    title: "We are enterprise-minded",
-    body: "The platform is built with the controls, privacy, and reliability that firms need to run at scale.",
-  },
-  {
-    title: "We are built for responsibility",
-    body: "Kriton™ is designed to support human judgment — never to quietly replace professional expertise.",
-  },
-];
-
-const MISSION_STRIP = [
-  { title: "Governance-first design", body: "Rules and boundaries come before answers." },
-  { title: "Source-grounded answers", body: "Every response is anchored to verifiable material." },
-  { title: "Profession-aware", body: "Standards and ethics are built into reasoning." },
-  { title: "Enterprise-grade controls", body: "Privacy, access, and reliability by default." },
-  { title: "Human judgment respected", body: "People stay in control of decisions." },
-  { title: "Audit + compliance ready", body: "Everything is traceable and exportable." },
-];
-
-const WHY = [
-  {
-    title: "Source-backed accounting guidance",
-    body: "Every answer is anchored to verifiable source material rather than unattributed generation.",
-  },
-  {
-    title: "Accounting rules awareness",
-    body: "The system understands that accounting work is bound by standards, not open-ended opinion.",
-  },
-  {
-    title: "Risk-sensitive answers",
-    body: "Kriton™ flags uncertainty and highlights where professional judgment is required.",
-  },
-  {
-    title: "Professional boundary respect",
-    body: "It stays within defined governance boundaries instead of guessing past them.",
-  },
-  {
-    title: "Audit-and-compliance traceability",
-    body: "Interactions are logged so answers can be reviewed, defended, and exported.",
-  },
-];
-
-const WHAT_WE_DO = [
-  {
-    title: "Source-backed knowledge access",
-    body: "Ask accounting questions and receive answers anchored to verifiable, ingested source material.",
-  },
-  {
-    title: "Clear answer boundaries",
-    body: "The system stays within governance boundaries and flags where professional judgment is required.",
-  },
-  {
-    title: "Audit-ready responses",
-    body: "Every response can be traced, reviewed, and exported for compliance and record-keeping.",
-  },
-];
-
-const WHO_ITS_FOR = [
-  {
-    title: "Accounting firms",
-    body: "Firms that need reliable, source-backed answers and clear audit trails for client work.",
-  },
-  {
-    title: "Tax professionals",
-    body: "Specialists who need accurate, current, and defensible positions on complex matters.",
-  },
-  {
-    title: "Payroll and compliance teams",
-    body: "Teams responsible for accuracy, documentation, and regulatory adherence.",
-  },
-  {
-    title: "Finance and operations teams",
-    body: "In-house teams that want governed accounting intelligence they can stand behind.",
-  },
-];
-
-const APPROACH = [
-  {
-    title: "Source authority before answers",
-    body: "We establish a verifiable source basis first — the answer comes second, never the other way around.",
-  },
-  {
-    title: "Privacy before promotion",
-    body: "Sensitive data is protected by design. We treat confidentiality as a requirement, not a feature.",
-  },
-  {
-    title: "Auditability before automation",
-    body: "If it can't be traced and reviewed, it doesn't ship. Evidence comes before convenience.",
-  },
-];
-
-const ARCHITECTURE = [
-  {
-    title: "Source ingestion & verification",
-    body: "Controls what content enters the system and confirms it against trusted, verifiable sources.",
-  },
-  {
-    title: "Governance & policy engine",
-    body: "Applies governance rules, boundaries, and professional standards to every request.",
-  },
-  {
-    title: "Reasoning & answer construction",
-    body: "Builds answers within defined boundaries and marks where professional judgment is required.",
-  },
-  {
-    title: "Audit & compliance logging",
-    body: "Records every interaction so answers can be traced, reviewed, and exported.",
-  },
-  {
-    title: "Privacy & access control",
-    body: "Protects sensitive data with strict access, retention, and privacy controls.",
-  },
-  {
-    title: "Human review & escalation",
-    body: "Routes sensitive or high-risk matters to qualified human professionals.",
-  },
-];
-
-const PRINCIPLES = [
-  {
-    title: "We do not treat answers as final truth",
-    body: "Kriton™ shows its basis and boundaries so professionals can verify, not just trust.",
-  },
-  {
-    title: "We do not guess when sources are missing",
-    body: "If the source basis is weak, the system says so rather than inventing a confident answer.",
-  },
-  {
-    title: "We do not bypass professional standards",
-    body: "Accounting rules and ethics constrain the system — they are not optional context.",
-  },
-  {
-    title: "We do not ignore privacy",
-    body: "Confidential data is protected end to end, with access limited to who should see it.",
-  },
-  {
-    title: "We do not remove human judgment",
-    body: "Final interpretation, advice, and sign-off stay with the qualified professional.",
-  },
-];
-
-const TRUST = [
-  {
-    icon: ShieldCheck,
-    title: "Secure by design",
-    body: "Privacy, encryption, and access controls are built into the platform, not bolted on later.",
-  },
-  {
-    icon: Lock,
-    title: "Encryption everywhere",
-    body: "Sensitive data is protected in transit and at rest with strong encryption standards.",
-  },
-  {
-    icon: Users,
-    title: "Access controls",
-    body: "Role-based access ensures people only see what they are permitted to see.",
-  },
-  {
-    icon: ClipboardCheck,
-    title: "Full auditability",
-    body: "Every action is logged and traceable for compliance and internal review.",
-  },
-];
-
-const JUDGMENT: [string, string][] = [
-  ["Source-backed research and context", "Final interpretation and professional opinion"],
-  ["Highlighted risks and considerations", "Risk decisions and client advice"],
-  ["Draft explanations and summaries", "Sign-off and professional accountability"],
-  ["Flagged areas that need judgment", "Applied ethics and professional judgment"],
-];
-
-const SOURCE_CHIPS = [
-  "Accounting standards",
-  "Tax legislation",
-  "Regulatory guidance",
-  "Company filings",
-  "Firm policies",
-  "Verified references",
-  "Professional literature",
-  "Client documentation",
-  "Public records",
-  "Audit evidence",
-  "Internal knowledge",
-  "Statutory sources",
-];
-
-const FAQ: [string, string][] = [
-  [
-    "What is ZoikoLogia™?",
-    "ZoikoLogia™ is a governed AI accounting intelligence platform. It helps businesses and accounting professionals work with accounting knowledge through a system built around source authority, professional standards, and auditability.",
-  ],
-  [
-    "What is Kriton™?",
-    "Kriton™ is the AI advisor at the centre of ZoikoLogia™. It answers accounting questions within defined governance boundaries, shows the source basis behind its answers, and flags where professional judgment is required.",
-  ],
-  [
-    "Is ZoikoLogia™ a general-purpose AI chatbot?",
-    "No. Unlike general chatbots, ZoikoLogia™ is purpose-built for accounting work. It stays within governance boundaries, grounds answers in verified sources, and is designed to be defensible in a professional context.",
-  ],
-  [
-    "Where do ZoikoLogia™ answers come from?",
-    "Answers are grounded in verifiable, ingested source material — standards, regulations, filings, and approved references. The stronger the source basis, the more trustworthy the answer.",
-  ],
-  [
-    "Who is ZoikoLogia™ for?",
-    "It is built for accounting firms, tax professionals, payroll and compliance teams, and in-house finance and operations teams that need trustworthy, traceable accounting intelligence.",
-  ],
-  [
-    "Does ZoikoLogia™ replace accountants?",
-    "No. Kriton™ supports professional judgment; it does not replace it. Final interpretation, advice, and sign-off remain with the qualified professional.",
-  ],
-  [
-    "How does ZoikoLogia™ handle privacy and data?",
-    "Privacy, encryption, access control, and audit logging are core product requirements. Sensitive data is protected end to end and access is limited by role.",
-  ],
-];
-
-/* ---------- section wrappers (band backgrounds live here, as classes) ---------- */
-
-const CREAM = "bg-[#faf7f0] dark:bg-[#0b1220] text-[#0f1a30] dark:text-white";
-const NAVY = "bg-[#0f1a30] text-white";
-const CONTAINER = "mx-auto w-full max-w-6xl px-6";
-
-/* ---------- page ---------- */
-
-export default function AboutPage() {
-  const [menuOpen, setMenuOpen] = useState(false);
+// ─── PAGE ───────────────────────────────────────────────────────────────────────
+export default function Page() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  const amberBtn = "rounded-md px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90";
+
   return (
-    <main className="font-sans">
-      {/* ---------------- Header ---------------- */}
-      <header className={`sticky top-0 z-50 border-b border-black/5 dark:border-white/10 ${CREAM}`}>
-        <div className={`${CONTAINER} flex h-16 items-center justify-between`}>
-          <a href="#" className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-md bg-[#0f1a30] text-sm font-bold text-[#e8912a] dark:bg-white/10">
-              Z
-            </span>
-            <span className="font-serif text-lg font-bold tracking-tight">
-              ZoikoLogia<span className="align-super text-[10px]">™</span>
-            </span>
-          </a>
+    <main className="bg-[#faf7f0] font-sans text-[#16233d] dark:bg-gray-900 dark:text-white">
 
-          <nav className="hidden items-center gap-7 lg:flex">
-            {NAV.map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-sm font-medium text-[#0f1a30]/70 transition-colors hover:text-[#0f1a30] dark:text-slate-300 dark:hover:text-white"
-              >
-                {item}
-              </a>
-            ))}
-          </nav>
-
-          <div className="hidden items-center gap-3 lg:flex">
-            <a
-              href="#"
-              className="text-sm font-medium text-[#0f1a30]/70 hover:text-[#0f1a30] dark:text-slate-300 dark:hover:text-white"
-            >
-              Sign In
-            </a>
-            <AmberButton>Request a Demo</AmberButton>
-          </div>
-
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            onClick={() => setMenuOpen((v) => !v)}
-            className="lg:hidden"
-          >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {menuOpen && (
-          <div className={`border-t border-black/5 dark:border-white/10 lg:hidden ${CREAM}`}>
-            <div className={`${CONTAINER} flex flex-col gap-4 py-4`}>
-              {NAV.map((item) => (
-                <a key={item} href="#" className="text-sm font-medium">
-                  {item}
-                </a>
-              ))}
-              <div className="flex items-center gap-3 pt-2">
-                <a href="#" className="text-sm font-medium">
-                  Sign In
-                </a>
-                <AmberButton>Request a Demo</AmberButton>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* ---------------- Hero ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} py-16 text-center sm:py-20`}>
-          <Eyebrow className="mb-5">Governed AI for accounting</Eyebrow>
-          <h1 className="mx-auto max-w-3xl font-serif text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl">
-            We Are Building Governed AI Accounting Intelligence for Professional Work.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-            ZoikoLogia™ is an AI accounting intelligence platform. Kriton™, our advisor,
-            helps businesses and accounting professionals work with accounting knowledge
-            through source authority, professional standards, and enterprise-grade controls.
+      {/* ─── Hero (navy) ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8 lg:py-20" style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto max-w-4xl text-center text-white">
+          <p className="mx-auto flex items-center justify-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#f0a54a]">
+            <span className="h-px w-6 bg-[#f0a54a]" /> About ZoikoLogia™
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <AmberButton>Explore the Platform</AmberButton>
-            <OutlineButton>Read the Guide</OutlineButton>
+          <h1 className={`mx-auto mt-5 max-w-3xl text-[clamp(2rem,4.5vw,2.9rem)] ${serifH}`}>We are building governed AI accounting intelligence for professional work.</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-slate-300/85">
+            ZoikoLogia™ is a governed intelligence platform for accounting. Its purpose: help professionals ask
+            questions, structure workflows, and review source-backed guidance — not a generic chatbot, but a
+            governed system built for understandable, accountable answers.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+            <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Explore the Platform</a>
+            <a href="#" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">View Governance Framework →</a>
           </div>
-          <a
-            href="#"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0d9488] hover:underline"
-          >
-            Meet Kriton™ <ArrowRight className="h-4 w-4" />
-          </a>
-
-          <Placeholder
-            label="Platform preview"
-            className="mx-auto mt-12 h-64 w-full max-w-4xl sm:h-80"
-          />
+        </div>
+        <div className="mx-auto mt-12 max-w-5xl">
+          <ImageSlot src="/images/About hero — team building governed AI.png" alt="Team building governed AI accounting intelligence" ratio="aspect-[21/9]" />
         </div>
       </section>
 
-      {/* ---------------- Who we are ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} grid gap-12 py-16 lg:grid-cols-2 lg:gap-16`}>
+      {/* ─── Who we are ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8">
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
           <div>
-            <Eyebrow className="mb-4">Who we are</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              ZoikoLogia™ Exists to Bring Trust, Structure, and Governance to AI-Powered
-              Accounting Work.
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-              ZoikoLogia™ was created out of a simple conviction: AI can be genuinely useful
-              in accounting, but only if it is trustworthy. Accounting work is bound by
-              standards, evidence, and professional responsibility — so the intelligence that
-              supports it has to be governed the same way.
+            <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Who We Are</p>
+            <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>ZoikoLogia™ exists to bring trust, structure, and governance to AI-powered accounting work.</h2>
+            <p className="mt-4 max-w-lg text-[15px] leading-relaxed text-slate-600 dark:text-gray-300">
+              Accounting work relies on standards, judgement, and time. Generic AI erases that context. We built a
+              platform where every answer is bound to a source, a framework, and a human decision.
             </p>
-            <a
-              href="#"
-              className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0d9488] hover:underline"
-            >
-              Learn how the platform works <ArrowRight className="h-4 w-4" />
-            </a>
+            <a href="#" className={`${tealLink} mt-5 inline-block`}>Learn how the platform works →</a>
           </div>
-          <div className="grid gap-7 sm:grid-cols-2">
-            {WHO_WE_ARE.map((p) => (
-              <CheckPoint key={p.title} title={p.title} body={p.body} />
+          <dl className="divide-y divide-black/10 border-y border-black/10 dark:divide-gray-700 dark:border-gray-700">
+            {WHO_WE_ARE.map(([term, def]) => (
+              <div key={term} className="py-4">
+                <dt className="text-sm font-bold">{term}</dt>
+                <dd className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{def}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         </div>
       </section>
 
-      {/* ---------------- Mission (navy) ---------------- */}
-      <section className={NAVY}>
-        <div className={`${CONTAINER} py-16 sm:py-20`}>
-          <Eyebrow className="mb-5 text-center">Our mission</Eyebrow>
-          <blockquote className="mx-auto max-w-3xl text-center font-serif text-3xl font-medium leading-snug tracking-tight sm:text-4xl">
-            “To make AI useful, trustworthy, and governed for accounting professionals.”
+      {/* ─── Principles quote (navy) ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8" style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto max-w-6xl text-white">
+          <blockquote className={`mx-auto max-w-3xl text-center text-[clamp(1.4rem,3vw,2rem)] ${serifH}`}>
+            &ldquo;To make AI useful, trustworthy, and governed for accounting professionals.&rdquo;
           </blockquote>
-          <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {MISSION_STRIP.map((m) => (
-              <div key={m.title} className="flex gap-4">
-                <Placeholder tone="navy" label="" className="h-14 w-14 flex-none rounded-xl" />
-                <div>
-                  <h3 className="font-semibold text-white">{m.title}</h3>
-                  <p className="mt-1 text-sm text-slate-400">{m.body}</p>
-                </div>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {PRINCIPLES.map(([t, b]) => (
+              <div key={t} className="rounded-lg bg-white/5 p-5 ring-1 ring-white/10">
+                <span className="text-[#0d9488]"><Check className="h-5 w-5" /></span>
+                <h3 className="mt-3 text-sm font-semibold">{t}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-slate-300/70">{b}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <ImageSlot src="/images/Governance team 1.png" alt="Governance team" ratio="aspect-[4/3]" />
+            <ImageSlot src="/images/Governance team 2.png" alt="Governance team" ratio="aspect-[4/3]" />
+            <ImageSlot src="/images/Governance team 3.png" alt="Governance team" ratio="aspect-[4/3]" />
+            <ImageSlot src="/images/Governance team 4.png" alt="Governance team" ratio="aspect-[4/3]" />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Needs governance ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-6xl">
+          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Why It Matters</p>
+          <h2 className={`mt-4 max-w-2xl text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>The accounting profession needs AI that understands governance.</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {NEEDS.map(([t, b]) => (
+              <div key={t} className="flex flex-col rounded-xl border border-black/10 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <span className="text-[#0d9488]"><Check className="h-5 w-5" /></span>
+                <h3 className="mt-3 text-sm font-bold">{t}</h3>
+                <p className="mt-2 text-[13px] leading-relaxed text-slate-600 dark:text-gray-300">{b}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- Why it matters ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} py-16 sm:py-20`}>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="mb-4">Why it matters</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              The Accounting Profession Needs AI That Understands Governance.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-              Generic AI tools create real risk in professional accounting. ZoikoLogia™
-              approaches the problem from the opposite direction — governance first.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:gap-14">
-            <div className="grid gap-6">
-              {WHY.map((w) => (
-                <div
-                  key={w.title}
-                  className="rounded-xl border border-black/5 bg-white/60 p-5 dark:border-white/10 dark:bg-white/5"
-                >
-                  <h3 className="font-semibold text-[#0f1a30] dark:text-white">{w.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-                    {w.body}
-                  </p>
+      {/* ─── Helps users work ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8" style={{ backgroundColor: "#f5efe0" }}>
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
+          <div>
+            <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> What It Does</p>
+            <h2 className={`mt-4 text-black text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>ZoikoLogia™ helps users work with accounting knowledge through a governed AI system.</h2>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {HELPS.map(([t, b]) => (
+                <div key={t} className="rounded-lg border border-black/10 bg-white p-4 dark:border-gray-700 dark:bg-gray-900">
+                  <h3 className="text-sm font-bold text-black dark:text-white">{t}</h3>
+                  <p className="mt-1.5 text-[13px] leading-relaxed text-slate-600 dark:text-gray-300">{b}</p>
                 </div>
               ))}
             </div>
-            <Placeholder label="Accountants at work" className="min-h-[20rem] w-full" />
+            <a href="#" className={`${tealLink} mt-6 inline-block`}>Explore Core Capabilities →</a>
           </div>
+          <ImageSlot src="/images/Team working with governed system.png" alt="Working with the governed system" ratio="aspect-[4/3]" className="self-center" />
         </div>
       </section>
 
-      {/* ---------------- What we do ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16`}>
-          <Placeholder label="Governed AI system" className="order-2 min-h-[20rem] w-full lg:order-1" />
-          <div className="order-1 lg:order-2">
-            <Eyebrow className="mb-4">What we do</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              ZoikoLogia™ Helps Users Work With Accounting Knowledge Through a Governed AI
-              System.
-            </h2>
-            <div className="mt-8 grid gap-6">
-              {WHAT_WE_DO.map((w) => (
-                <CheckPoint key={w.title} title={w.title} body={w.body} />
-              ))}
-            </div>
-            <a
-              href="#"
-              className="mt-7 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0d9488] hover:underline"
-            >
-              Explore core capabilities <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- Meet Kriton ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} py-16 text-center sm:py-20`}>
-          <Eyebrow className="mb-4">Meet Kriton™</Eyebrow>
-          <h2 className="mx-auto max-w-3xl font-serif text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-            Kriton™ Is the AI Advisor for Governed Accounting Intelligence.
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-            Kriton™ works inside governance rules, grounds its answers in source authority,
-            and respects professional judgment. It doesn’t just answer — it shows its basis
-            and its boundaries.
+      {/* ─── Kriton advisor band ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className={`${eyebrowAmber} justify-center`}><span className="h-px w-6 bg-[#d9720f]" /> Meet Kriton™</p>
+          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Kriton™ is the AI advisor for governed accounting intelligence.</h2>
+          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-slate-600 dark:text-gray-300">
+            Kriton™ is the interface professionals talk to — questions in, source-backed and risk-classified answers
+            out, with review built in.
           </p>
-          <Placeholder label="Kriton™ advisor interface" className="mx-auto mt-12 h-72 w-full max-w-4xl sm:h-96" />
+        </div>
+        <div className="mx-auto mt-10 max-w-5xl">
+          <ImageSlot src="/images/Kriton advisor in use.png" alt="Kriton advisor in use" ratio="aspect-[21/9]" />
         </div>
       </section>
 
-      {/* ---------------- Who it's for ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} grid gap-12 py-16 lg:grid-cols-2 lg:gap-16`}>
+      {/* ─── Built for people/orgs ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8" style={{ backgroundColor: "#f5efe0" }}>
+        <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-2">
           <div>
-            <Eyebrow className="mb-4">Who it&apos;s for</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              Built for the People and Organizations That Need Trustworthy Accounting
-              Intelligence.
-            </h2>
-            <div className="mt-8 grid gap-7 sm:grid-cols-2">
-              {WHO_ITS_FOR.map((p) => (
-                <CheckPoint key={p.title} title={p.title} body={p.body} />
-              ))}
-            </div>
-          </div>
-          <Placeholder label="Teams collaborating" className="min-h-[22rem] w-full" />
-        </div>
-      </section>
-
-      {/* ---------------- Our approach ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} py-16 sm:py-20`}>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="mb-4">Our approach</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              ZoikoLogia™ Is Built Around Governance First.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-              Three commitments shape every product decision we make.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {APPROACH.map((a) => (
-              <div
-                key={a.title}
-                className="rounded-2xl border border-black/5 bg-white/60 p-6 dark:border-white/10 dark:bg-white/5"
-              >
-                <Placeholder label="" className="mb-5 h-36 w-full" />
-                <h3 className="font-serif text-lg font-bold">{a.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-                  {a.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- Architecture (navy) ---------------- */}
-      <section className={NAVY}>
-        <div className={`${CONTAINER} py-16 sm:py-20`}>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="mb-4">The architecture</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-              ZoikoLogia™ Is Governed by a Complete Back-End Control Architecture.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-slate-400">
-              Every request passes through layered controls — from source verification to
-              human escalation.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {ARCHITECTURE.map((a) => (
-              <div
-                key={a.title}
-                className="rounded-xl border border-white/10 bg-white/[0.04] p-5"
-              >
-                <h3 className="font-semibold text-white">{a.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-400">{a.body}</p>
-              </div>
-            ))}
-          </div>
-          <Placeholder tone="navy" label="Control architecture" className="mt-12 h-56 w-full sm:h-72" />
-        </div>
-      </section>
-
-      {/* ---------------- Principles ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16`}>
-          <Placeholder label="Human oversight" className="min-h-[22rem] w-full" />
-          <div>
-            <Eyebrow className="mb-4">Our principles</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              We Believe Accounting AI Must Be Useful Without Being Reckless.
-            </h2>
-            <div className="mt-8 grid gap-6">
-              {PRINCIPLES.map((p) => (
-                <CheckPoint key={p.title} title={p.title} body={p.body} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- Trust & safety ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} py-16 sm:py-20`}>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="mb-4">Trust &amp; safety</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              Privacy, Security, and Auditability Are Core Product Requirements.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-              These aren’t add-ons. They are built into the platform from the ground up.
-            </p>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {TRUST.map(({ icon: Icon, title, body }) => (
-              <div
-                key={title}
-                className="rounded-2xl border border-black/5 bg-white/60 p-6 dark:border-white/10 dark:bg-white/5"
-              >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0d9488]/10 text-[#0d9488]">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 font-semibold text-[#0f1a30] dark:text-white">{title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-                  {body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- Professional judgment (table) ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} py-16 sm:py-20`}>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="mb-4">Professional judgment</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              Kriton™ Supports Professional Judgment. It Does Not Replace It.
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-              Kriton™ does the research and surfaces the evidence. The professional keeps the
-              decision.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border border-black/10 dark:border-white/10">
-            <div className="grid grid-cols-2 bg-[#0f1a30] text-white">
-              <div className="border-r border-white/10 px-5 py-4 text-sm font-semibold">
-                What Kriton™ provides
-              </div>
-              <div className="px-5 py-4 text-sm font-semibold">
-                What stays with the professional
-              </div>
-            </div>
-            {JUDGMENT.map(([left, right], i) => (
-              <div
-                key={left}
-                className={`grid grid-cols-2 text-sm ${
-                  i % 2 ? "bg-white/40 dark:bg-white/[0.03]" : "bg-transparent"
-                }`}
-              >
-                <div className="flex items-start gap-2 border-r border-black/10 px-5 py-4 dark:border-white/10">
-                  <span className="mt-0.5 text-[#0d9488]">
-                    <Check className="h-4 w-4" strokeWidth={3} />
-                  </span>
-                  <span className="text-[#0f1a30]/80 dark:text-slate-300">{left}</span>
+            <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Who It Is For</p>
+            <h2 className={`mt-4 text-black text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Built for the people and organizations that need trustworthy accounting intelligence.</h2>
+            <div className="mt-8 space-y-4">
+              {AUDIENCE.map(([t, b]) => (
+                <div key={t} className="flex gap-3">
+                  <span className="mt-1 text-[#0d9488]"><Check className="h-4 w-4" /></span>
+                  <div>
+                    <h3 className="text-sm font-bold text-black dark:text-white">{t}</h3>
+                    <p className="mt-0.5 text-[13px] leading-relaxed text-slate-600 dark:text-gray-300">{b}</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-2 px-5 py-4">
-                  <span className="mt-0.5 text-[#e8912a]">
-                    <Scale className="h-4 w-4" />
-                  </span>
-                  <span className="text-[#0f1a30]/80 dark:text-slate-300">{right}</span>
-                </div>
+              ))}
+            </div>
+            <a href="#" className={`${tealLink} mt-6 inline-block`}>See all solutions →</a>
+          </div>
+          <ImageSlot src="/images/Practitioners collaborating.png" alt="Practitioners collaborating" ratio="aspect-[4/3]" className="self-center" />
+        </div>
+      </section>
+
+      {/* ─── Governance first ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-6xl">
+          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Governance First</p>
+          <h2 className={`mt-4 max-w-2xl text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>ZoikoLogia™ is built around governance first.</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {GOVERNANCE_FIRST.map(([t, b], i) => (
+              <div key={t} className="rounded-xl border border-black/10 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#0d9488] text-sm font-bold text-[#0d9488]">{i + 1}</div>
+                <h3 className="mt-3 text-sm font-bold">{t}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-slate-600 dark:text-gray-300">{b}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- Source basis (navy) ---------------- */}
-      <section className={NAVY}>
-        <div className={`${CONTAINER} grid items-center gap-12 py-16 sm:py-20 lg:grid-cols-2 lg:gap-16`}>
-          <div>
-            <Eyebrow className="mb-4">The source basis</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-              The Source Basis Matters.
-            </h2>
-            <p className="mt-4 max-w-md text-base leading-relaxed text-slate-400">
-              ZoikoLogia™ answers are grounded in verifiable source material. The stronger the
-              source basis, the more trustworthy the answer.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              {SOURCE_CHIPS.map((chip) => (
-                <span
-                  key={chip}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.04] px-3.5 py-1.5 text-sm text-slate-300"
-                >
-                  <FileSearch className="h-3.5 w-3.5 text-[#e8912a]" />
-                  {chip}
-                </span>
-              ))}
-            </div>
+      {/* ─── Back-end control architecture (navy) ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8" style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto max-w-6xl text-white">
+          <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#f0a54a]">
+            <span className="h-px w-6 bg-[#f0a54a]" /> Control Architecture
+          </p>
+          <h2 className={`mt-4 max-w-2xl text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>ZoikoLogia™ is governed by a complete back-end control architecture.</h2>
+          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-slate-300/85">
+            These are design specifications that reflect how every component of ZoikoLogia™ must behave before it
+            reaches a professional.
+          </p>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {BACKEND.map(([t, b]) => (
+              <div key={t} className="rounded-lg bg-white/5 p-5 ring-1 ring-white/10">
+                <h3 className="text-sm font-semibold">{t}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-slate-300/70">{b}</p>
+              </div>
+            ))}
           </div>
-          <Placeholder tone="navy" label="Source verification" className="min-h-[20rem] w-full" />
+          <div className="mt-8">
+            <ImageSlot src="/images/Control room architecture.png" alt="Back-end control architecture" ratio="aspect-[21/9]" />
+          </div>
         </div>
       </section>
 
-      {/* ---------------- FAQ ---------------- */}
-      <section className={CREAM}>
-        <div className={`${CONTAINER} py-16 sm:py-20`}>
-          <div className="mx-auto max-w-2xl text-center">
-            <Eyebrow className="mb-4">FAQ</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight">
-              About ZoikoLogia™ and Kriton™.
-            </h2>
+      {/* ─── Useful without reckless ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <div>
+            <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Our Position</p>
+            <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>We believe accounting AI must be useful without being reckless.</h2>
+            <ul className="mt-8 space-y-3">
+              {RECKLESS.map((r) => (
+                <li key={r} className="flex gap-3 text-[15px] leading-relaxed text-slate-700 dark:text-gray-300">
+                  <span className="mt-0.5 text-red-500"><XMark className="h-4 w-4" /></span>{r}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="mx-auto mt-10 max-w-3xl divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
-            {FAQ.map(([q, a], i) => {
+          <ImageSlot src="/images/Reviewer at work.png" alt="Reviewer at work" ratio="aspect-[4/3]" />
+        </div>
+      </section>
+
+      {/* ─── Privacy / security ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8" style={{ backgroundColor: "#f5efe0" }}>
+        <div className="mx-auto max-w-6xl">
+          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Trust & Controls</p>
+          <h2 className={`mt-4 max-w-2xl text-black text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Privacy, security, and auditability are core product requirements.</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {PRIVACY.map(([t, b]) => (
+              <div key={t} className="rounded-xl border border-black/10 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
+                <span className="text-[#0d9488]"><Check className="h-5 w-5" /></span>
+                <h3 className="mt-3 text-sm font-bold">{t}</h3>
+                <p className="mt-1.5 text-[13px] leading-relaxed text-slate-600 dark:text-gray-300">{b}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Judgment table ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-6xl">
+          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Professional Boundary</p>
+          <h2 className={`mt-4 max-w-2xl text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Kriton™ supports professional judgment. It does not replace it.</h2>
+          <div className="mt-8 overflow-x-auto rounded-xl border border-black/10 dark:border-gray-700">
+            <table className="w-full min-w-[600px] border-collapse text-left text-sm">
+              <thead>
+                <tr className="text-[11px] font-bold uppercase tracking-[0.12em] text-slate-300" style={{ backgroundColor: NAVY }}>
+                  <th className="px-4 py-3">Capability</th>
+                  <th className="px-4 py-3 text-[#34d39e]">What Kriton™ does</th>
+                  <th className="px-4 py-3">What stays with you</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-black/10 dark:divide-gray-700">
+                {JUDGMENT.map(([cap, does, you]) => (
+                  <tr key={cap} className="bg-white align-top dark:bg-gray-900">
+                    <td className="px-4 py-4 font-semibold">{cap}</td>
+                    <td className="px-4 py-4 text-slate-800 dark:text-gray-100">{does}</td>
+                    <td className="px-4 py-4 text-slate-600 dark:text-gray-300">{you}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Source basis (navy) ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8" style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <div className="text-white">
+            <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#f0a54a]">
+              <span className="h-px w-6 bg-[#f0a54a]" /> Source Basis
+            </p>
+            <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>The source basis matters.</h2>
+            <p className="mt-3 max-w-lg text-[15px] leading-relaxed text-slate-300/85">
+              Every answer is only as trustworthy as what it draws on. These are the kinds of governed sources a
+              Kriton™ answer can be built from — each attributed, scoped, and versioned.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {SOURCE_TAGS.map((tag) => (
+                <span key={tag} className="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-200 ring-1 ring-white/10">{tag}</span>
+              ))}
+            </div>
+          </div>
+          <ImageSlot src="/images/Professional considering a source.png" alt="Considering the source basis" ratio="aspect-[4/3]" />
+        </div>
+      </section>
+
+      {/* ─── FAQ ─── */}
+      <section className="px-4 py-16 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-3xl">
+          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Direct Answers</p>
+          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>About ZoikoLogia™ and Kriton™.</h2>
+          <div className="mt-8 divide-y divide-black/10 border-y border-black/10 dark:divide-gray-700 dark:border-gray-700">
+            {FAQS.map(([q, a], i) => {
               const open = openFaq === i;
               return (
                 <div key={q}>
-                  <button
-                    type="button"
-                    onClick={() => setOpenFaq(open ? null : i)}
-                    aria-expanded={open}
-                    className="flex w-full items-center justify-between gap-4 py-5 text-left"
-                  >
-                    <span className="font-semibold text-[#0f1a30] dark:text-white">{q}</span>
-                    <span className="flex-none text-[#e8912a]">
-                      {open ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
-                    </span>
+                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} aria-expanded={open}
+                    className="flex w-full items-center justify-between gap-4 py-4 text-left text-[15px] font-semibold">
+                    {q}<Chevron open={open} />
                   </button>
-                  {open && (
-                    <p className="pb-5 text-sm leading-relaxed text-[#0f1a30]/60 dark:text-slate-400">
-                      {a}
-                    </p>
-                  )}
+                  {open && <p className="pb-4 text-[15px] leading-relaxed text-slate-600 dark:text-gray-300">{a}</p>}
                 </div>
               );
             })}
@@ -831,60 +435,18 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ---------------- Final CTA (navy) ---------------- */}
-      <section className={NAVY}>
-        <div className={`${CONTAINER} py-16 text-center sm:py-20`}>
-          <h2 className="mx-auto max-w-3xl font-serif text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
-            Use AI Accounting Intelligence With Source Authority, Audit Evidence, and
-            Professional Controls.
-          </h2>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <AmberButton>Request a Demo</AmberButton>
-            <OutlineButton onNavy>Explore the Platform</OutlineButton>
+      {/* ─── Final CTA (navy) ─── */}
+      <section className="px-4 pb-20 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-5xl rounded-2xl px-8 py-16 text-center" style={{ backgroundColor: NAVY }}>
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#0d9488]">Get Started</p>
+          <h2 className={`mx-auto mt-3 max-w-2xl text-white text-[clamp(1.6rem,3vw,2.2rem)] ${serifH}`}>Use AI accounting intelligence with source authority, audit evidence, and professional judgment.</h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+            <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Request Pilot</a>
+            <a href="#" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">Visit Trust Center →</a>
           </div>
         </div>
       </section>
-
-      {/* ---------------- Footer ---------------- */}
-      <footer className="bg-[#0b1526] text-slate-400">
-        <div className={`${CONTAINER} py-14`}>
-          <div className="grid gap-10 md:grid-cols-4">
-            <div className="md:col-span-1">
-              <div className="flex items-center gap-2 text-white">
-                <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/10 text-sm font-bold text-[#e8912a]">
-                  Z
-                </span>
-                <span className="font-serif text-lg font-bold">ZoikoLogia™</span>
-              </div>
-              <p className="mt-4 max-w-xs text-sm leading-relaxed">
-                Governed AI accounting intelligence — built on source authority, professional
-                standards, and auditability.
-              </p>
-            </div>
-            {[
-              ["Platform", ["Overview", "Kriton™", "Governance", "Architecture"]],
-              ["Company", ["About", "Careers", "Contact", "Press"]],
-              ["Legal", ["Privacy", "Terms", "Security", "Compliance"]],
-            ].map(([title, links]) => (
-              <div key={title as string}>
-                <h4 className="text-sm font-semibold text-white">{title as string}</h4>
-                <ul className="mt-4 space-y-2.5 text-sm">
-                  {(links as string[]).map((l) => (
-                    <li key={l}>
-                      <a href="#" className="hover:text-white">
-                        {l}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 border-t border-white/10 pt-6 text-xs">
-            © {new Date().getFullYear()} ZoikoLogia™. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
