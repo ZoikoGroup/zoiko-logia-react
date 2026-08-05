@@ -14,13 +14,6 @@ import {
   Layers,
 } from "lucide-react";
 
-/*
-  ZoikoLogia — Kriton page body (app/.../page.tsx)
-  Site header/nav and footer are omitted here — they come from the shared layout.
-  <Photo/> blocks are reserved image slots; pass a `src` prop to drop in a real image,
-  otherwise the icon placeholder is shown.
-  Brand tokens: cream #faf7f0 · navy #0f1a30 · amber #e8912a · teal #0d9488 · serif headings
-*/
 
 // ---- reusable image placeholder -------------------------------------------
 function Photo({

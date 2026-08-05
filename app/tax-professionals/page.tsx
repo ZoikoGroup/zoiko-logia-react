@@ -194,7 +194,7 @@ export default function Page() {
               review, filings, opinions, determinations, or statutory obligations.
             </p>
           </div>
-          <Photo src="images/Overlay+Border.png" tone="navy" label="Advisor presenting to a client team" className="aspect-[4/3] w-full" />
+          <Photo src="/images/Overlay+Border.png" tone="navy" label="Advisor presenting to a client team" className="aspect-[4/3] w-full" />
         </div>
 
         {/* capability strip */}
