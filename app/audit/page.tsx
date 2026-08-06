@@ -6,11 +6,7 @@ import { useState } from "react";
 const NAVY = "#0f1a30";
 const AMBER = "#e8912a";
 
-/*
-  ZoikoLogia™ — Audit Evidence Ledger page body (app/.../page.tsx)
-  Header/nav and footer omitted — provided by the shared layout.
-  Swap the /images/*.png paths for your real filenames.
-*/
+
 
 function ImageSlot({ src, alt, ratio = "aspect-[4/3]", rounded = "rounded-xl", className = "" }:
   { src: string; alt: string; ratio?: string; rounded?: string; className?: string }) {
@@ -178,7 +174,7 @@ export default function Page() {
               <a href="#" className="hover:underline">Visit Privacy &amp; Security →</a>
             </div>
           </div>
-          <ImageSlot src="/images/Audit hero — AI assistant.png" alt="Governed AI-assisted workflow" ratio="aspect-[4/3]" />
+          <ImageSlot src="/images/Background1.png" alt="Governed AI-assisted workflow" ratio="aspect-[4/3]" />
         </div>
       </section>
 
@@ -200,7 +196,7 @@ export default function Page() {
               </li>
             ))}
           </ol>
-          <ImageSlot src="/images/Evidence lifecycle desk.png" alt="Reviewing evidence at a desk" ratio="aspect-[21/7]" className="mt-6" />
+          <ImageSlot src="/images/Frame 25 (1).png" alt="Reviewing evidence at a desk" ratio="aspect-[21/7]" className="mt-6" />
         </div>
       </section>
 
@@ -222,7 +218,7 @@ export default function Page() {
                 </div>
               ))}
             </dl>
-            <ImageSlot src="/images/Whiteboard session.png" alt="Team at a whiteboard" ratio="aspect-[3/4]" className="lg:sticky lg:top-8" />
+            <ImageSlot src="/images/Frame 27.png" alt="Team at a whiteboard" ratio="aspect-[3/4]" className="lg:sticky lg:top-8" />
           </div>
           <p className="mt-6 max-w-3xl rounded-lg bg-[#efe6d2] p-4 text-xs leading-relaxed text-slate-600">
             The ledger does not claim an answer is correct or an opinion is sound. It records what informed an outcome
@@ -253,7 +249,7 @@ export default function Page() {
             <div>
               <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-400 dark:text-gray-500">{DEMO_TABS[tab][0]}</p>
               <p className="mb-4 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{DEMO_TABS[tab][1]}</p>
-              <ImageSlot src="/images/Inspecting evidence entry.png" alt="Inspecting a synthetic evidence entry" ratio="aspect-[21/8]" />
+              <ImageSlot src="/images/image 40.png" alt="Inspecting a synthetic evidence entry" ratio="aspect-[21/8]" />
             </div>
           </div>
         </div>
@@ -278,7 +274,7 @@ export default function Page() {
                 </li>
               ))}
             </ul>
-            <ImageSlot src="/images/Presenting to team.png" alt="Reviewer presenting to a team" ratio="aspect-[4/3]" className="lg:sticky lg:top-8" />
+            <ImageSlot src="/images/Paragraph+Background.png" alt="Reviewer presenting to a team" ratio="aspect-[4/3]" className="lg:sticky lg:top-8" />
           </div>
         </div>
       </section>
@@ -323,7 +319,7 @@ export default function Page() {
                 </div>
               ))}
             </div>
-            <ImageSlot src="/images/Field-level security.png" alt="Field-level protection" ratio="aspect-[4/3]" />
+            <ImageSlot src="/images/Paragraph+Background+Border (4).png" alt="Field-level protection" ratio="aspect-[4/3]" />
             <div className="grid gap-4">
               <div className="rounded-xl bg-white p-5 shadow-sm dark:bg-gray-900">
                 <span className="text-[#0d9488]"><Check className="h-5 w-5" /></span>
@@ -346,7 +342,7 @@ export default function Page() {
           <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Integrity Architecture</p>
           <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Integrity and export boundaries</h2>
           <div className="mt-8 grid items-center gap-10 lg:grid-cols-2">
-            <ImageSlot src="/images/City silhouettes.png" alt="Integrity architecture" ratio="aspect-[4/3]" />
+            <ImageSlot src="/images/image 43.png" alt="Integrity architecture" ratio="aspect-[4/3]" />
             <ol className="space-y-4">
               {INTEGRITY.map((t, i) => (
                 <li key={t} className="flex gap-3">
@@ -377,7 +373,7 @@ export default function Page() {
               </div>
             ))}
           </div>
-          <ImageSlot src="/images/Connected teams.png" alt="Connected platform teams" ratio="aspect-[21/7]" className="mt-8" />
+          <ImageSlot src="/images/Frame 28.png" alt="Connected platform teams" ratio="aspect-[21/7]" className="mt-8" />
         </div>
       </section>
 
@@ -396,7 +392,7 @@ export default function Page() {
             </div>
             <div className="grid gap-6 md:grid-cols-3">
               <TaskCard i={2} />
-              <ImageSlot src="/images/Practitioner presenting.png" alt="Practitioner presenting" ratio="aspect-auto" className="h-full min-h-[180px]" />
+              <ImageSlot src="/images/Background.png" alt="Practitioner presenting" ratio="aspect-auto" className="h-full min-h-[180px]" />
               <TaskCard i={3} />
             </div>
             <TaskCard i={4} />
@@ -410,7 +406,7 @@ export default function Page() {
           <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Enterprise Administration</p>
           <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Configuration, roles and operations</h2>
           <div className="mt-8 grid items-start gap-10 lg:grid-cols-[1fr_1.4fr]">
-            <ImageSlot src="/images/Admin at work.png" alt="Administrator at work" ratio="aspect-[3/4]" className="lg:sticky lg:top-8" />
+            <ImageSlot src="/images/image 45.png" alt="Administrator at work" ratio="aspect-[3/4]" className="lg:sticky lg:top-8" />
             <dl className="divide-y divide-black/10 border-y border-black/10 dark:divide-gray-700 dark:border-gray-700">
               {ADMIN.map(([term, def]) => (
                 <div key={term} className="grid gap-1 py-4 sm:grid-cols-[220px_1fr] sm:gap-6">
@@ -428,7 +424,7 @@ export default function Page() {
         <div className="mx-auto max-w-3xl">
           <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Direct Answers</p>
           <h2 className={`mt-4 text-black text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Frequently asked questions</h2>
-          <div className="mt-8 divide-y divide-black/10 border-y border-black/10 dark:divide-gray-700 dark:border-gray-700">
+          <div className="mt-8 divide-y divide-black/10 border-y border-black/10 dark:text-gray-900 dark:divide-gray-700  dark:border-gray-700">
             {FAQS.map(([q, a], i) => {
               const open = openFaq === i;
               return (
@@ -437,7 +433,7 @@ export default function Page() {
                     className="flex w-full items-center justify-between gap-4 py-4 text-left text-[15px] font-semibold">
                     {q}<Chevron open={open} />
                   </button>
-                  {open && <p className="pb-4 text-[15px] leading-relaxed text-slate-600 dark:text-gray-300">{a}</p>}
+                  {open && <p className="pb-4 text-[15px] leading-relaxed text-slate-600 dark:text-gray-900">{a}</p>}
                 </div>
               );
             })}
