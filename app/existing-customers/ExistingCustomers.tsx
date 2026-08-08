@@ -2,8 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// ─── DATA ──────────────────────────────────────────────────────────────────
-// "Curated for this role" cards (6 — full 3×2 grid).
+
 
 type Card = { title: string; desc: string; href: string };
 
