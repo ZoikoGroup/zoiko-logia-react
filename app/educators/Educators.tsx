@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 // ─── DATA ──────────────────────────────────────────────────────────────────
-// "Curated for this role" cards.
+
 
 type Card = { title: string; desc: string; href: string };
 
