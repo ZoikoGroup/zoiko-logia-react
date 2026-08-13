@@ -118,7 +118,7 @@ const domains = [
     h: "Start with authority, applicability and provenance — not fluent output.",
     b: "A source is usable only when its authority, scope, jurisdiction and effective period are established. A citation does not itself prove professional sufficiency or legal applicability.",
     items: ["Authority and applicability are checked before use.", "Effective dates and jurisdiction are recorded.", "Provenance travels with the answer."],
-    img: "/images/gov-source-authority.png",
+    img: "/images/image 75.png",
     side: "right",
   },
   {
@@ -126,7 +126,7 @@ const domains = [
     h: "Harmful, insecure and prohibited uses are anticipated before they occur.",
     b: "The platform applies use restrictions and can refuse or escalate requests that conflict with approved policies. Prompt-injection defenses, source separation and least-privilege access are enforced by design.",
     items: ["Prohibited uses are blocked or escalated.", "Injected content is isolated from instructions.", "Access stays scoped to the task."],
-    img: "/images/gov-ai-safety.png",
+    img: "/images/image 76.png",
     side: "left",
   },
   {
@@ -134,7 +134,7 @@ const domains = [
     h: "When evidence, permissions or professional sufficiency is inadequate, the platform says so.",
     b: "Insufficient evidence, conflicting authority, stale material, unsupported jurisdictions and inadequate integration produce an explicit answer — not silent failure or fabricated support. All then cleanly route to a human reviewer.",
     items: ["Gaps are stated, not filled.", "Escalation reaches a named reviewer.", "The path forward is explicit."],
-    img: "/images/gov-limits.png",
+    img: "/images/image 77.png",
     side: "right",
   },
   {
@@ -142,7 +142,7 @@ const domains = [
     h: "Quality is evaluated across sources, retrieval, calculations and workflow.",
     b: "Evaluation covers source access and citation quality, retrieval and calculation traceability, and workflow actions. Adverse or borderline results route to review, and the standard holds across releases.",
     items: ["Retrieval and math are traceable.", "Borderline results are reviewed.", "The bar holds release to release."],
-    img: "/images/gov-quality.png",
+    img: "/images/image 78.png",
     side: "left",
   },
   {
@@ -150,7 +150,7 @@ const domains = [
     h: "Every production change passes defined gates before and after deployment.",
     b: "Scope and impact assessment, evaluation, governance review and readiness review precede deployment; post-release monitoring, reconciliation and rollback follow it. A failing gate stops the release.",
     items: ["Gates precede and follow deployment.", "Monitoring watches for regressions.", "Rollback is always available."],
-    img: "/images/gov-release.png",
+    img: "/images/image 79.png",
     side: "right",
   },
   {
@@ -158,7 +158,7 @@ const domains = [
     h: "Incidents and control failures are handled through a seven-stage structured response.",
     b: "Detection, triage, containment, investigation, remediation, recovery and closure are sequenced and evidence-bound. Serious matters are coordinated with legal, privacy, security and communications.",
     items: ["A defined sequence, every time.", "Evidence is bound to the incident.", "Serious events are coordinated."],
-    img: "/images/gov-events.png",
+    img: "/images/image 80.png",
     side: "left",
   },
   {
@@ -166,7 +166,7 @@ const domains = [
     h: "Eight principles guide development, deployment and use.",
     b: "Accountability, source authority, professional boundaries, privacy and security, transparency, safety and reliability, fair and appropriate use, and continuous governance operationalise how the platform is built and run.",
     items: ["Principles are enforced, not aspirational.", "They cover build and run.", "Governance is continuous."],
-    img: "/images/gov-responsible-ai.png",
+    img: "/images/image 81.png",
     side: "right",
   },
 ];
@@ -241,7 +241,7 @@ export function GovernanceOverview() {
                 <span>Read the FAQ →</span>
               </div>
             </div>
-            <ImageSlot src="/images/gov-hero.png" alt="Governance overview" priority className="h-64 w-full md:h-80" />
+            <ImageSlot src="/images/image 71.png" alt="Governance overview" priority className="h-64 w-full md:h-80" />
           </div>
 
           {/* feature row */}
@@ -282,7 +282,7 @@ export function GovernanceOverview() {
                 Each zone carries its own controls, evidence and the decisions people must make.
               </p>
             </div>
-            <ImageSlot src="/images/gov-architecture.png" alt="Governance architecture" className="h-72 w-full" />
+            <ImageSlot src="/images/image 72.png" alt="Governance architecture" className="h-72 w-full" />
           </div>
         </div>
       </section>
@@ -338,7 +338,7 @@ export function GovernanceOverview() {
               </div>
             ))}
           </div>
-          <ImageSlot src="/images/gov-authorization-band.png" alt="Governed workflow" sizes="(max-width: 1152px) 100vw, 1152px" className="mt-10 h-48 w-full md:h-64" />
+          <ImageSlot src="/images/image 73.png" alt="Governed workflow" sizes="(max-width: 1152px) 100vw, 1152px" className="mt-10 h-48 w-full md:h-64" />
         </div>
       </section>
 
@@ -406,7 +406,7 @@ export function GovernanceOverview() {
       <section style={{ backgroundColor: NAVY }} className="text-white">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <div className="relative overflow-hidden rounded-2xl">
-            <ImageSlot src="/images/gov-artifacts.png" alt="Public governance artifacts" sizes="(max-width: 1152px) 100vw, 1152px" className="h-56 w-full rounded-2xl md:h-72" />
+            <ImageSlot src="/images/image 82.png" alt="Public governance artifacts" sizes="(max-width: 1152px) 100vw, 1152px" className="h-56 w-full rounded-2xl md:h-72" />
             <div className="pointer-events-none absolute inset-0 flex flex-col justify-center bg-gradient-to-r from-black/75 to-transparent p-8">
               <Eyebrow onDark>Public governance artifacts</Eyebrow>
               <h2 className="max-w-lg text-2xl font-bold md:text-3xl">Every public artifact carries scope, version, as-of date and owner.</h2>
@@ -434,7 +434,7 @@ export function GovernanceOverview() {
                 </details>
               ))}
             </div>
-            <ImageSlot src="/images/gov-scenarios.png" alt="Governance scenarios" className="h-64 w-full md:h-full md:min-h-[16rem]" />
+            <ImageSlot src="/images/image 83.png" alt="Governance scenarios" className="h-64 w-full md:h-full md:min-h-[16rem]" />
           </div>
         </div>
       </section>
