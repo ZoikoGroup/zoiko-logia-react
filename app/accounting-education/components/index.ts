@@ -1,0 +1,10 @@
+export { default as EducationHeroSection } from "./EducationHeroSection";
+export { default as GovernanceScopeSection } from "./GovernanceScopeSection";
+export { default as AudienceRoutesSection } from "./AudienceRoutesSection";
+export { default as CapabilitySystemSection } from "./CapabilitySystemSection";
+export { default as LearningLifecycleSection } from "./LearningLifecycleSection";
+export { default as SyntheticScenariosSection } from "./SyntheticScenariosSection";
+export { default as AcademicIntegritySection } from "./AcademicIntegritySection";
+export { default as EvaluationProofSection } from "./EvaluationProofSection";
+export { default as FaqSection } from "./FaqSection";
+export { default as NextStepsSection } from "./NextStepsSection";

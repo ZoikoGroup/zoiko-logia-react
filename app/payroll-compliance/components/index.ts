@@ -1,0 +1,11 @@
+export { default as PayrollHeroSection } from "./PayrollHeroSection";
+export { default as ControlSignalsSection } from "./ControlSignalsSection";
+export { default as RolePathsSection } from "./RolePathsSection";
+export { default as CapabilitySystemSection } from "./CapabilitySystemSection";
+export { default as PayrollLifecycleSection } from "./PayrollLifecycleSection";
+export { default as CalculationTraceSection } from "./CalculationTraceSection";
+export { default as PrivacySection } from "./PrivacySection";
+export { default as SyntheticScenariosSection } from "./SyntheticScenariosSection";
+export { default as EvaluationPilotSection } from "./EvaluationPilotSection";
+export { default as FaqSection } from "./FaqSection";
+export { default as GetStartedSection } from "./GetStartedSection";
