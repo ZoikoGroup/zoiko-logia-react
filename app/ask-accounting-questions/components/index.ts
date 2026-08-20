@@ -1,0 +1,10 @@
+export { default as AskHeroSection } from "./AskHeroSection";
+export { default as SupportedIntentsSection } from "./SupportedIntentsSection";
+export { default as AccountingContextSection } from "./AccountingContextSection";
+export { default as AnswerAnatomySection } from "./AnswerAnatomySection";
+export { default as SourceAuthoritySection } from "./SourceAuthoritySection";
+export { default as FollowUpContinuitySection } from "./FollowUpContinuitySection";
+export { default as PrivacyControlsSection } from "./PrivacyControlsSection";
+export { default as SyntheticScenariosSection } from "./SyntheticScenariosSection";
+export { default as FaqSection } from "./FaqSection";
+export { default as GetStartedSection } from "./GetStartedSection";
