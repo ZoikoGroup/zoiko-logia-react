@@ -9,8 +9,8 @@ const columns: Column[] = [
     heading: "Platform",
     links: [
       { label: "Overview", href: "/platform" },
-      { label: "Source-Governed Intelligence", href: "/source-governed-intelligence" },
-      { label: "Accounting Knowledge Graph", href: "/accounting-knowledge-graph" },
+      { label: "Source-Governed Intelligence", href: "/sourced-governed-intelligence" },
+      { label: "Accounting Knowledge Graph", href: "/platform" },
       { label: "RAG Source Bundles", href: "/rag-source-bundles" },
       { label: "Audit Evidence", href: "/audit" },
       { label: "Evaluation & Benchmarks", href: "/evaluation&benchmark" },
@@ -20,14 +20,14 @@ const columns: Column[] = [
   {
     heading: "Kriton\u2122 AI Advisor",
     links: [
-      { label: "Meet Kriton\u2122", href: "/meet-kriton" },
+      { label: "Meet Kriton\u2122", href: "/kriton-ai" },
       { label: "Ask Accounting Questions", href: "/ask-accounting-questions" },
-      { label: "Learning & Practice Mode", href: "/learning-practice-mode" },
-      { label: "Workflow Mode", href: "/workflow-mode" },
-      { label: "Review Mode", href: "/review-mode" },
+      { label: "Learning & Practice Mode", href: "/learning-&-practice-mode" },
+      { label: "Workflow Mode", href: "/kriton-ai" },
+      { label: "Review Mode", href: "/kriton-ai" },
       { label: "Admin Mode", href: "/admin-mode" },
-      { label: "Human Escalation", href: "/human-escalation" },
-      { label: "Professional Boundaries", href: "/professional-boundaries" },
+      { label: "Human Escalation", href: "/kriton-ai" },
+      { label: "Professional Boundaries", href: "/governance" },
     ],
   },
   {
@@ -37,7 +37,7 @@ const columns: Column[] = [
       { label: "Enterprise Finance Teams", href: "/enterprise-finance-team" },
       { label: "Tax Professionals", href: "/tax-professionals" },
       { label: "Audit & Assurance Teams", href: "/audit-tax-compliance" },
-      { label: "Payroll & Compliance Teams", href: "/payroll-compliance-teams" },
+      { label: "Payroll & Compliance Teams", href: "/payroll-compliance" },
       { label: "Accounting Education", href: "/educators" },
       { label: "AI Governance Teams", href: "/ai-governance-teams" },
     ],
@@ -46,12 +46,12 @@ const columns: Column[] = [
     heading: "Governance",
     links: [
       { label: "Governance Overview", href: "/governance" },
-      { label: "Source Authority", href: "/source-authority" },
-      { label: "AI Safety", href: "/ai-safety" },
-      { label: "Professional Boundaries", href: "/professional-boundaries" },
-      { label: "Model Evaluation", href: "/model-evaluation" },
-      { label: "Release Controls", href: "/release-controls" },
-      { label: "Event Governance", href: "/event-governance" },
+      { label: "Source Authority", href: "/governance" },
+      { label: "AI Safety", href: "/ai-safety-page" },
+      { label: "Professional Boundaries", href: "/governance" },
+      { label: "Model Evaluation", href: "/evaluation&benchmark" },
+      { label: "Release Controls", href: "/governance" },
+      { label: "Event Governance", href: "/governance" },
       { label: "Responsible AI", href: "/responsible-ai" },
     ],
   },
@@ -59,52 +59,52 @@ const columns: Column[] = [
     heading: "Privacy & Security",
     links: [
       { label: "Privacy & Security Overview", href: "/privacy-security" },
-      { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Security Overview", href: "/security" },
+      { label: "Privacy Policy", href: "/privacy-security" },
+      { label: "Security Overview", href: "/privacy-security" },
       { label: "Data Protection", href: "/data-retention" },
-      { label: "Provider Due Diligence", href: "/provider-due-diligence" },
-      { label: "Accessibility Statement", href: "/accessibility-statement" },
-      { label: "Trust Center", href: "/trust" },
-      { label: "Contact Privacy Team", href: "/contact-privacy-team" },
+      { label: "Provider Due Diligence", href: "/privacy-security" },
+      { label: "Accessibility Statement", href: "/privacy-security" },
+      { label: "Trust Center", href: "/privacy-security" },
+      { label: "Contact Privacy Team", href: "/contact-us" },
     ],
   },
   {
     heading: "Resources",
     links: [
       { label: "Documentation", href: "/documentation" },
-      { label: "API Reference", href: "/api-reference" },
-      { label: "Use Cases", href: "/use-cases" },
-      { label: "Blog", href: "/blog" },
+      { label: "API Reference", href: "/documentation" },
+      { label: "Use Cases", href: "/case-studies" },
+      { label: "Blog", href: "/resource" },
       { label: "Glossary", href: "/glossary" },
-      { label: "Release Notes", href: "/releases" },
+      { label: "Release Notes", href: "/resource" },
       { label: "Webinars", href: "/webinars" },
-      { label: "Help Center", href: "/help-center" },
+      { label: "Help Center", href: "/resource" },
     ],
   },
   {
     heading: "Pricing & Access",
     links: [
       { label: "Pricing", href: "/pricing" },
-      { label: "Plans", href: "/plans" },
-      { label: "Book a Demo", href: "/book-a-demo" },
-      { label: "Request Pilot", href: "/request-pilot" },
-      { label: "Request Enterprise Briefing", href: "/request-enterprise-briefing" },
-      { label: "Contact Sales", href: "/contact-sales" },
-      { label: "Procurement Support", href: "/procurement-support" },
-      { label: "Partner Inquiry", href: "/partner-inquiry" },
+      { label: "Plans", href: "/pricing" },
+      { label: "Book a Demo", href: "/contact-us" },
+      { label: "Request Pilot", href: "/contact-us" },
+      { label: "Request Enterprise Briefing", href: "/contact-us" },
+      { label: "Contact Sales", href: "/contact-us" },
+      { label: "Procurement Support", href: "/contact-us" },
+      { label: "Partner Inquiry", href: "/contact-us" },
     ],
   },
   {
     heading: "Company",
     links: [
       { label: "About Us", href: "/about" },
-      { label: "Leadership", href: "/leadership" },
-      { label: "Careers", href: "/careers" },
-      { label: "Partners", href: "/partners" },
-      { label: "Press", href: "/press" },
-      { label: "Contact", href: "/contact" },
-      { label: "Legal", href: "/legal" },
-      { label: "Zoiko Group", href: "/zoiko-group" },
+      { label: "Leadership", href: "/about" },
+      { label: "Careers", href: "/about" },
+      { label: "Partners", href: "/about" },
+      { label: "Press", href: "/press-media" },
+      { label: "Contact", href: "/contact-us" },
+      { label: "Legal", href: "/privacy-security" },
+      { label: "Zoiko Group", href: "/about" },
     ],
   },
 ];
@@ -192,11 +192,11 @@ export default function ZoikoLogiaFooter() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-gray-500 sm:flex-row">
           <p>© {new Date().getFullYear()} ZoikoLogia. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-5">
-            <Link href="/terms" className="hover:text-white">Terms of Service</Link>
-            <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
-            <Link href="/cookies" className="hover:text-white">Cookie Settings</Link>
-            <Link href="/accessibility-statement" className="hover:text-white">Accessibility Statement</Link>
-            <Link href="/system-status" className="hover:text-white">System Status</Link>
+            <Link href="/privacy-security" className="hover:text-white">Terms of Service</Link>
+            <Link href="/privacy-security" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/cookie-preferences" className="hover:text-white">Cookie Settings</Link>
+            <Link href="/privacy-security" className="hover:text-white">Accessibility Statement</Link>
+            <Link href="/" className="hover:text-white">System Status</Link>
           </div>
         </div>
       </div>
