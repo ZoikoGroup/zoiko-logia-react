@@ -63,17 +63,17 @@ const PLATFORM: MegaMenu = {
       label: "Explore",
       items: [
         { label: "Platform Overview", href: "/platform", desc: "The full architecture, end to end.", Icon: LayoutGrid },
-        { label: "Source-Governed Intelligence", href: "/platform/source-governed-intelligence", desc: "Approved, versioned, licensed sources.", Icon: FileText },
-        { label: "Accounting Ontology", href: "/platform/accounting-ontology", desc: "Structured concepts behind every answer.", Icon: Network },
-        { label: "RAG Source Bundles", href: "/platform/rag-source-bundles", desc: "Retrieval, scoped to what's approved.", Icon: Layers },
+        { label: "Source-Governed Intelligence", href: "/sourced-governed-intelligence", desc: "Approved, versioned, licensed sources.", Icon: FileText },
+        { label: "Accounting Ontology", href: "/platform", desc: "Structured concepts behind every answer.", Icon: Network },
+        { label: "RAG Source Bundles", href: "/rag-source-bundles", desc: "Retrieval, scoped to what's approved.", Icon: Layers },
       ],
     },
     {
       label: "Governance & Evidence",
       items: [
-        { label: "Audit Evidence Ledger", href: "/platform/audit-evidence-ledger", desc: "Every material answer, reconstructable.", Icon: ScrollText },
-        { label: "Evaluation & Benchmarks", href: "/platform/evaluation-benchmarks", desc: "How we test before release.", Icon: BarChart3 },
-        { label: "Enterprise Integrations", href: "/platform/enterprise-integrations", desc: "Identity, ERP, document systems.", Icon: Plug },
+        { label: "Audit Evidence Ledger", href: "/audit", desc: "Every material answer, reconstructable.", Icon: ScrollText },
+        { label: "Evaluation & Benchmarks", href: "/evaluation&benchmark", desc: "How we test before release.", Icon: BarChart3 },
+        { label: "Enterprise Integrations", href: "/enterprise-integrations", desc: "Identity, ERP, document systems.", Icon: Plug },
       ],
     },
   ],
@@ -98,16 +98,16 @@ const SOLUTIONS: MegaMenu = {
     {
       label: "By Team",
       items: [
-        { label: "Accounting Firms", href: "/solutions/accounting-firms", desc: "Client-service and review workflows.", Icon: Building2 },
-        { label: "Enterprise Finance Teams", href: "/solutions/enterprise-finance-teams", desc: "Policy consistency at scale.", Icon: Briefcase },
-        { label: "Audit & Assurance Teams", href: "/solutions/audit-assurance-teams", desc: "Evidence-ready review support.", Icon: ShieldCheck },
+        { label: "Accounting Firms", href: "/accounting-firms", desc: "Client-service and review workflows.", Icon: Building2 },
+        { label: "Enterprise Finance Teams", href: "/enterprise-finance-team", desc: "Policy consistency at scale.", Icon: Briefcase },
+        { label: "Audit & Assurance Teams", href: "/audit-tax-compliance", desc: "Evidence-ready review support.", Icon: ShieldCheck },
       ],
     },
     {
       label: "By Need",
       items: [
-        { label: "Payroll & Compliance", href: "/solutions/payroll-compliance", desc: "Jurisdiction-aware, escalation-ready.", Icon: CalendarDays },
-        { label: "Accounting Education", href: "/solutions/accounting-education", desc: "Learning-safe, source-backed practice.", Icon: GraduationCap },
+        { label: "Payroll & Compliance", href: "/payroll-compliance", desc: "Jurisdiction-aware, escalation-ready.", Icon: CalendarDays },
+        { label: "Accounting Education", href: "/educators", desc: "Learning-safe, source-backed practice.", Icon: GraduationCap },
         { label: "Solutions Overview", href: "/solutions", desc: "See every audience side by side.", Icon: LayoutGrid },
       ],
     },
@@ -134,16 +134,16 @@ const GOVERNANCE: MegaMenu = {
       label: "Principles",
       items: [
         { label: "Governance Overview", href: "/governance", desc: "The full control architecture.", Icon: Shield },
-        { label: "Responsible AI", href: "/governance/responsible-ai", desc: "Six principles behind every answer.", Icon: Check },
-        { label: "Source Authority", href: "/governance/source-authority", desc: "Tiers, versioning, licensing.", Icon: FileText },
+        { label: "Responsible AI", href: "/responsible-ai", desc: "Six principles behind every answer.", Icon: Check },
+        { label: "Source Authority", href: "/governance", desc: "Tiers, versioning, licensing.", Icon: FileText },
       ],
     },
     {
       label: "Controls",
       items: [
-        { label: "AI Safety", href: "/governance/ai-safety", desc: "Risk classification and escalation.", Icon: Lock },
-        { label: "Event Catalog", href: "/governance/event-catalog", desc: "Every trackable governance event.", Icon: Calendar },
-        { label: "QA Release Gates", href: "/governance/qa-release-gates", desc: "What has to pass before ship.", Icon: ClipboardCheck },
+        { label: "AI Safety", href: "/ai-safety-page", desc: "Risk classification and escalation.", Icon: Lock },
+        { label: "Event Catalog", href: "/governance", desc: "Every trackable governance event.", Icon: Calendar },
+        { label: "QA Release Gates", href: "/governance", desc: "What has to pass before ship.", Icon: ClipboardCheck },
       ],
     },
   ],
@@ -160,7 +160,7 @@ const GOVERNANCE: MegaMenu = {
 const RESOURCES: MegaMenu = {
   key: "resources",
   label: "Resources",
-  href: "/resources",
+  href: "/resource",
   title: "Resources",
   subtitle: "Research, education, and proof — organized by what you need.",
   Icon: LayoutGrid,
@@ -168,19 +168,19 @@ const RESOURCES: MegaMenu = {
     {
       label: "Learn",
       items: [
-        { label: "Resource Center", href: "/resources", desc: "The full hub, all in one place.", Icon: LayoutGrid },
-        { label: "Guides", href: "/resources/guides", desc: "Practical implementation reading.", Icon: FileText },
-        { label: "White Papers", href: "/resources/white-papers", desc: "Executive-grade research.", Icon: ScrollText },
-        { label: "Webinars", href: "/resources/webinars", desc: "Live and on-demand sessions.", Icon: PlayCircle },
+        { label: "Resource Center", href: "/resource", desc: "The full hub, all in one place.", Icon: LayoutGrid },
+        { label: "Guides", href: "/guides", desc: "Practical implementation reading.", Icon: FileText },
+        { label: "White Papers", href: "/white-papers", desc: "Executive-grade research.", Icon: ScrollText },
+        { label: "Webinars", href: "/webinars", desc: "Live and on-demand sessions.", Icon: PlayCircle },
       ],
     },
     {
       label: "Evaluate",
       items: [
-        { label: "Case Studies", href: "/resources/case-studies", desc: "Proof, filtered by your use case.", Icon: BarChart3 },
-        { label: "ROI Calculator", href: "/resources/roi-calculator", desc: "Model your own directional value.", Icon: Calculator },
-        { label: "Blog", href: "/resources/blog", desc: "Shorter-form perspective pieces.", Icon: PenLine },
-        { label: "Glossary", href: "/resources/glossary", desc: "Every term, defined plainly.", Icon: BookOpen },
+        { label: "Case Studies", href: "/case-studies", desc: "Proof, filtered by your use case.", Icon: BarChart3 },
+        { label: "ROI Calculator", href: "/roi-calculator", desc: "Model your own directional value.", Icon: Calculator },
+        { label: "Blog", href: "/resource", desc: "Shorter-form perspective pieces.", Icon: PenLine },
+        { label: "Glossary", href: "/glossary", desc: "Every term, defined plainly.", Icon: BookOpen },
       ],
     },
   ],
@@ -198,10 +198,10 @@ const MEGA_MENUS: MegaMenu[] = [PLATFORM, SOLUTIONS, GOVERNANCE, RESOURCES];
 
 /** Nav entries with no dropdown */
 const FLAT_LINKS: { label: string; href: string }[] = [
-  { label: "Kriton™ AI Advisor", href: "/kriton" },
+  { label: "Kriton™ AI Advisor", href: "/kriton-ai" },
   { label: "Privacy & Security", href: "/privacy-security" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Company", href: "/company" },
+  { label: "Company", href: "/about" },
 ];
 
 /** Order of the desktop nav bar */
@@ -211,9 +211,9 @@ const NAV_ORDER: string[] = [
 ];
 
 const TOP_LINKS = [
-  { label: "Compliance", href: "/compliance" },
-  { label: "Trust Center", href: "/trust-center" },
-  { label: "Support", href: "/support" },
+  { label: "Compliance", href: "/compliance-reports" },
+  { label: "Trust Center", href: "/privacy-security" },
+  { label: "Support", href: "/contact-us" },
 ];
 
 // ─── Mega panel ────────────────────────────────────────────────────────────────
@@ -415,15 +415,15 @@ export default function ZoikoLogiaHeader() {
 
         {/* Right actions */}
         <div className="flex shrink-0 items-center gap-3">
-          <Link href="/signin" className="hidden text-sm font-medium text-gray-200 transition-colors hover:text-white sm:inline-block">
+          <Link href="/about" className="hidden text-sm font-medium text-gray-200 transition-colors hover:text-white sm:inline-block">
             Sign in
           </Link>
-          <Link href="/book-a-demo"
+          <Link href="/contact-us"
             className="hidden rounded-md px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-90 sm:inline-block"
             style={{ backgroundColor: AMBER, color: NAVY }}>
             Book a Demo
           </Link>
-          <Link href="/request-pilot" className="hidden rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 md:inline-block">
+          <Link href="/contact-us" className="hidden rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 md:inline-block">
             Request Pilot
           </Link>
           <button type="button" onClick={() => setMobileOpen((o) => !o)} aria-label="Toggle menu" aria-expanded={mobileOpen}
@@ -514,16 +514,16 @@ export default function ZoikoLogiaHeader() {
           ))}
 
           <div className="space-y-2 p-4">
-            <Link href="/book-a-demo" onClick={() => setMobileOpen(false)}
+            <Link href="/contact-us" onClick={() => setMobileOpen(false)}
               className="block rounded-md py-2.5 text-center text-sm font-semibold"
               style={{ backgroundColor: AMBER, color: NAVY }}>
               Book a Demo
             </Link>
-            <Link href="/request-pilot" onClick={() => setMobileOpen(false)}
+            <Link href="/contact-us" onClick={() => setMobileOpen(false)}
               className="block rounded-md border border-white/25 py-2.5 text-center text-sm font-semibold text-white">
               Request Pilot
             </Link>
-            <Link href="/signin" onClick={() => setMobileOpen(false)}
+            <Link href="/about" onClick={() => setMobileOpen(false)}
               className="block py-2 text-center text-sm text-gray-300">
               Sign in
             </Link>
