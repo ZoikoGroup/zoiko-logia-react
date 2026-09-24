@@ -338,24 +338,29 @@ export default function ZoikoLogiaHeader() {
   const activeMenu = MEGA_MENUS.find((m) => m.key === openKey) ?? null;
 
   return (
-    <header
-      className="sticky top-0 z-50 border-b border-white/10"
-      style={{ backgroundColor: NAVY }}
-      onMouseLeave={scheduleClose}
-    >
-      {/* Top strip */}
-      <div className="hidden border-b border-white/10 lg:block">
-        <div className="mx-auto flex max-w-7xl justify-end gap-6 px-6 py-1.5">
+    <>
+      {/* Top strip — scrolls away with the page */}
+      <div className="hidden border-b border-white/10 lg:block" style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto flex max-w-7xl items-center justify-end gap-6 px-6 py-1.5">
           {TOP_LINKS.map((l) => (
             <Link key={l.label} href={l.href} className="text-xs text-gray-400 transition-colors hover:text-white">
               {l.label}
             </Link>
           ))}
+          <Link href="/contact-us"
+            className="rounded-md border border-white/25 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-white/10">
+            Request Pilot
+          </Link>
         </div>
       </div>
 
-      {/* Main bar */}
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
+      {/* Main bar — sticky */}
+      <header
+        className="sticky top-0 z-50 border-b border-white/10"
+        style={{ backgroundColor: NAVY }}
+        onMouseLeave={scheduleClose}
+      >
+        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
             src="/images/Rectangle 1.png"
@@ -422,9 +427,6 @@ export default function ZoikoLogiaHeader() {
             className="hidden rounded-md px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-90 sm:inline-block"
             style={{ backgroundColor: AMBER, color: NAVY }}>
             Book a Demo
-          </Link>
-          <Link href="/contact-us" className="hidden rounded-md border border-white/25 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-white/10 md:inline-block">
-            Request Pilot
           </Link>
           <button type="button" onClick={() => setMobileOpen((o) => !o)} aria-label="Toggle menu" aria-expanded={mobileOpen}
             className="flex h-9 w-9 items-center justify-center rounded-md text-white hover:bg-white/10 xl:hidden">
@@ -530,7 +532,8 @@ export default function ZoikoLogiaHeader() {
           </div>
         </nav>
       )}
-    </header>
+      </header>
+    </>
   );
 }
 
