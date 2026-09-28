@@ -40,20 +40,12 @@ export default function ZoikoLogiaHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
        <Link href="/" className="flex items-center">
   <Image
-    src="/images/Rectangle 1.png"
+    src="/images/zoikologia-logo-new.png"
     alt="ZoikoLogia"
     width={180}
     height={50}
     priority
-    className="h-10 w-auto dark:hidden"
-  />
-  <Image
-    src="/images/zoikologia-logo-png.png"
-    alt="ZoikoLogia"
-    width={180}
-    height={50}
-    priority
-    className="hidden h-10 w-auto dark:block"
+    className="h-10 w-auto"
   />
 </Link>
 
