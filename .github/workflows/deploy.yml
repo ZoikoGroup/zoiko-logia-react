@@ -15,9 +15,10 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           command_timeout: 30m
           script: |
+            set -e
             cd ~/zoikologia-react
             git pull origin main
-            npm install
+            npm ci
             npm run build
             pm2 restart zoikologia-react
             pm2 save

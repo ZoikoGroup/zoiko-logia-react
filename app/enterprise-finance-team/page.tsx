@@ -3,288 +3,297 @@
 import Image from "next/image";
 import { useState } from "react";
 
-// ─── TOKENS ─────────────────────────────────────────────────────────────────────
-const INK = "#16233d";
-const NAVY = "#0f1a30";
-const AMBER = "#e8912a";
+/**
+ * Colour tokens are Tailwind arbitrary values, NOT inline styles.
+ *
+ * The previous version set section backgrounds with style={{ backgroundColor }}.
+ * Inline styles win over every CSS class, so `dark:` variants were silently
+ * ignored and dark mode did nothing on this page. Everything below is class-based
+ * so the dark variants actually apply.
+ *
+ *   navy section   →  bg-[#0f1a30]                    (already dark; no variant)
+ *   deep navy band →  bg-[#0b1426]
+ *   cream section  →  bg-[#f2ece0] dark:bg-[#101a2c]
+ *   white card     →  bg-white     dark:bg-[#16233d]
+ */
 
-
-
-function ImageSlot({ src, alt, ratio = "aspect-[4/3]", rounded = "rounded-xl", className = "" }:
+function ImageSlot({ src, alt, ratio = "aspect-[4/3]", rounded = "rounded", className = "" }:
   { src: string; alt: string; ratio?: string; rounded?: string; className?: string }) {
   return (
-    <div className={`relative w-full overflow-hidden bg-slate-200 dark:bg-gray-800 ${ratio} ${rounded} ${className}`}>
-      <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover" />
+    <div className={`relative w-full overflow-hidden bg-slate-200 dark:bg-white/5 ${ratio} ${rounded} ${className}`}>
+      <Image src={src} alt={alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
     </div>
   );
 }
 
 // ─── DATA ──────────────────────────────────────────────────────────────────────
-const MEANS_CARDS = [
-  { title: "Definition", body: "A governed AI accounting intelligence platform that helps finance teams work with source-backed knowledge, structured assumptions, review pathways, and evidence-ready records.", link: "Explore Platform Overview" },
-  { title: "Why It Matters", body: "Finance teams need consistency across policy, reporting, close documentation, and internal controls — generic AI tools lack source discipline and review controls.", link: "Source-Governed Intelligence" },
-  { title: "Kriton™ Relationship", body: "Kriton™ is the AI advisor inside ZoikoLogia™ that helps finance users ask questions, structure workflow support, clarify assumptions, and escalate higher-risk matters.", link: "Meet Kriton™" },
-  { title: "Enterprise Value", body: "Governed AI can support finance productivity while maintaining review, evidence, and control discipline CFOs and controllers expect.", link: "Request Enterprise Briefing" },
+
+const FAILURE_PATTERNS: [string, string][] = [
+  ["Generic answer without entity or period context",
+    "Confirm material facts and show what remains unknown."],
+  ["Citation without applicability statement",
+    "Show issuer, framework, jurisdiction, effective date, status, limitations."],
+  ["Calculation without trace",
+    "Expose inputs, formula, units, currency, rates, period, rounding, validation."],
+  ["Close task shown complete while exceptions remain",
+    "Show dependencies, open items, owner, materiality and blocked state."],
+  ["Forecast presented as a prediction",
+    "Show scenario, assumptions, ranges, sensitivity and decision ownership."],
+  ["Draft narrative treated as approved reporting",
+    "Label draft, reviewer, permitted use and approval state."],
+  ["System connection treated as authority to write",
+    "Separate connectivity, permission, action mode, review and rehearsal."],
+  ["Locale treated as jurisdiction",
+    "Require explicit jurisdiction and availability confirmation."],
 ];
 
-type RoleCard = { title: string; body: string; img: string };
-const ROLE_CARDS: RoleCard[] = [
-  { title: "CFO / Finance Executive", body: "Governance visibility, ROI use cases, and pilot status without wading into evidence records.", img: "/images/div.role-hero-photo.png" },
-  { title: "Controller / CAO", body: "Accounting policy consistency, Workflow Mode, and review-ready documentation for close cycles.", img: "/images/c.png" },
-  { title: "Group Reporting Manager", body: "Framework, jurisdiction, and effective-date support across reporting.", img: "/images/Container (1.png" },
-  { title: "Finance Analyst", body: "Guided question support, workflow steps, and draft structures — no final approval authority implied.", img: "/images/Accounting firm partner reviewing client-service materials.png" },
+const ROLES: { n: string; title: string; body: string; link: string }[] = [
+  { n: "01", title: "CFO / Finance Leadership",
+    body: "Govern scope, policy, control expectations and release accountability across the finance function.",
+    link: "Finance Leadership Briefing" },
+  { n: "02", title: "Controllers / CAOs",
+    body: "Own the close, exceptions, materiality treatment, review outcomes and evidence retention.",
+    link: "Controller Workflow" },
+  { n: "03", title: "Corporate Accounting / Reporting",
+    body: "Prepare positions, reconciliations, disclosures and supporting calculation traces.",
+    link: "Reporting Workflow" },
+  { n: "04", title: "FP&A / Business Finance",
+    body: "Analyze variance, build scenarios, and keep assumptions and ranges explicit rather than implied.",
+    link: "FP&A Workflow" },
+  { n: "05", title: "Shared Services / Finance Ops",
+    body: "Coordinate task ownership, dependencies, deadlines and hand-offs across the close calendar.",
+    link: "Finance Ops Workflow" },
+  { n: "06", title: "Controls / Audit Liaison",
+    body: "Preserve evidence continuity, review attribution and unresolved-item state for assurance.",
+    link: "Controls & Evidence" },
+  { n: "07", title: "Finance Systems / Architecture",
+    body: "Connect ledgers and source systems with separated connectivity, permission and action mode.",
+    link: "Integration Patterns" },
+  { n: "08", title: "Procurement / Transformation",
+    body: "Evaluate scope, governance posture, evaluation evidence and pilot criteria.",
+    link: "Evaluation Guide" },
 ];
 
-type UseCase = { title: string; body: string; link: string; img: string };
-const USE_CASES: UseCase[] = [
-  { title: "Accounting Policy Questions", body: "Consistent explanations with sources, assumptions, effective dates, and context — with limitation language where sources fall short.", link: "Ask Accounting Questions", img: "/images/c.png" },
-  { title: "Close Support & Task Documentation", body: "Structured steps, notes, and review-ready context during close cycles, with assumption tracking built in.", link: "Workflow Mode", img: "/images/Accounting firm partner reviewing client-service materials.png" },
-  { title: "Reporting Memo Support", body: "First-draft structures and source references controllers can build on — without replacing professional review.", link: "Review Mode", img: "/images/div.role-hero-photo.png" },
-  { title: "Internal Control Review Support", body: "Limitation notices, reviewer routing, and accountable evidence records for review-aware workflows.", link: "Audit Evidence Ledger", img: "/images/Audit and compliance leader reviewing evidence materials.png" },
-  { title: "Cross-Jurisdiction Finance Questions", body: "Jurisdiction and effective-date awareness for group finance teams, where approved sources are available.", link: "Accounting Ontology", img: "/images/Container (1.png" },
-  { title: "Finance Transformation Pilots", body: "Controlled adoption with measurable workflow value, defined users, and governance assurance.", link: "Request Pilot", img: "/images/AI governance team reviewing platform controls.png" },
+const STAGES: { n: string; title: string; body: string }[] = [
+  { n: "01", title: "Readiness", body: "Dependencies, cut-off and source availability confirmed before work opens." },
+  { n: "02", title: "Update", body: "Source data refreshed with extraction time and mapping version recorded." },
+  { n: "03", title: "Plan", body: "Task ownership, sequence and deadline set. Nothing left implicit." },
+  { n: "04", title: "Prepare", body: "Positions and reconciliations built with visible inputs and formulas." },
+  { n: "05", title: "Validate", body: "Checks run. Unresolved differences block completion rather than round away." },
+  { n: "06", title: "Review", body: "Named reviewer, bounded outcome per item, attributable and dated." },
+  { n: "07", title: "Authorize", body: "Approval is a human act. The system records it; it never performs it." },
+  { n: "08", title: "Execute / Verify", body: "Action mode separated from connectivity. Post-execution verification required." },
+  { n: "09", title: "Retain / Revalidate", body: "Retention state, version and revalidation interval recorded on close." },
 ];
 
-const STEPS = [
-  { n: 1, title: "Use-Case Discovery", body: "Identify where source-backed intelligence fits." },
-  { n: 2, title: "Source & Policy Config", body: "Confirm sources, jurisdictions, roles, tenant policy." },
-  { n: 3, title: "Kriton™ Workflow Support", body: "Users ask questions and structure tasks in approved modes." },
-  { n: 4, title: "Review & Escalation", body: "Higher-risk matters route to review or limitation behavior." },
-  { n: 5, title: "Evidence Capture", body: "Source bundles, actions, and reports preserved where configured." },
-  { n: 6, title: "Pilot Validation", body: "Finance, IT, and governance teams evaluate fit and readiness." },
-  { n: 7, title: "Enterprise Rollout", body: "Deployment expands by role, entity, and governance scope." },
+type ReviewState = "blocked" | "approved" | "in-review";
+
+const REVIEW_ROWS: [string, ReviewState, string][] = [
+  ["Allowance calculation", "blocked", "Rate applied is unsupported by current policy"],
+  ["Trade AR balance", "approved", "Tied to GL; source and mapping confirmed"],
+  ["Unbilled revenue recognition", "in-review", "Requires technical accounting opinion"],
 ];
 
-const EVIDENCE_POINTS = [
-  "Source bundle, model run, and reviewer trail preserved where configured",
-  "Limitation notices attached wherever source coverage is weak",
-  "Export-ready records for internal review and procurement",
-  "Full audit replay for material finance workflow decisions",
+const TRACE_ITEMS: string[] = [
+  "Rate basis and derivation",
+  "Formula and assumptions",
+  "Units, currency and rate source",
+  "Sample and population basis",
+  "Validation checks performed",
+  "Reconciliation fan-out",
+  "Advisory labelling",
 ];
 
-type PermRow = { role: string; need: string; iface: string };
-const PERMISSIONS: PermRow[] = [
-  { role: "CFO / Finance Executive", need: "Governance, value, adoption, and risk visibility.", iface: "Executive briefing, ROI use cases, pilot status." },
-  { role: "Controller / CAO", need: "Accounting policy consistency, close support.", iface: "Workflow Mode, Review Mode, Evidence Drawer." },
-  { role: "Group Reporting Manager", need: "Framework, jurisdiction, effective-date support.", iface: "Accounting Ontology, source-grounded answers." },
-  { role: "Finance Analyst", need: "Guided question support, workflow structure.", iface: "Ask Accounting Questions, Workflow Mode." },
-  { role: "Internal Controls / Compliance", need: "Review, escalation, evidence, audit readiness.", iface: "Review queue, evidence records, export controls." },
-  { role: "IT / Security Admin", need: "Identity, access, integration, configuration review.", iface: "Admin Mode, Enterprise Integrations, API Reference." },
-  { role: "Procurement / Legal", need: "Vendor evidence, trust, terms, data protection.", iface: "Trust Center, Procurement Support, Legal." },
+const SCENARIOS: { n: string; tab: string; crumb: string; rows: [string, string][] }[] = [
+  {
+    n: "01",
+    tab: "Period-End Reconciliation and Close Exception",
+    crumb: "Controller · Stage 05 Validate",
+    rows: [
+      ["Context", "Entity, period, ledger, currency, account, owner and intended use confirmed. Missing group scope flagged."],
+      ["Data", "Approved source balances, mapping version and extraction time. Lineage and permissions shown."],
+      ["Reconciliation", "Opening, activity, closing, source balance, items and unresolved difference. Formula and currency visible."],
+      ["Exception", "One-sided mapping and one unsupported item. Blocked status — no false completion."],
+      ["Review", "Controller accepts one item, returns one and escalates one. Bounded outcome per item."],
+    ],
+  },
+  {
+    n: "02",
+    tab: "Accounting Policy Research and Adoption Preparation",
+    crumb: "Technical Accounting · Stage 04 Prepare",
+    rows: [
+      ["Context", "Framework, jurisdiction, entity, effective date and transition method declared."],
+      ["Sources", "Issuer, version, effective date, status and applicability limitations travel with each citation."],
+      ["Analysis", "Position drafted with the source basis exposed, held explicitly as a draft."],
+      ["Gaps", "Where the framework is silent or the fact pattern is unresolved, this is stated — not filled in."],
+      ["Review", "Technical accounting review required before the position may be relied upon."],
+    ],
+  },
+  {
+    n: "03",
+    tab: "Management Reporting and Variance Narrative",
+    crumb: "FP&A · Stage 06 Review",
+    rows: [
+      ["Context", "Entity, period, comparative basis, currency and intended audience confirmed."],
+      ["Data", "Approved reporting set with extraction time and mapping version recorded."],
+      ["Variance", "Movement decomposed with the calculation visible. Drivers proposed, not asserted."],
+      ["Narrative", "Draft commentary labelled as draft, with permitted use and reviewer state attached."],
+      ["Review", "FP&A lead confirms, revises or rejects each proposed driver."],
+    ],
+  },
+  {
+    n: "04",
+    tab: "Audit Request and Evidence Pack",
+    crumb: "Controls Liaison · Stage 09 Retain",
+    rows: [
+      ["Context", "Requesting party, scope, period, entity and confidentiality class recorded."],
+      ["Assembly", "Requested items gathered with source, version, extraction time and preparer."],
+      ["Completeness", "Missing or unavailable items are listed explicitly rather than omitted quietly."],
+      ["Export", "Pack carries its integrity signature so the recipient can verify it is unaltered."],
+      ["Review", "Controls liaison approves release. The system never releases a pack on its own."],
+    ],
+  },
 ];
 
-const BOUNDARIES = [
-  "ZoikoLogia™ supports finance workflows; it does not assume management responsibility or sign off financial reporting.",
-  "Outputs may support review-ready workflows; they do not replace audit procedures or guarantee audit acceptance.",
-  "Enterprise deployment requires role permissions, tenant policy, access controls, and privacy/security review.",
-  "Source display, citation, and export behavior are governed by licensing and eligibility controls.",
-  "Connector availability and integration scope require Product, Engineering, security, and customer review.",
-  "Enterprise buyers can request approved commercial, legal, security, and governance documentation directly.",
-  "Platform behavior is designed to be evaluated, monitored, and controlled through release governance — not a static, unmonitored system.",
+const FAQS: [string, string][] = [
+  ["What is ZoikoLogia™ with Kriton™ for enterprise finance teams?",
+    "A governed layer over source-backed intelligence, close and reconciliation workflows, calculation traceability, review evidence and integration patterns. It supports finance work; it does not perform it."],
+  ["Does Kriton™ replace finance professionals or controllers?",
+    "No. It reduces coordination, retrieval and documentation overhead. Judgment, approval, certification and accountability remain with named people in your finance function."],
+  ["Can it close the books automatically?",
+    "No. No stage auto-advances. Every stage has a declared owner and control, and a stage with unresolved exceptions shows as blocked rather than complete."],
+  ["Can it generate journal entries?",
+    "It can prepare and expose a proposed entry with its full calculation trace. It does not post to a ledger. Posting authority is separated from connectivity by design."],
+  ["Can it create forecasts?",
+    "It supports scenario construction with explicit assumptions, ranges and sensitivity. Output is presented as a scenario, never as a prediction, and decision ownership stays visible."],
+  ["Can it provide tax advice or an audit opinion?",
+    "No. It does not provide tax advice, issue an audit opinion, or certify financial statements. Those remain the responsibility of qualified professionals."],
+  ["How are calculations checked?",
+    "Every material calculation exposes its inputs, formula, units, currency, rate source, period, rounding treatment and validation checks. A result without its trace is not presented as final."],
+  ["How are sources selected?",
+    "Sources are admitted with issuer, framework, jurisdiction, version, effective date and status. Applicability travels with the citation, and limitations are stated rather than implied."],
+  ["Does it integrate with our finance systems?",
+    "Yes, through governed integration patterns. Connectivity, permission, action mode and rehearsal are separated — a connection is never treated as authority to write."],
+  ["How is sensitive finance data protected?",
+    "Through tenant isolation, classification-driven retention, field-level access, purpose limitation and governed export. Retention state is disclosed rather than silently applied."],
+  ["Can we run a controlled pilot?",
+    "Yes. Pilots use fictional organizations and synthetic values within a defined scope and evaluation criteria. No real financial statements or customer data are involved."],
+  ["How does human escalation work?",
+    "Unresolved items route to the responsible owner with the reason attached. Escalation is recorded, bounded per item, and cannot be cleared by the system."],
 ];
 
-const FAQS = [
-  { q: "How can ZoikoLogia™ support enterprise finance teams?", a: "Through source-backed accounting intelligence, workflow guidance, assumption clarification, review pathways, and evidence-ready context across approved accounting, reporting, close, and governance workflows." },
-  { q: "What is Kriton™ for finance teams?", a: "Kriton™ is the AI advisor inside ZoikoLogia™ that helps finance users ask questions, structure workflow support, clarify assumptions, and escalate higher-risk matters — within governed boundaries." },
-  { q: "Does ZoikoLogia™ replace finance professionals or controllers?", a: "No. It supports professional workflows and reviewer-led decisions; final judgment, sign-off, and management responsibility stay with your team." },
-  { q: "Can ZoikoLogia™ help with the month-end close?", a: "Yes. Workflow Mode provides structured steps, notes, assumption tracking, and review-ready context to support close cycles — without replacing review." },
-  { q: "Can Kriton™ help with accounting policy questions?", a: "Yes. It provides consistent, source-backed explanations with assumptions, effective dates, and limitation language where sources fall short." },
-  { q: "Can this integrate with finance systems?", a: "Integration with ERP, HRIS, and DMS systems is possible; connector availability and scope require Product, Engineering, security, and customer review." },
-  { q: "How does ZoikoLogia™ support finance governance?", a: "Through access controls, tenant policy, review and escalation pathways, evidence-ready records, and release governance designed for enterprise finance." },
-  { q: "Can we pilot ZoikoLogia™ with a finance team before broader rollout?", a: "Yes. Finance transformation pilots offer controlled adoption with defined users, measurable workflow value, and governance assurance before enterprise rollout." },
+const START_OPTIONS: [string, string][] = [
+  ["Request Pilot", "Pilot readiness form. No confidential finance information."],
+  ["Request Enterprise Briefing", "Data flows, integrations, governance boundaries and evaluation evidence."],
+  ["View Governance Framework", "Source authority, evaluation, release gates and responsible-AI model."],
+  ["Visit Privacy & Security", "Data classification, access, retention, tenant boundaries, provider controls."],
 ];
 
 // ─── inline SVG helpers ─────────────────────────────────────────────────────────
+
 function Chevron({ open }: { open: boolean }) {
   return <svg viewBox="0 0 24 24" className={`h-4 w-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
-function Info({ className = "h-4 w-4" }: { className?: string }) {
-  return <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9" /><path d="M12 8h.01M11 12h1v4h1" strokeLinecap="round" strokeLinejoin="round" /></svg>;
-}
-function Dot() {
-  return <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#e8912a]" />;
+function Arrow({ className = "h-3.5 w-3.5" }: { className?: string }) {
+  return <svg viewBox="0 0 24 24" className={`${className} shrink-0`} fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 }
 
-// Finance Governance Operating Loop — compact SVG for the hero image overlay.
-function OperatingLoop() {
-  const nodes = ["Accounting Policy", "Close & Reporting", "Controls & Review", "Audit & Compliance", "ERP / Finance Systems"];
-  return (
-    <svg viewBox="0 0 560 96" className="h-auto w-full" role="img" aria-label="Finance governance operating loop">
-      <text x="18" y="18" fill="#f0a54a" fontSize="9" fontWeight="700" letterSpacing="1">FINANCE GOVERNANCE OPERATING LOOP</text>
-      {nodes.map((n, i) => {
-        const perRow = 3;
-        const col = i % perRow, row = Math.floor(i / perRow);
-        const x = 18 + col * 182, y = 34 + row * 30;
-        return (
-          <g key={n}>
-            <rect x={x} y={y} width="172" height="22" rx="6" fill="#0f1a30" stroke="#0d9488" strokeWidth="1" />
-            <text x={x + 86} y={y + 15} textAnchor="middle" fill="#cbd5e1" fontSize="9" fontWeight="600">{n}</text>
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
+const REVIEW_BADGE: Record<ReviewState, { label: string; cls: string }> = {
+  blocked: { label: "Blocked", cls: "bg-rose-500/15 text-rose-300 ring-rose-500/30" },
+  approved: { label: "Approved", cls: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/30" },
+  "in-review": { label: "In review", cls: "bg-amber-500/15 text-amber-300 ring-amber-500/30" },
+};
 
-const eyebrowAmber = "flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#d9720f]";
+// Shared class recipes — dark variants included everywhere.
+const SECTION_CREAM = "px-4 py-16 sm:px-6 md:px-8 bg-[#f2ece0] dark:bg-[#101a2c]";
+const SECTION_NAVY = "px-4 py-16 sm:px-6 md:px-8 bg-[#0f1a30]";
+const SECTION_DEEP = "px-4 py-16 sm:px-6 md:px-8 bg-[#0b1426]";
+
+const eyebrowAmber = "flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#d9720f] dark:text-[#f0a54a]";
+const eyebrowLight = "flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#f0a54a]";
 const serifH = "font-serif leading-tight";
-const tealLink = "text-sm font-semibold text-[#0d9488] hover:underline";
-const amberLink = "text-sm font-semibold text-[#d9720f] hover:underline";
-const creamBand = "bg-[#f5efe0] dark:bg-gray-800/60";
+
+const headingDark = "text-black dark:text-white";
+const bodyDark = "text-slate-700 dark:text-gray-300";
+const mutedDark = "text-slate-600 dark:text-gray-400";
+const cardDark = "bg-white dark:bg-[#16233d] border-black/10 dark:border-white/10";
 
 // ─── PAGE ───────────────────────────────────────────────────────────────────────
+
 export default function Page() {
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
-  const amberBtn = "rounded-md px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90";
+  const [role, setRole] = useState(0);
+  const [stage, setStage] = useState(4); // 05 Validate active, as in the design
+  const [scenario, setScenario] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <main className="bg-[#faf7f0] font-sans text-[#16233d] dark:bg-gray-900 dark:text-white">
+    <main className="bg-[#f2ece0] font-sans text-[#16233d] dark:bg-[#101a2c] dark:text-white">
 
-      {/* ─── Hero (navy) + operating-loop image ─── */}
-      <section className="px-4 py-16 sm:px-6 md:px-8 lg:py-20" style={{ backgroundColor: NAVY }}>
+      {/* ─── HERO ─── */}
+      <section className={`${SECTION_NAVY} lg:py-20`}>
         <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
           <div className="text-white">
-            <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[#0d9488]">
-              <span className="h-px w-6 bg-[#0d9488]" /> Governed AI Accounting Intelligence for Finance Teams
+            <p className={eyebrowLight}>
+              <span className="h-px w-5 bg-[#f0a54a]" /> Solutions · Enterprise Finance Teams
             </p>
-            <h1 className={`mt-5 max-w-xl text-[clamp(2rem,4.5vw,2.9rem)] ${serifH}`}>Bring source-backed AI accounting intelligence into enterprise finance workflows.</h1>
-            <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-slate-300/85">
-              ZoikoLogia™ with Kriton™ is designed to help enterprise finance teams answer accounting questions,
-              structure reporting workflows, support close documentation, review assumptions, and preserve evidence-ready
-              context across finance operations.
+            <h1 className={`mt-5 max-w-lg text-[clamp(1.9rem,4.2vw,2.7rem)] ${serifH}`}>
+              Governed AI for enterprise finance — sources, calculations, review and control intact.
+            </h1>
+            <p className="mt-5 max-w-md text-[13px] leading-relaxed text-slate-300/80">
+              ZoikoLogia™ with Kriton™ helps corporate finance teams work with source-backed intelligence,
+              controlled close workflows, transparent calculations, review-ready evidence and governed
+              integration patterns.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-              <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Request Enterprise Briefing</a>
+
+            <p className="mt-5 max-w-md border-l-2 border-[#f0a54a] pl-3 text-[11px] leading-relaxed text-slate-300/70">
+              <span className="font-semibold text-[#f0a54a]">Reminder — </span>
+              Kriton™ supports enterprise finance work. It does not prepare, approve or issue financial
+              statements or accounting records.
+            </p>
+
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <a href="#" className="rounded bg-[#e8912a] px-6 py-2.5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90">
+                Book a Demo
+              </a>
+              <a href="#" className="rounded border border-white/25 px-6 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
+                Request Pilot
+              </a>
             </div>
-            <p className="mt-6 max-w-md text-xs leading-relaxed text-slate-400/70">
-              Designed to support professional finance teams — not replace management responsibility, statutory reporting
-              controls, ERP systems, auditors, or professional judgment.
-            </p>
           </div>
-
-          <div className="relative">
-            <ImageSlot src="/images/Enterprise finance team reviewing governed accounting workflows.png" alt="Finance governance operating loop" ratio="aspect-[4/3]" rounded="rounded-2xl" />
-            <div className="absolute bottom-3 left-3 right-3 rounded-xl border border-white/10 bg-[#0f1a30]/95 px-3 py-2 shadow-xl">
-              <OperatingLoop />
-            </div>
-          </div>
+          <ImageSlot src="/images/image 134 (1).png" alt="Corporate finance team in review" ratio="aspect-[4/3]" />
         </div>
       </section>
 
-      {/* ─── What it means (4 cards) ─── */}
-      <section className="px-4 py-16 sm:px-6 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> What ZoikoLogia™ Means for Finance Teams</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Source-backed intelligence, not a generic AI layer bolted onto finance.</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {MEANS_CARDS.map((c) => (
-              <div key={c.title} className="flex flex-col rounded-xl border border-black/10 bg-white p-5 shadow-sm dark:border-gray-700 dark:bg-gray-900">
-                <h3 className="text-base font-bold">{c.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{c.body}</p>
-                <a href="#" className={`${tealLink} mt-4 inline-block text-xs`}>{c.link} →</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Who you're equipping (role image cards) ─── */}
-      <section className="px-4 pb-16 sm:px-6 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Who You're Equipping</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>The same platform, adapted to the role.</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {ROLE_CARDS.map((r) => (
-              <article key={r.title} className="flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
-                <ImageSlot src={r.img} alt={r.title} ratio="aspect-[16/11]" rounded="rounded-none" />
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-sm font-bold">{r.title}</h3>
-                  <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-gray-300">{r.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Workflow use cases (6 image cards) ─── */}
-      <section className="px-4 pb-16 sm:px-6 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Workflow Use Cases</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Where this actually shows up in a finance team's week.</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {USE_CASES.map((u) => (
-              <article key={u.title} className="flex flex-col overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
-                <ImageSlot src={u.img} alt={u.title} ratio="aspect-[16/9]" rounded="rounded-none" />
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="text-base font-bold">{u.title}</h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{u.body}</p>
-                  <a href="#" className={`${amberLink} mt-4 inline-block`}>{u.link} →</a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Seven steps (cream band) ─── */}
-      <section className={`px-4 py-16 sm:px-6 md:px-8 ${creamBand}`}>
-        <div className="mx-auto max-w-6xl">
-          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> How the Enterprise Finance Flow Works</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Seven steps from discovery to enterprise rollout.</h2>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-7">
-            {STEPS.map((s) => (
-              <div key={s.n}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-[#0d9488] text-sm font-bold text-[#0d9488]">{s.n}</div>
-                <h3 className="mt-3 text-sm font-bold">{s.title}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-gray-300">{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Evidence-ready governance (split) ─── */}
-      <section className="px-4 py-16 sm:px-6 md:px-8">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
-          <ImageSlot src="/images/Audit, Tax & Compliance.png" alt="Evidence-ready governance" ratio="aspect-[4/3]" rounded="rounded-2xl" />
+      {/* ─── §01 WHY ENTERPRISE FINANCE IS CONTEXT-RICH ─── */}
+      <section className={SECTION_CREAM}>
+        <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-[0.85fr_1.4fr]">
           <div>
-            <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Evidence-Ready Governance</p>
-            <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Something you can actually show your auditors and reviewers.</h2>
-            <p className="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-gray-300">
-              Every material Kriton™ interaction is designed to preserve the context around it — not just the answer, but what supported it.
+            <p className={eyebrowAmber}>
+              <span className="h-px w-5 bg-[#d9720f] dark:bg-[#f0a54a]" /> §01 — Why Enterprise Finance Is Context-Rich
             </p>
-            <ul className="mt-5 space-y-3">
-              {EVIDENCE_POINTS.map((p) => (
-                <li key={p} className="flex gap-3 text-[15px] leading-relaxed text-slate-600 dark:text-gray-300"><Dot />{p}</li>
-              ))}
-            </ul>
+            <h2 className={`mt-4 text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH} ${headingDark}`}>
+              The same question can require a different responsible answer.
+            </h2>
+            <p className={`mt-4 text-[13px] leading-relaxed ${bodyDark}`}>
+              When entity, group, ledger, framework, currency, period, policy, rate or intended use
+              changes — so does the right next step.
+            </p>
+            <ImageSlot src="/images/image 135 (1).png" alt="Finance team discussing period-end" ratio="aspect-[16/10]" className="mt-7" />
           </div>
-        </div>
-      </section>
 
-      {/* ─── User roles & finance permissions (table) ─── */}
-      <section className="px-4 pb-16 sm:px-6 md:px-8">
-        <div className="mx-auto max-w-6xl">
-          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> User Roles & Finance Permissions</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Who uses this, and what they actually see.</h2>
-          <p className="mt-3 max-w-2xl text-sm text-slate-600 dark:text-gray-300">Public-facing intent, not final RBAC implementation — access boundaries are confirmed per tenant configuration.</p>
-          <div className="mt-6 overflow-x-auto rounded-xl border border-black/10 dark:border-gray-700">
-            <table className="w-full min-w-[760px] text-left text-sm">
-              <thead style={{ backgroundColor: INK }}>
-                <tr className="text-[11px] uppercase tracking-wide text-white/80">
-                  <th className="px-5 py-3 font-semibold">Role</th>
-                  <th className="px-5 py-3 font-semibold">Primary Need</th>
-                  <th className="px-5 py-3 font-semibold">Interface Priority</th>
+          <div className={`overflow-x-auto border ${cardDark}`}>
+            <table className="w-full min-w-[500px] border-collapse text-left">
+              <thead>
+                <tr className="border-b border-black/10 bg-[#f7f3ea] dark:border-white/10 dark:bg-white/5">
+                  <th className="px-4 py-2.5 text-[9px] font-bold uppercase tracking-[0.12em] text-slate-500 dark:text-gray-400">Failure pattern</th>
+                  <th className="px-4 py-2.5 text-[9px] font-bold uppercase tracking-[0.12em] text-slate-500 dark:text-gray-400">Required response</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-black/10 dark:divide-gray-700">
-                {PERMISSIONS.map((r) => (
-                  <tr key={r.role} className="bg-white align-top dark:bg-gray-900">
-                    <td className="px-5 py-4 font-semibold">{r.role}</td>
-                    <td className="px-5 py-4 text-slate-600 dark:text-gray-300">{r.need}</td>
-                    <td className="px-5 py-4 text-slate-600 dark:text-gray-300">{r.iface}</td>
+              <tbody>
+                {FAILURE_PATTERNS.map(([fail, required], i) => (
+                  <tr key={fail} className={`border-b border-black/10 last:border-0 dark:border-white/10 ${i % 2 === 1 ? "bg-[#faf8f3] dark:bg-white/[0.03]" : ""}`}>
+                    <td className={`w-[45%] px-4 py-3.5 align-top text-[11px] leading-relaxed ${bodyDark}`}>{fail}</td>
+                    <td className={`px-4 py-3.5 align-top text-[11px] leading-relaxed ${mutedDark}`}>{required}</td>
                   </tr>
                 ))}
               </tbody>
@@ -293,57 +302,311 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ─── Trust, legal & procurement boundaries (cream band) ─── */}
-      <section className={`px-4 py-16 sm:px-6 md:px-8 ${creamBand}`}>
-        <div className="mx-auto max-w-4xl">
-          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Trust, Legal & Procurement</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>What we don't claim — stated plainly.</h2>
-          <div className="mt-8 space-y-3">
-            {BOUNDARIES.map((b, i) => (
-              <div key={i} className="flex gap-3 rounded-xl border border-black/10 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-900">
-                <span className="mt-0.5 shrink-0 text-[#d9720f]"><Info className="h-4 w-4" /></span>
-                <p className="text-sm leading-relaxed text-slate-600 dark:text-gray-300">{b}</p>
+      {/* ─── §02 ROLE-BASED ENTRY ─── */}
+      <section className={SECTION_NAVY}>
+        <div className="mx-auto max-w-6xl text-white">
+          <p className={eyebrowLight}><span className="h-px w-5 bg-[#f0a54a]" /> §02 — Role-Based Entry</p>
+
+          <div className="mt-10 grid items-start gap-10 lg:grid-cols-2">
+            <div>
+              <h2 className={`text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH}`}>Finance is not one job.</h2>
+              <p className="mt-4 max-w-md text-[12px] leading-relaxed text-slate-300/75">
+                CFOs govern. Controllers close. Accounting teams prepare. FP&amp;A analyzes. Operations
+                coordinate. Controls teams preserve evidence. Systems teams connect. Procurement evaluates.
+              </p>
+
+              <ul className="mt-7 space-y-1">
+                {ROLES.map((r, i) => {
+                  const active = role === i;
+                  return (
+                    <li key={r.n}>
+                      <button type="button" onClick={() => setRole(i)}
+                        className={`w-full rounded-sm px-3 py-2 text-left text-[11px] transition-colors ${
+                          active
+                            ? "bg-[#e8912a]/12 text-[#f0a54a] ring-1 ring-inset ring-[#e8912a]/45"
+                            : "text-slate-300/65 hover:bg-white/5"
+                        }`}>
+                        {r.n} — {r.title}
+                      </button>
+                      {active && (
+                        <div className="px-3 pb-2 pt-1.5">
+                          <p className="text-[11px] leading-relaxed text-slate-300/60">{r.body}</p>
+                          <a href="#" className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#f0a54a] hover:underline">
+                            {r.link} <Arrow className="h-3 w-3" />
+                          </a>
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <ImageSlot src="/images/image 136 (1).png" alt="Finance roles collaborating" ratio="aspect-[4/3]" className="lg:sticky lg:top-8" />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── §03 FINANCE CONTEXT MODEL ─── */}
+      <section className={SECTION_DEEP}>
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="text-white">
+            <p className={eyebrowLight}><span className="h-px w-5 bg-[#f0a54a]" /> §03 — Finance Context Model</p>
+            <h2 className={`mt-4 text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH}`}>
+              Fourteen context fields. None silently assumed.
+            </h2>
+            <p className="mt-4 max-w-sm text-[12px] leading-relaxed text-slate-300/75">
+              Entity, group, ledger, framework, currency, period, policy, rate and intended use shape every
+              retrieval, calculation and workflow step.
+            </p>
+            <p className="mt-5 max-w-sm border-l-2 border-[#f0a54a] pl-3 text-[10px] leading-relaxed text-slate-300/60">
+              <span className="font-semibold text-[#f0a54a]">Note — </span>
+              The system does not assume entity, ledger or period. It requests them explicitly and records
+              what remains unknown.
+            </p>
+          </div>
+          <ImageSlot src="/images/image 137 (1).png" alt="Analysts reviewing a financial model" ratio="aspect-[16/10]" />
+        </div>
+      </section>
+
+      {/* ─── §04 CLOSE, REPORTING AND RECONCILIATION WORKFLOWS ─── */}
+      <section className={SECTION_CREAM}>
+        <div className="mx-auto max-w-6xl">
+          <p className={eyebrowAmber}>
+            <span className="h-px w-5 bg-[#d9720f] dark:bg-[#f0a54a]" /> §04 — Close, Reporting and Reconciliation Workflows
+          </p>
+
+          <div className="mt-4 grid gap-8 lg:grid-cols-2">
+            <h2 className={`text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH} ${headingDark}`}>
+              Nine stages. Every stage owned. No stage auto-advances.
+            </h2>
+            <p className={`text-[13px] leading-relaxed lg:pt-2 ${bodyDark}`}>
+              From readiness through retention and revalidation — each stage has a declared control, an owner
+              and an evidence requirement.
+            </p>
+          </div>
+
+          <div className="mt-10 grid items-start gap-8 lg:grid-cols-[230px_1fr]">
+            <ul className="space-y-0.5">
+              {STAGES.map((s, i) => {
+                const active = stage === i;
+                return (
+                  <li key={s.n}>
+                    <button type="button" onClick={() => setStage(i)}
+                      className={`w-full px-3 py-2 text-left text-[11px] transition-colors ${
+                        active
+                          ? "bg-[#0f1a30] font-medium text-white dark:bg-white dark:text-[#0f1a30]"
+                          : "text-slate-600 hover:bg-black/5 dark:text-gray-400 dark:hover:bg-white/5"
+                      }`}>
+                      {s.n} &nbsp; {s.title}
+                    </button>
+                    {active && (
+                      <p className={`px-3 pb-2 pt-2 text-[11px] leading-relaxed ${mutedDark}`}>{s.body}</p>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <ImageSlot src="/images/image 138 (1).png" alt="Close workflow review session" ratio="aspect-[16/10]" />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── §05 REVIEW, CALCULATION AND EVIDENCE ─── */}
+      <section className={SECTION_NAVY}>
+        <div className="mx-auto max-w-6xl text-white">
+          <p className={eyebrowLight}><span className="h-px w-5 bg-[#f0a54a]" /> §05 — Review, Calculation and Evidence</p>
+
+          <div className="mt-4 grid gap-8 lg:grid-cols-2">
+            <h2 className={`text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH}`}>Traceable and inspectable by design.</h2>
+            <p className="text-[12px] leading-relaxed text-slate-300/75 lg:pt-2">
+              Every material claim connects to source, data, calculation, assumption and an unresolved-issue
+              list. Review Mode requires a named reviewer with a bounded outcome for each item.
+            </p>
+          </div>
+
+          <div className="mt-10 grid items-start gap-6 lg:grid-cols-2">
+            <ImageSlot src="/images/image 149.png" alt="Working through a reconciliation" ratio="aspect-[4/3]" />
+
+            <div className="overflow-hidden rounded bg-white/[0.04] ring-1 ring-white/10">
+              <p className="border-b border-white/10 px-5 py-2.5 text-[9px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                Review Mode · synthetic entity · period FY-Q3
+              </p>
+
+              <ul className="divide-y divide-white/5">
+                {REVIEW_ROWS.map(([item, state, note]) => (
+                  <li key={item} className="flex items-start justify-between gap-4 px-5 py-3.5">
+                    <div className="min-w-0">
+                      <p className="text-[12px] font-medium">{item}</p>
+                      <p className="mt-0.5 text-[10px] leading-relaxed text-slate-300/55">{note}</p>
+                    </div>
+                    <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[9px] font-semibold ring-1 ${REVIEW_BADGE[state].cls}`}>
+                      {REVIEW_BADGE[state].label}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="border-t border-white/10 px-5 py-4">
+                <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                  Trace required for each item
+                </p>
+                <ul className="mt-3 space-y-1.5">
+                  {TRACE_ITEMS.map((t) => (
+                    <li key={t} className="flex items-center gap-2 text-[10px] text-slate-300/65">
+                      <span className="h-1 w-1 shrink-0 rounded-full bg-[#f0a54a]" />{t}
+                    </li>
+                  ))}
+                </ul>
+                <a href="#" className="mt-4 inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#f0a54a] hover:underline">
+                  Escalate to controller <Arrow className="h-3 w-3" />
+                </a>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── §06 SYNTHETIC SCENARIOS ─── */}
+      <section className={SECTION_CREAM}>
+        <div className="mx-auto max-w-6xl">
+          <p className={eyebrowAmber}><span className="h-px w-5 bg-[#d9720f] dark:bg-[#f0a54a]" /> §06 — Synthetic Scenarios</p>
+
+          <div className="mt-4 grid gap-8 lg:grid-cols-2">
+            <h2 className={`text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH} ${headingDark}`}>
+              Governed enterprise finance AI in practice.
+            </h2>
+            <p className={`text-[13px] leading-relaxed lg:pt-2 ${bodyDark}`}>
+              All scenarios use fictional organizations, synthetic data and non-sensitive values. No real
+              financial statements, employee data or customer data appear.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-px bg-black/10 dark:bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+            {SCENARIOS.map((s, i) => (
+              <button key={s.n} type="button" onClick={() => setScenario(i)}
+                className={`p-4 text-left transition-colors ${
+                  scenario === i
+                    ? "bg-[#0f1a30] text-white dark:bg-white dark:text-[#0f1a30]"
+                    : "bg-white text-slate-600 hover:bg-[#faf8f3] dark:bg-[#16233d] dark:text-gray-400 dark:hover:bg-white/10"
+                }`}>
+                <span className={`text-[10px] font-semibold ${
+                  scenario === i ? "text-[#f0a54a] dark:text-[#d9720f]" : "text-slate-400"
+                }`}>{s.n}</span>
+                <p className="mt-1.5 text-[11px] font-semibold leading-snug">{s.tab}</p>
+              </button>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* ─── FAQ ─── */}
-      <section className="px-4 py-16 sm:px-6 md:px-8">
-        <div className="mx-auto max-w-4xl">
-          <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> Frequently Asked</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Enterprise finance questions, answered plainly.</h2>
-          <div className="mt-8 divide-y divide-black/10 border-y border-black/10 dark:divide-gray-700 dark:border-gray-700">
-            {FAQS.map((f, i) => {
-              const open = openFaq === i;
-              return (
-                <div key={f.q}>
-                  <button type="button" onClick={() => setOpenFaq(open ? null : i)} aria-expanded={open}
-                    className="flex w-full items-center justify-between gap-4 py-4 text-left text-[15px] font-semibold">
-                    {f.q}<Chevron open={open} />
-                  </button>
-                  {open && <p className="pb-4 text-[15px] leading-relaxed text-slate-600 dark:text-gray-300">{f.a}</p>}
-                </div>
-              );
-            })}
+          <div className={`grid gap-6 border border-t-0 p-6 lg:grid-cols-[1.35fr_1fr] ${cardDark}`}>
+            <div>
+              <p className="text-[9px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                {SCENARIOS[scenario].crumb}
+              </p>
+              <h3 className={`mt-2 text-[1.35rem] ${serifH} ${headingDark}`}>{SCENARIOS[scenario].tab}</h3>
+
+              <dl className="mt-5 divide-y divide-black/10 border-y border-black/10 dark:divide-white/10 dark:border-white/10">
+                {SCENARIOS[scenario].rows.map(([term, def]) => (
+                  <div key={term} className="grid gap-1 py-3 sm:grid-cols-[120px_1fr] sm:gap-4">
+                    <dt className={`text-[11px] font-bold ${headingDark}`}>{term}</dt>
+                    <dd className={`text-[11px] leading-relaxed ${mutedDark}`}>{def}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <p className={`mt-4 border-l-2 border-[#e8912a] bg-[#faf8f3] py-2.5 pl-3 text-[11px] leading-relaxed dark:bg-white/5 ${mutedDark}`}>
+                <span className="font-semibold">Summary — </span>
+                No autonomous posting and no close certification. Every outcome above is recorded against a
+                named human owner.
+              </p>
+            </div>
+            <ImageSlot src="/images/image 139 (1).png" alt="Synthetic scenario visualization" ratio="aspect-[3/4]" />
           </div>
         </div>
       </section>
 
-      {/* ─── Final CTA (navy, on cream band) ─── */}
-      <section className={`px-4 py-16 sm:px-6 md:px-8 ${creamBand}`}>
-        <div className="mx-auto max-w-5xl rounded-2xl px-8 py-14 text-center" style={{ backgroundColor: NAVY }}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#0d9488]">Evaluate for Your Finance Function</p>
-          <h2 className={`mx-auto mt-3 max-w-2xl text-[clamp(1.6rem,3vw,2.2rem)] text-white ${serifH}`}>Evaluate governed AI accounting intelligence for enterprise finance teams.</h2>
-          <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-slate-300/80">
-            See how ZoikoLogia™ with Kriton™ can support accounting policy consistency, reporting workflow discipline,
-            close documentation, review pathways, and evidence-ready finance governance.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-            <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Request Pilot</a>
-            <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Request Enterprise Briefing</a>
+      {/* ─── §07 FAQ ─── */}
+      <section className={SECTION_NAVY}>
+        <div className="mx-auto max-w-6xl text-white">
+          <p className={eyebrowLight}><span className="h-px w-5 bg-[#f0a54a]" /> §07 — Frequently Asked Questions</p>
+
+          <div className="mt-6 grid items-start gap-10 lg:grid-cols-[0.75fr_1.6fr]">
+            <div className="lg:sticky lg:top-8">
+              <h2 className={`text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH}`}>Buyer and governance questions.</h2>
+              <p className="mt-4 text-[12px] leading-relaxed text-slate-300/75">
+                Scoped to public product information. Contracts, security architecture and detailed data flows
+                belong to the enterprise briefing process.
+              </p>
+              <div className="mt-5 flex flex-col gap-2">
+                {["Professional Boundaries", "Governance Framework", "Privacy & Security", "Enterprise Integrations"].map((l) => (
+                  <a key={l} href="#" className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#f0a54a] hover:underline">
+                    {l} <Arrow className="h-3 w-3" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div className="divide-y divide-white/10 border-y border-white/10">
+              {FAQS.map(([q, a], i) => {
+                const open = openFaq === i;
+                return (
+                  <div key={q}>
+                    <button type="button" onClick={() => setOpenFaq(open ? null : i)} aria-expanded={open}
+                      className="flex w-full items-center justify-between gap-4 py-3.5 text-left text-[12px] font-medium">
+                      {q}<span className="text-[#f0a54a]"><Chevron open={open} /></span>
+                    </button>
+                    {open && <p className="pb-4 pr-8 text-[12px] leading-relaxed text-slate-300/70">{a}</p>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── START ─── */}
+      <section className={SECTION_CREAM}>
+        <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2">
+          <div>
+            <p className={eyebrowAmber}><span className="h-px w-5 bg-[#d9720f] dark:bg-[#f0a54a]" /> Start</p>
+            <h2 className={`mt-4 max-w-sm text-[clamp(1.5rem,3.2vw,2.1rem)] ${serifH} ${headingDark}`}>
+              Start with a governed demonstration.
+            </h2>
+            <p className={`mt-4 max-w-md text-[13px] leading-relaxed ${bodyDark}`}>
+              Demonstrations use synthetic organizations, entities, accounts, periods and values. No real
+              financial statements or customer data appear.
+            </p>
+            <p className="mt-4 max-w-md text-[10px] leading-relaxed text-slate-500 dark:text-gray-500">
+              Demo and pilot terms are defined at the point of request. Required onboarding communication is
+              separate from optional marketing consent.
+            </p>
+            <ImageSlot src="/images/image 140 (1).png" alt="Governed demonstration session" ratio="aspect-[16/10]" className="mt-8" />
+          </div>
+
+          <div className="space-y-3">
+            {/* Primary — navy in both themes */}
+            <a href="#" className="group flex items-start justify-between gap-4 rounded bg-[#0f1a30] p-5 transition-opacity hover:opacity-95 dark:bg-[#0b1426] dark:ring-1 dark:ring-white/10">
+              <span>
+                <span className="block text-[14px] font-semibold text-white">Book a Demo</span>
+                <span className="mt-1 block text-[11px] leading-relaxed text-slate-300/70">
+                  Walk through governed enterprise finance workflows with synthetic data.
+                </span>
+              </span>
+              <span className="mt-1 text-[#f0a54a] transition-transform group-hover:translate-x-0.5"><Arrow /></span>
+            </a>
+
+            {/* Secondary */}
+            {START_OPTIONS.map(([title, desc]) => (
+              <a key={title} href="#"
+                className={`group flex items-start justify-between gap-4 rounded border p-5 transition-colors hover:border-black/25 dark:hover:border-white/25 ${cardDark}`}>
+                <span>
+                  <span className={`block text-[13px] font-semibold ${headingDark}`}>{title}</span>
+                  <span className={`mt-1 block text-[11px] leading-relaxed ${mutedDark}`}>{desc}</span>
+                </span>
+                <span className="mt-1 text-slate-400 transition-transform group-hover:translate-x-0.5 group-hover:text-[#d9720f] dark:group-hover:text-[#f0a54a]"><Arrow /></span>
+              </a>
+            ))}
           </div>
         </div>
       </section>
