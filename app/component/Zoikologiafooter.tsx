@@ -123,20 +123,12 @@ export default function ZoikoLogiaFooter() {
           <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
             <Link href="/" className="flex shrink-0 items-center">
               <Image
-                src="/images/Rectangle 1.png"
+                src="/images/zoikologia-logo-new.png"
                 alt="ZoikoLogia"
                 width={210}
                 height={50}
                 priority
-                className="block h-9 w-auto dark:hidden"
-              />
-              <Image
-                src="/images/zoikologia-logo-png.png"
-                alt="ZoikoLogia"
-                width={210}
-                height={50}
-                priority
-                className="hidden h-9 w-auto dark:block"
+                className="block h-9 w-auto"
               />
             </Link>
             <Image
