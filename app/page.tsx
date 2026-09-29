@@ -641,7 +641,7 @@ export default function Page() {
                   className="h-full w-full"
                   label="Team image"
                   onDark
-                  rounded="rounded-none"
+           
                 />
               </div>
             </div>
