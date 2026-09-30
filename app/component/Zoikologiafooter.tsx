@@ -2,7 +2,17 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const TEAL = "#0d9488";
+
 type Column = { heading: string; links: { label: string; href: string }[] };
+
+const footerPills = [
+  "Source-backed workflow design",
+  "Privacy & Security controls",
+  "Audit-ready evidence architecture",
+  "Professional-boundary safeguards",
+  "WCAG 2.2 AA design target",
+];
 
 const columns: Column[] = [
   {
@@ -114,47 +124,67 @@ export default function ZoikoLogiaFooter() {
     <footer className="bg-[#0a1626] text-gray-300">
       <div className="mx-auto max-w-7xl px-6 py-14">
 
-        {/* ── Brand ──
-            Moved above the link grid. With eight columns there is no longer room
-            for the brand block to sit beside them on the same row. */}
-        <div className="max-w-2xl">
-          {/* flex-wrap = safety net: if the two marks can't fit on one line,
-              "with Kriton" drops BELOW the logo instead of overflowing sideways. */}
-          <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
-            <Link href="/" className="flex shrink-0 items-center">
+        {/* ── Brand row: logo/text LEFT, pills RIGHT ── */}
+        <div className="grid items-start gap-8 lg:grid-cols-[1fr_auto]">
+
+          {/* Left — brand block */}
+          <div className="max-w-xl">
+            <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
+              <Link href="/" className="flex shrink-0 items-center">
+                <Image
+                  src="/images/zoikologia-logo-new.png"
+                  alt="ZoikoLogia"
+                  width={210}
+                  height={50}
+                  priority
+                  className="block h-9 w-auto"
+                />
+              </Link>
               <Image
-                src="/images/zoikologia-logo-new.png"
-                alt="ZoikoLogia"
-                width={210}
-                height={50}
-                priority
-                className="block h-9 w-auto"
+                src="/images/with Kriton.png"
+                alt="with Kriton"
+                width={150}
+                height={40}
+                className="block h-5 w-auto shrink-0"
               />
-            </Link>
-            <Image
-              src="/images/with Kriton.png"
-              alt="with Kriton"
-              width={150}
-              height={40}
-              className="block h-5 w-auto shrink-0"
-            />
+            </div>
+
+            <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: TEAL }}>
+              Governed AI Accounting Intelligence Platform
+            </p>
+
+            <p className="mt-3 text-sm leading-relaxed text-gray-400">
+              ZoikoLogia<sup className="align-super text-[0.6em]">&trade;</sup> with Kriton
+              <sup className="align-super text-[0.6em]">&trade;</sup> is a governed AI accounting intelligence
+              platform designed to support source-backed accounting, tax, audit, payroll, compliance,
+              finance, and learning workflows.
+            </p>
+
+            <p className="mt-3 text-sm leading-relaxed text-gray-500">
+              Built for professional work where source authority, privacy, auditability, risk routing,
+              and human judgment matter.
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-3 ">
+              <Link href="/platform" className="text-sm font-semibold text-teal-500 underline underline-offset-4 hover:no-underline">Explore Platform</Link>
+              <Link href="/kriton-ai" className="text-sm font-semibold text-teal-500 underline underline-offset-4 hover:no-underline">Meet Kriton&trade;</Link>
+              <Link href="/privacy-security" className="text-sm font-semibold text-teal-500 underline underline-offset-4 hover:no-underline">Visit Privacy &amp; Security</Link>
+            </div>
           </div>
 
-          <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.15em] text-[#0d9488]">
-            Governed AI Accounting Intelligence Platform
-          </p>
+          {/* Right — pills */}
+          <div className="flex flex-col items-end gap-2.5">
+            {footerPills.map((pill) => (
+              <span key={pill} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-gray-300">
+                <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: TEAL }} />
+                {pill}
+              </span>
+            ))}
+          </div>
 
-          <p className="mt-3 text-sm leading-relaxed text-gray-400">
-            ZoikoLogia<sup className="align-super text-[0.6em]">™</sup> with Kriton
-            <sup className="align-super text-[0.6em]">™</sup> is a governed AI accounting intelligence
-            platform designed to support source-backed accounting, tax, audit, payroll, compliance,
-            finance and learning workflows.
-          </p>
         </div>
 
-        {/* ── Mega link grid ──
-            Eight columns is too many for one row below ~1280px, so it steps
-            2 → 4 → 8 rather than squeezing. gap-y keeps the wrapped rows apart. */}
+        {/* ── Mega link grid ── */}
         <nav
           aria-label="Footer"
           className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-white/10 pt-10 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-8"
@@ -182,7 +212,7 @@ export default function ZoikoLogiaFooter() {
 
         {/* ── Bottom bar ── */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-gray-500 sm:flex-row">
-          <p>© {new Date().getFullYear()} ZoikoLogia. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ZoikoLogia. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-5">
             <Link href="/privacy-security" className="hover:text-white">Terms of Service</Link>
             <Link href="/privacy-security" className="hover:text-white">Privacy Policy</Link>
@@ -191,6 +221,7 @@ export default function ZoikoLogiaFooter() {
             <Link href="/" className="hover:text-white">System Status</Link>
           </div>
         </div>
+
       </div>
     </footer>
   );

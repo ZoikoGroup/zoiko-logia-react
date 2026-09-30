@@ -20,7 +20,6 @@ const RED    = "#ef4444";
 
 /* ── small helpers ── */
 
-/** Left-aligned eyebrow with amber dash: — LABEL */
 function Eyebrow({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
   return (
     <p className={`mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] ${center ? "justify-center" : ""}`} style={{ color: AMBER }}>
@@ -112,11 +111,11 @@ const trustBar = [
 ];
 
 const engineNodes = [
-  { tag: "01", icon: BookOpen,      title: "Source Library",          desc: "Authoritative, curated, and continuously updated sources with metadata and authority levels.", color: AMBER },
-  { tag: "02", icon: Scale,         title: "Jurisdiction Engine",     desc: "Tax, legal, audit, and reporting rules mapped by jurisdiction, effective date, and language.", color: AMBER },
-  { tag: "03", icon: GitBranch,     title: "Risk Classification",    desc: "Multi-level risk model classifies questions, answers, and recommendations.", color: AMBER },
-  { tag: "04", icon: FileText,      title: "Audit Ledger",           desc: "Immutable audit ledger of inputs, sources, model runs, and outputs.", color: TEAL },
-  { tag: "05", icon: Lock,          title: "Privacy Controls",       desc: "Role-based access, data minimization, encryption, and retention policies.", color: TEAL },
+  { tag: "01", icon: BookOpen,       title: "Source Library",         desc: "Authoritative, curated, and continuously updated sources with metadata and authority levels.", color: AMBER },
+  { tag: "02", icon: Scale,          title: "Jurisdiction Engine",    desc: "Tax, legal, audit, and reporting rules mapped by jurisdiction, effective date, and language.", color: AMBER },
+  { tag: "03", icon: GitBranch,      title: "Risk Classification",   desc: "Multi-level risk model classifies questions, answers, and recommendations.", color: AMBER },
+  { tag: "04", icon: FileText,       title: "Audit Ledger",          desc: "Immutable audit ledger of inputs, sources, model runs, and outputs.", color: TEAL },
+  { tag: "05", icon: Lock,           title: "Privacy Controls",      desc: "Role-based access, data minimization, encryption, and retention policies.", color: TEAL },
   { tag: "06", icon: ClipboardCheck, title: "Evaluation Framework",  desc: "Quality, accuracy, and safety testing with continuous monitoring and feedback.", color: GREEN },
 ];
 
@@ -189,7 +188,7 @@ const faqs = [
   { q: "Can ZoikoLogia\u2122 be used by enterprises?",            a: "Yes. Provider due diligence, audit evidence ledgers, QA release gates, and jurisdiction controls are built for enterprise procurement and compliance review." },
 ];
 
-/* ── PAGE ── */
+/* ═══════════════════════════════════ PAGE ═══════════════════════════════════ */
 export default function Page() {
   const [tab, setTab] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -198,125 +197,144 @@ export default function Page() {
   return (
     <div style={{ backgroundColor: CREAM }}>
 
-      {/* ══════════════════════════ HERO ══════════════════════════ */}
-      <section className="bg-[#0d1b2e]">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-20 lg:grid-cols-2">
-          <div>
-            <Eyebrow>Governed AI for Accounting</Eyebrow>
-            <h1 className="font-serif text-4xl font-extrabold leading-[1.15] text-white sm:text-5xl">
-              AI accounting intelligence,<br />
-              <span style={{ color: AMBER }}>governed by design.</span>
-            </h1>
-            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-gray-300">
-              Kriton&trade; helps accounting professionals work through tax, audit,
-              payroll, and compliance questions — grounded in real sources,
-              not model memory.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <AmberBtn href="/book-a-demo">Book a Demo</AmberBtn>
-              <GhostBtn href="/kriton" dark>See Kriton&trade; in action <ArrowRight className="ml-1 inline h-4 w-4" /></GhostBtn>
-            </div>
+   <section className="relative overflow-hidden bg-[#0d1b2e]">
+  {/* Right-side image with left gradient fade */}
+  <div className="absolute inset-y-0 right-0 w-full lg:w-[55%]">
+    <img
+      src="/images/Senior audit professional reviewing financial statements.png"
+      alt=""
+      className="h-full w-full object-cover object-center"
+    />
 
-            {/* Trusted bar */}
-            <div className="mt-10 border-t border-white/10 pt-6">
-              <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">
-                Trusted by finance &amp; accounting leaders
-              </p>
-              <div className="flex flex-wrap gap-x-8 gap-y-2">
-                {trustedLogos.map((l) => (
-                  <span key={l} className="font-serif text-sm font-semibold text-gray-400">{l}</span>
-                ))}
-              </div>
-            </div>
-          </div>
+    {/* Strong fade from left/navy into the image */}
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0d1b2e] via-[#0d1b2e]/70 via-[25%] to-transparent" />
 
-          {/* Hero image + floating Kriton card */}
-          <div className="relative">
-            <ImageSlot
-              src="/images/Senior audit professional reviewing financial statements.png"
-              alt="Accounting professional working with ZoikoLogia"
-              className="h-80 w-full"
-              label="Hero image"
-              onDark
-            />
-            {/* Floating Kriton advisor card */}
-            <div className="absolute -bottom-8 right-4 w-64 rounded-xl border border-white/10 bg-white/95 p-4 shadow-xl backdrop-blur">
-              <div className="mb-3 flex items-center justify-between">
-                <p className="text-xs font-bold text-gray-900">Kriton&trade; AI Advisor</p>
-                <div className="flex gap-1.5 text-gray-400">
-                  <span className="text-[10px]">⛶</span>
-                  <span className="text-[10px]">✕</span>
-                </div>
-              </div>
-              <ul className="space-y-2">
-                {advisorStatus.map((s) => (
-                  <li key={s.label} className="flex items-center gap-2 text-xs text-gray-700">
-                    <span className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: s.color }} />
-                    {s.label}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-3 border-t border-gray-200 pt-3">
-                <div className="mb-1 flex items-center justify-between text-[10px] text-gray-400">
-                  <span>Confidence</span>
-                  <span>92%</span>
-                </div>
-                <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-200">
-                  <div className="h-full rounded-full" style={{ width: "92%", backgroundColor: TEAL }} />
-                </div>
-              </div>
-            </div>
-          </div>
+    {/* Slight dark overlay over the image */}
+    <div className="absolute inset-0 bg-[#0d1b2e]/10" />
+  </div>
+
+  <div className="relative z-10 mx-auto max-w-7xl px-6 py-10 lg:py-14">
+    <div className="max-w-xl">
+      <Eyebrow>Governed AI for Accounting</Eyebrow>
+
+      <h1 className="font-serif text-3xl font-extrabold leading-[1.12] text-white sm:text-4xl">
+        AI accounting intelligence,
+        <br />
+        <span style={{ color: AMBER }}>governed by design.</span>
+      </h1>
+
+      <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-300">
+        Kriton&trade; helps accounting professionals work through tax, audit,
+        payroll, and compliance questions — grounded in real sources,
+        not model memory.
+      </p>
+
+      <div className="mt-5 flex flex-wrap gap-3">
+        <AmberBtn href="/book-a-demo">
+          Book a Demo
+        </AmberBtn>
+
+        <GhostBtn href="/kriton" dark>
+          See Kriton&trade; in action
+          <ArrowRight className="ml-1 inline h-4 w-4" />
+        </GhostBtn>
+      </div>
+
+      <div className="mt-6 border-t border-white/10 pt-4">
+        <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-gray-500">
+          Trusted by finance &amp; accounting leaders
+        </p>
+
+        <div className="flex flex-wrap gap-x-5 gap-y-1">
+          {trustedLogos.map((l) => (
+            <span
+              key={l}
+              className="font-serif text-xs font-semibold text-gray-400"
+            >
+              {l}
+            </span>
+          ))}
         </div>
-      </section>
+      </div>
+    </div>
+
+    {/* Kriton card — positioned over the image */}
+    <div className="absolute right-6 top-10 z-20 hidden w-52 rounded-xl border border-white/10 bg-[#0a1626]/95 p-3 shadow-2xl backdrop-blur lg:block">
+      <div className="mb-2 flex items-center justify-between">
+        <p className="text-[11px] font-bold text-white">
+          Kriton&trade; AI Advisor
+        </p>
+
+        <div className="flex gap-1.5">
+          <span className="text-[9px] text-gray-500">⛶</span>
+          <span className="text-[9px] text-gray-500">✕</span>
+        </div>
+      </div>
+
+      <ul className="space-y-1.5">
+        {advisorStatus.map((s) => (
+          <li
+            key={s.label}
+            className="flex items-center gap-2 text-[11px] text-gray-300"
+          >
+            <span
+              className="h-1.5 w-1.5 shrink-0 rounded-full"
+              style={{ backgroundColor: s.color }}
+            />
+            {s.label}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-2 border-t border-white/10 pt-2">
+        <div className="mb-1 flex items-center justify-between text-[9px] text-gray-500">
+          <span>Confidence</span>
+          <span>92%</span>
+        </div>
+
+        <div className="h-1 w-full overflow-hidden rounded-full bg-white/10">
+          <div
+            className="h-full rounded-full"
+            style={{
+              width: "92%",
+              backgroundColor: TEAL,
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════ PERSONAS ══════════════════════════ */}
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.5fr]">
-            {/* Left column */}
             <div>
               <Eyebrow>Built for Professional Judgment</Eyebrow>
-              <h2 className="font-serif text-3xl font-bold leading-snug text-gray-900 sm:text-[2.1rem]">
-                Accounting intelligence for the people who ask, prepare, review, govern, and sign.
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                ZoikoLogia&trade; with Kriton&trade; is built for professionals who carry
-                judgment, business leaders who need financial clarity, and learners
-                who are building accounting knowledge — all governed by the same
-                source-backed, evidence-ready controls.
-              </p>
-
-              {/* Journey icons */}
+              <h2 className="font-serif text-3xl font-bold leading-snug text-gray-900 sm:text-[2.1rem]">Accounting intelligence for the people who ask, prepare, review, govern, and sign.</h2>
+              <p className="mt-4 text-sm leading-relaxed text-gray-600">ZoikoLogia&trade; with Kriton&trade; is built for professionals who carry judgment, business leaders who need financial clarity, and learners who are building accounting knowledge — all governed by the same source-backed, evidence-ready controls.</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 {journeySteps.map((s, i) => (
                   <React.Fragment key={s.label}>
                     <div className="flex flex-col items-center gap-1">
-                      <span className="flex h-8 w-8 items-center justify-center rounded-full border" style={{ borderColor: s.color }}>
-                        <s.icon className="h-4 w-4" style={{ color: s.color }} />
-                      </span>
+                      <span className="flex h-8 w-8 items-center justify-center rounded-full border" style={{ borderColor: s.color }}><s.icon className="h-4 w-4" style={{ color: s.color }} /></span>
                       <span className="text-[8px] font-bold uppercase tracking-[0.15em] text-gray-500">{s.label}</span>
                     </div>
                     {i < journeySteps.length - 1 && <ArrowRight className="h-3.5 w-3.5 text-gray-300" />}
                   </React.Fragment>
                 ))}
               </div>
-
-              {/* Stat cards with icons */}
               <div className="mt-8 grid grid-cols-3 gap-4">
                 {statCards.map((s) => (
                   <div key={s.label} className="rounded-xl border border-gray-200 bg-white p-4">
-                    <span className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg" style={{ backgroundColor: s.color + "18" }}>
-                      <s.icon className="h-4 w-4" style={{ color: s.color }} />
-                    </span>
+                    <span className="mb-2 flex h-8 w-8 items-center justify-center rounded-lg" style={{ backgroundColor: s.color + "18" }}><s.icon className="h-4 w-4" style={{ color: s.color }} /></span>
                     <p className="mt-2 text-[10px] font-semibold uppercase leading-tight tracking-wide text-gray-500" style={{ whiteSpace: "pre-line" }}>{s.label}</p>
                     <p className="mt-1 text-2xl font-extrabold text-gray-900">{s.n}</p>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Right column — persona grid */}
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
               {personas.map((p, i) => (
                 <div key={p.name} className="rounded-xl border border-gray-200 bg-white p-3 text-left">
@@ -331,9 +349,7 @@ export default function Page() {
               ))}
             </div>
           </div>
-
-          {/* Trust bar */}
-          <div className="mt-14 grid gap-6 border-t border-gray-200 pt-8 sm:grid-cols-2 lg:grid-cols-4" style={{ backgroundColor: CREAM }}>
+          <div className="mt-14 grid gap-6 border-t border-gray-200 pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {trustBar.map((f) => (
               <div key={f.text} className="flex items-start gap-3">
                 <f.icon className="mt-0.5 h-5 w-5 shrink-0 text-gray-400" />
@@ -344,34 +360,33 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ══════════════════════════ ENGINE ══════════════════════════ */}
+      {/* ══════════════════════════ ENGINE (with SVG connecting lines) ══════════════════════════ */}
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-7xl px-6">
           <Eyebrow center>Built on Governance, Not Guesswork</Eyebrow>
-          <h2 className="mb-4 text-center font-serif text-3xl font-bold text-gray-900">
-            Accounting AI cannot be built on guesswork.
-          </h2>
-          <p className="mx-auto mb-14 max-w-2xl text-center text-sm text-gray-600">
-            Professional answers require more than fluent language. They require source
-            authority, jurisdictional accuracy, professional boundaries, and clear
-            escalation when a system shouldn&apos;t answer definitively.
-          </p>
+          <h2 className="mb-4 text-center font-serif text-3xl font-bold text-gray-900">Accounting AI cannot be built on guesswork.</h2>
+          <p className="mx-auto mb-14 max-w-2xl text-center text-sm text-gray-600">Professional answers require more than fluent language. They require source authority, jurisdictional accuracy, professional boundaries, and clear escalation when a system shouldn&apos;t answer definitively.</p>
 
-          <div className="grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr]">
-            {/* Left 3 cards */}
-            <div className="space-y-4">
+          <div className="relative grid items-center gap-6 lg:grid-cols-[1fr_auto_1fr]">
+            {/* SVG connecting curves — positioned behind cards */}
+            <svg className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full lg:block" viewBox="0 0 1200 500" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              {/* Left cards to center */}
+              <path d="M360 80 Q480 80 530 200" stroke={TEAL} strokeWidth="2.5" fill="none" />
+              <path d="M360 250 Q500 250 530 250" stroke={TEAL} strokeWidth="2.5" fill="none" />
+              <path d="M360 420 Q480 420 530 300" stroke={TEAL} strokeWidth="2.5" fill="none" />
+              {/* Right cards to center */}
+              <path d="M840 80 Q720 80 670 200" stroke={TEAL} strokeWidth="2.5" fill="none" />
+              <path d="M840 250 Q700 250 670 250" stroke={TEAL} strokeWidth="2.5" fill="none" />
+              <path d="M840 420 Q720 420 670 300" stroke={TEAL} strokeWidth="2.5" fill="none" />
+            </svg>
+
+            <div className="relative z-10 space-y-4">
               {engineNodes.slice(0, 3).map((n) => <EngineCard key={n.title} {...n} />)}
             </div>
-
-            {/* Center circle — filled navy */}
-            <div className="mx-auto flex h-36 w-36 flex-col items-center justify-center rounded-full border-2 border-dashed border-gray-300 bg-[#0d1b2e] text-center shadow-lg">
-              <span className="px-4 text-xs font-bold leading-tight text-white">
-                Governed<br />Intelligence Core
-              </span>
+            <div className="relative z-10 mx-auto flex h-36 w-36 flex-col items-center justify-center rounded-full bg-[#0d1b2e] text-center shadow-lg">
+              <span className="px-4 text-xs font-bold leading-tight text-white">Governed<br />Intelligence Core</span>
             </div>
-
-            {/* Right 3 cards */}
-            <div className="space-y-4">
+            <div className="relative z-10 space-y-4">
               {engineNodes.slice(3).map((n) => <EngineCard key={n.title} {...n} />)}
             </div>
           </div>
@@ -382,13 +397,8 @@ export default function Page() {
       <section className="bg-[#0d1b2e] py-20">
         <div className="mx-auto max-w-7xl px-6">
           <Eyebrow center>Two Layers. One Purpose.</Eyebrow>
-          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-white">
-            ZoikoLogia&trade; is the intelligence system.<br />
-            Kriton&trade; is the judgment interface.
-          </h2>
-          <p className="mb-12 text-center text-sm text-gray-400">
-            A governed intelligence layer powers the advisor professionals rely on.
-          </p>
+          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-white">ZoikoLogia&trade; is the intelligence system.<br />Kriton&trade; is the judgment interface.</h2>
+          <p className="mb-12 text-center text-sm text-gray-400">A governed intelligence layer powers the advisor professionals rely on.</p>
           <div className="grid gap-6 lg:grid-cols-2">
             <LayerCard title="ZoikoLogia&trade; Platform Layer" items={platformLayer} bulletColor={AMBER} />
             <LayerCard title="Kriton&trade; Advisor Layer" items={kritonLayer} bulletColor={TEAL} />
@@ -400,22 +410,15 @@ export default function Page() {
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-7xl px-6">
           <Eyebrow center>Core Capabilities</Eyebrow>
-          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-gray-900">
-            Nine systems. One governed intelligence layer.
-          </h2>
-          <p className="mb-12 text-center text-sm text-gray-600">
-            Every capability below operates as a control point, not a feature checkbox — each one
-            gates what Kriton&trade; is allowed to say, cite, or escalate.
-          </p>
+          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-gray-900">Nine systems. One governed intelligence layer.</h2>
+          <p className="mb-12 text-center text-sm text-gray-600">Every capability below operates as a control point, not a feature checkbox — each one gates what Kriton&trade; is allowed to say, cite, or escalate.</p>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {systems.map((s) => (
               <div key={s.tag} className="flex flex-col rounded-xl border border-gray-200 bg-white p-6">
                 <span className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-gray-400">{s.tag}</span>
                 <h3 className="mb-2 text-base font-bold text-gray-900">{s.title}</h3>
                 <p className="mb-4 flex-1 text-sm text-gray-600">{s.desc}</p>
-                <Link href="/platform" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: AMBER }}>
-                  {s.link} <ArrowUpRight className="h-3.5 w-3.5" />
-                </Link>
+                <Link href="/platform" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: AMBER }}>{s.link} <ArrowUpRight className="h-3.5 w-3.5" /></Link>
               </div>
             ))}
           </div>
@@ -427,32 +430,19 @@ export default function Page() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
           <div>
             <Eyebrow>See It in Your Workflow</Eyebrow>
-            <h2 className="font-serif text-3xl font-bold text-gray-900">
-              Every answer arrives with its own paper trail.
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-gray-600">
-              Reviewers don&apos;t have to take Kriton&trade;&apos;s word for it. Every
-              response opens into the exact bundle, policy, and reviewer chain behind it.
-            </p>
+            <h2 className="font-serif text-3xl font-bold text-gray-900">Every answer arrives with its own paper trail.</h2>
+            <p className="mt-4 text-sm leading-relaxed text-gray-600">Reviewers don&apos;t have to take Kriton&trade;&apos;s word for it. Every response opens into the exact bundle, policy, and reviewer chain behind it.</p>
             <ul className="mt-6 space-y-3">
               {["One click from any answer to its full audit trail", "Reviewer identity, decision, and timestamp on every row", "Replay manifests flag gaps instead of hiding them"].map((t) => (
-                <li key={t} className="flex items-start gap-2 text-sm text-gray-700">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: AMBER }} /> {t}
-                </li>
+                <li key={t} className="flex items-start gap-2 text-sm text-gray-700"><Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: AMBER }} /> {t}</li>
               ))}
             </ul>
             <div className="mt-8"><GhostBtn href="/architecture">View Audit Framework</GhostBtn></div>
           </div>
-
-          {/* Browser mockup */}
           <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md">
             <div className="flex items-center gap-2 border-b border-gray-100 bg-gray-50 px-4 py-2.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-gray-300" />
-              <span className="h-2.5 w-2.5 rounded-full bg-gray-300" />
-              <span className="h-2.5 w-2.5 rounded-full bg-gray-300" />
-              <span className="ml-2 flex-1 truncate rounded border border-gray-200 bg-white px-3 py-1 text-[11px] text-gray-400">
-                app.zoikologia.ai/audit/replay
-              </span>
+              <span className="h-2.5 w-2.5 rounded-full bg-gray-300" /><span className="h-2.5 w-2.5 rounded-full bg-gray-300" /><span className="h-2.5 w-2.5 rounded-full bg-gray-300" />
+              <span className="ml-2 flex-1 truncate rounded border border-gray-200 bg-white px-3 py-1 text-[11px] text-gray-400">app.zoikologia.ai/audit/replay</span>
             </div>
             <div className="p-5">
               <div className="mb-4 flex items-center justify-between">
@@ -475,10 +465,7 @@ export default function Page() {
                       </div>
                     </div>
                     <div className="flex shrink-0 items-center gap-2">
-                      <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{
-                        backgroundColor: q.status === "Approved" ? "#dcfce7" : q.status === "Escalated" ? "#fee2e2" : "#fef9c3",
-                        color: q.status === "Approved" ? "#166534" : q.status === "Escalated" ? "#991b1b" : "#854d0e",
-                      }}>{q.status}</span>
+                      <span className="rounded-full px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: q.status === "Approved" ? "#dcfce7" : q.status === "Escalated" ? "#fee2e2" : "#fef9c3", color: q.status === "Approved" ? "#166534" : q.status === "Escalated" ? "#991b1b" : "#854d0e" }}>{q.status}</span>
                       <span className="text-[10px] text-gray-400">{q.time}</span>
                     </div>
                   </div>
@@ -492,42 +479,26 @@ export default function Page() {
       {/* ══════════════════════════ WORKFLOW MODES ══════════════════════════ */}
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-gray-900">
-            An AI advisor for accounting workflows— not a generic chatbot.
-          </h2>
-          <p className="mb-10 text-center text-sm text-gray-600">
-            Kriton&trade; helps users explore accounting questions, structure workpapers, and identify when human review
-            is required — governed by source authority, risk classification, and audit evidence at every step.
-          </p>
+          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-gray-900">An AI advisor for accounting workflows— not a generic chatbot.</h2>
+          <p className="mb-10 text-center text-sm text-gray-600">Kriton&trade; helps users explore accounting questions, structure workpapers, and identify when human review is required — governed by source authority, risk classification, and audit evidence at every step.</p>
           <div className="mb-6 flex flex-wrap gap-6 border-b border-gray-200">
             {workflowTabs.map((t, i) => (
-              <button key={t} type="button" onClick={() => setTab(i)} className={`-mb-px border-b-2 pb-2 text-sm font-semibold transition-colors ${tab === i ? "text-gray-900" : "border-transparent text-gray-400 hover:text-gray-600"}`} style={tab === i ? { borderColor: AMBER } : undefined}>
-                {t}
-              </button>
+              <button key={t} type="button" onClick={() => setTab(i)} className={`-mb-px border-b-2 pb-2 text-sm font-semibold transition-colors ${tab === i ? "text-gray-900" : "border-transparent text-gray-400 hover:text-gray-600"}`} style={tab === i ? { borderColor: AMBER } : undefined}>{t}</button>
             ))}
           </div>
           <div className="grid gap-6 rounded-2xl border border-gray-200 bg-white p-6 lg:grid-cols-2">
             <div>
               <h3 className="mb-2 text-lg font-bold text-gray-900">{workflowTabs[tab]}</h3>
-              {tab === 0 && (
-                <p className="mb-3 text-sm text-gray-600">For students, trainees, and professionals developing accounting knowledge.</p>
-              )}
+              {tab === 0 && <p className="mb-3 text-sm text-gray-600">For students, trainees, and professionals developing accounting knowledge.</p>}
               <ul className="space-y-3">
                 {["Topic explanations with prerequisite-aware learning paths", "Misconception warnings surfaced in context", "Practice support with assessment-integrity safeguards"].map((t) => (
-                  <li key={t} className="flex items-start gap-2 text-sm text-gray-700">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: AMBER }} /> {t}
-                  </li>
+                  <li key={t} className="flex items-start gap-2 text-sm text-gray-700"><Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: AMBER }} /> {t}</li>
                 ))}
               </ul>
             </div>
             <div className="rounded-xl bg-[#0d1b2e] p-5 text-sm text-gray-300">
               <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-gray-500">Learning Path</p>
-              <p>
-                Lease Classification <span className="text-gray-500">&rarr;</span>{" "}
-                <span className="font-semibold" style={{ color: AMBER }}>Variable Lease Payments</span>{" "}
-                <span className="text-gray-500">&rarr;</span> Sale-and-Leaseback{" "}
-                <span className="text-gray-500">&rarr;</span> Disclosure Requirements
-              </p>
+              <p>Lease Classification <span className="text-gray-500">&rarr;</span> <span className="font-semibold" style={{ color: AMBER }}>Variable Lease Payments</span> <span className="text-gray-500">&rarr;</span> Sale-and-Leaseback <span className="text-gray-500">&rarr;</span> Disclosure Requirements</p>
             </div>
           </div>
         </div>
@@ -537,53 +508,27 @@ export default function Page() {
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-5xl px-6">
           <Eyebrow center>Enterprise Governance</Eyebrow>
-          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-gray-900">
-            Controls sit before retrieval — not after.
-          </h2>
-          <p className="mb-10 text-center text-sm text-gray-600">
-            Source Library authority, license, freshness, and display controls gate which sources can ever enter the
-            candidate set. Nothing ineligible is retrieved, so nothing ineligible needs to be filtered out later.
-          </p>
-
-          {/* Info callout */}
+          <h2 className="mb-2 text-center font-serif text-3xl font-bold text-gray-900">Controls sit before retrieval — not after.</h2>
+          <p className="mb-10 text-center text-sm text-gray-600">Source Library authority, license, freshness, and display controls gate which sources can ever enter the candidate set. Nothing ineligible is retrieved, so nothing ineligible needs to be filtered out later.</p>
           <div className="mb-10 flex items-start gap-3 rounded-xl border border-gray-200 bg-white p-5">
-            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: "#fbe8c8" }}>
-              <Info className="h-3.5 w-3.5" style={{ color: AMBER }} />
-            </span>
-            <p className="text-sm text-gray-600">
-              <span className="font-bold text-gray-900">Why this matters:</span> a system that retrieves broadly and
-              filters afterward can still leak restricted or unlicensed content into a draft answer. ZoikoLogia&trade;
-              blocks ineligible sources at the planning stage, before a single candidate is retrieved.
-            </p>
+            <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full" style={{ backgroundColor: "#fbe8c8" }}><Info className="h-3.5 w-3.5" style={{ color: AMBER }} /></span>
+            <p className="text-sm text-gray-600"><span className="font-bold text-gray-900">Why this matters:</span> a system that retrieves broadly and filters afterward can still leak restricted or unlicensed content into a draft answer. ZoikoLogia&trade; blocks ineligible sources at the planning stage, before a single candidate is retrieved.</p>
           </div>
-
-          {/* Timeline */}
           <ol className="relative space-y-8 border-l-2 border-gray-200 pl-8">
             {pipeline.map((step, i) => (
               <li key={step.title} className="relative">
-                <span className="absolute -left-[41px] top-0 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style={{ backgroundColor: NAVY }}>
-                  {i + 1}
-                </span>
+                <span className="absolute -left-[41px] top-0 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style={{ backgroundColor: NAVY }}>{i + 1}</span>
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="text-sm font-bold text-gray-900">{step.title}</h3>
-                  {step.gate && (
-                    <span className="rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide" style={{ backgroundColor: "#fbe8c8", color: "#92620a" }}>
-                      Hard Gate
-                    </span>
-                  )}
+                  {step.gate && <span className="rounded px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide" style={{ backgroundColor: "#fbe8c8", color: "#92620a" }}>Hard Gate</span>}
                 </div>
                 <p className="mt-1 text-sm text-gray-500">{step.desc}</p>
               </li>
             ))}
           </ol>
-
-          {/* Anti-patterns */}
           <div className="mt-12 grid gap-px overflow-hidden rounded-xl sm:grid-cols-2" style={{ backgroundColor: "#0a1626" }}>
             {antiPatterns.map((t) => (
-              <div key={t} className="p-6" style={{ backgroundColor: NAVY }}>
-                <p className="mb-2 text-xs font-bold uppercase tracking-widest" style={{ color: RED }}>No</p>
-                <p className="text-sm leading-relaxed text-gray-300">{t}</p>
-              </div>
+              <div key={t} className="p-6" style={{ backgroundColor: NAVY }}><p className="mb-2 text-xs font-bold uppercase tracking-widest" style={{ color: RED }}>No</p><p className="text-sm leading-relaxed text-gray-300">{t}</p></div>
             ))}
           </div>
         </div>
@@ -593,69 +538,43 @@ export default function Page() {
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-7xl px-6">
           <Eyebrow center>Trust &amp; Control</Eyebrow>
-          <h2 className="mb-14 text-center font-serif text-3xl font-bold text-gray-900">
-            Six pillars enterprise buyers actually check.
-          </h2>
+          <h2 className="mb-14 text-center font-serif text-3xl font-bold text-gray-900">Six pillars enterprise buyers actually check.</h2>
           <div className="grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {pillars.map((p) => (
-              <div key={p.title}>
-                <div className="mb-4 h-[3px] w-8 rounded-full" style={{ backgroundColor: p.accent }} />
-                <h3 className="mb-2 text-base font-bold text-gray-900">{p.title}</h3>
-                <p className="text-sm leading-relaxed text-gray-600">{p.desc}</p>
-              </div>
+              <div key={p.title}><div className="mb-4 h-[3px] w-8 rounded-full" style={{ backgroundColor: p.accent }} /><h3 className="mb-2 text-base font-bold text-gray-900">{p.title}</h3><p className="text-sm leading-relaxed text-gray-600">{p.desc}</p></div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════ CLOSE BANNER (contained card) ══════════════════════════ */}
+      {/* ══════════════════════════ CLOSE BANNER ══════════════════════════ */}
       <section className="pb-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-7xl px-6">
           <div className="overflow-hidden rounded-3xl bg-[#0d1b2e]">
             <div className="grid items-center lg:grid-cols-2">
               <div className="p-10 lg:p-14">
                 <Eyebrow>Partner Spotlight</Eyebrow>
-                <h2 className="font-serif text-3xl font-bold text-white">
-                  Kriton&trade; sits inside the close, not next to it.
-                </h2>
-                <p className="mt-4 text-sm leading-relaxed text-gray-300">
-                  Controllers use Workflow Mode to draft the memo. Reviewers use Review Mode to sign off.
-                  The evidence trail is the same one an auditor sees six months later.
-                </p>
+                <h2 className="font-serif text-3xl font-bold text-white">Kriton&trade; sits inside the close, not next to it.</h2>
+                <p className="mt-4 text-sm leading-relaxed text-gray-300">Controllers use Workflow Mode to draft the memo. Reviewers use Review Mode to sign off. The evidence trail is the same one an auditor sees six months later.</p>
                 <div className="mt-6"><AmberBtn href="/book-a-demo">Book a Demo</AmberBtn></div>
-
                 <div className="mt-8 border-t border-white/10 pt-6">
-                  <blockquote className="text-sm italic leading-relaxed text-gray-300">
-                    &ldquo;The citation panel is the first thing our audit committee asks to see.
-                    Now it&apos;s built into every answer, not bolted on after.&rdquo;
-                  </blockquote>
-                  <p className="mt-3 text-[10px] uppercase tracking-[0.15em] text-gray-500">
-                    VP of Accounting Policy &middot; Enterprise Pilot Partner
-                  </p>
+                  <blockquote className="text-sm italic leading-relaxed text-gray-300">&ldquo;The citation panel is the first thing our audit committee asks to see. Now it&apos;s built into every answer, not bolted on after.&rdquo;</blockquote>
+                  <p className="mt-3 text-[10px] uppercase tracking-[0.15em] text-gray-500">VP of Accounting Policy &middot; Enterprise Pilot Partner</p>
                 </div>
               </div>
               <div className="relative h-full min-h-[320px]">
-                <ImageSlot
-                  src="/images/Finance professionals reviewing governed source documentation.png"
-                  alt="Team collaborating during close"
-                  className="h-full w-full"
-                  label="Team image"
-                  onDark
-           
-                />
+                <ImageSlot src="/images/Finance professionals reviewing governed source documentation.png" alt="Team collaborating during close" className="h-full w-full" label="Team image" onDark />
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════ TEAMS (single bordered container) ══════════════════════════ */}
+      {/* ══════════════════════════ TEAMS ══════════════════════════ */}
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-7xl px-6">
           <Eyebrow center>Solutions</Eyebrow>
-          <h2 className="mb-12 text-center font-serif text-3xl font-bold text-gray-900">
-            Built around how each team actually works.
-          </h2>
+          <h2 className="mb-12 text-center font-serif text-3xl font-bold text-gray-900">Built around how each team actually works.</h2>
           <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white">
             <div className="grid divide-x divide-gray-200 sm:grid-cols-3">
               {teams.slice(0, 3).map((t) => <TeamCell key={t.title} {...t} />)}
@@ -671,9 +590,7 @@ export default function Page() {
       <section className="py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-3xl px-6">
           <Eyebrow>Frequently Asked</Eyebrow>
-          <h2 className="mb-10 font-serif text-3xl font-bold text-gray-900">
-            Straight answers before you book a call.
-          </h2>
+          <h2 className="mb-10 font-serif text-3xl font-bold text-gray-900">Straight answers before you book a call.</h2>
           <div className="divide-y divide-gray-200">
             {faqs.map((f, i) => (
               <div key={f.q}>
@@ -694,14 +611,8 @@ export default function Page() {
           <div className="rounded-3xl bg-[#0a1626] px-6 py-20">
             <div className="mx-auto max-w-3xl text-center">
               <Eyebrow center>Start with Governed Accounting AI</Eyebrow>
-              <h2 className="font-serif text-3xl font-bold text-white">
-                Bring source-backed intelligence into professional accounting workflows.
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-gray-300">
-                ZoikoLogia&trade; with Kriton&trade; gives accounting and finance teams a governed way to use AI
-                across learning, research, workflow, review, and compliance — with source authority, privacy,
-                and auditability built in.
-              </p>
+              <h2 className="font-serif text-3xl font-bold text-white">Bring source-backed intelligence into professional accounting workflows.</h2>
+              <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-gray-300">ZoikoLogia&trade; with Kriton&trade; gives accounting and finance teams a governed way to use AI across learning, research, workflow, review, and compliance — with source authority, privacy, and auditability built in.</p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <AmberBtn href="/book-a-demo">Book a Demo</AmberBtn>
                 <GhostBtn href="/architecture" dark>View Platform Architecture</GhostBtn>
@@ -711,6 +622,8 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+   
 
     </div>
   );
@@ -743,8 +656,7 @@ function LayerCard({ title, items, bulletColor }: { title: string; items: string
       <ul className="space-y-3">
         {items.map((it) => (
           <li key={it} className="flex items-center gap-3 border-b border-white/5 pb-3 text-sm text-gray-300">
-            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: bulletColor }} />
-            {it}
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full" style={{ backgroundColor: bulletColor }} />{it}
           </li>
         ))}
       </ul>
@@ -758,9 +670,7 @@ function TeamCell({ title, desc, link, img }: { title: string; desc: string; lin
       <ImageSlot src={img} alt={title} className="mb-4 h-10 w-10" label="" circle />
       <h3 className="mb-2 text-sm font-bold text-gray-900">{title}</h3>
       <p className="mb-4 text-sm leading-relaxed text-gray-600">{desc}</p>
-      <Link href="/solutions" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: AMBER }}>
-        {link} <ArrowRight className="h-3.5 w-3.5" />
-      </Link>
+      <Link href="/solutions" className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: AMBER }}>{link} <ArrowRight className="h-3.5 w-3.5" /></Link>
     </div>
   );
 }
