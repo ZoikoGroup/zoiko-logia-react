@@ -211,7 +211,7 @@ const NAV_ORDER: string[] = [
 ];
 
 const TOP_LINKS = [
-  { label: "Compliance", href: "/compliance-reports" },
+  { label: "Compliance", href: "/compliance" },
   { label: "Trust Center", href: "/privacy-security" },
   { label: "Support", href: "/contact-us" },
 ];
@@ -347,7 +347,7 @@ export default function ZoikoLogiaHeader() {
               {l.label}
             </Link>
           ))}
-          <Link href="/contact-us"
+          <Link href="/request-pilot"
             className="rounded-md border border-white/25 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-white/10">
             Request Pilot
           </Link>
@@ -415,7 +415,7 @@ export default function ZoikoLogiaHeader() {
           <Link href="/about" className="hidden text-sm font-medium text-gray-200 transition-colors hover:text-white sm:inline-block">
             Sign in
           </Link>
-          <Link href="/contact-us"
+          <Link href="/book-a-demo"
             className="hidden rounded-md px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-90 sm:inline-block"
             style={{ backgroundColor: AMBER, color: NAVY }}>
             Book a Demo
@@ -508,7 +508,7 @@ export default function ZoikoLogiaHeader() {
           ))}
 
           <div className="space-y-2 p-4">
-            <Link href="/contact-us" onClick={() => setMobileOpen(false)}
+            <Link href="/book-a-demo" onClick={() => setMobileOpen(false)}
               className="block rounded-md py-2.5 text-center text-sm font-semibold"
               style={{ backgroundColor: AMBER, color: NAVY }}>
               Book a Demo

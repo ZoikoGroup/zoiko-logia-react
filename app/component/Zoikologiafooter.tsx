@@ -90,8 +90,9 @@ const columns: Column[] = [
   {
     heading: "Pricing & Access",
     links: [
-      { label: "Plans and Pricing", href: "/pricing" },
-      { label: "Book a Demo", href: "/contact-us" },
+      { label: "Pricing", href: "/pricing" },
+      { label: "Plans", href: "/pricing" },
+      { label: "Book a Demo", href: "/book-a-demo" },
       { label: "Request Pilot", href: "/contact-us" },
       { label: "Request Enterprise Briefing", href: "/contact-us" },
       { label: "Contact Sales", href: "/contact-us" },
