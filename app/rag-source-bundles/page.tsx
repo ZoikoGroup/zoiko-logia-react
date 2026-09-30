@@ -186,7 +186,7 @@ export default function Page() {
               <a href="#" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">View Governance Framework →</a>
             </div>
           </div>
-          <ImageSlot src="/images/Team reviewing a source bundle.png" alt="Team reviewing a governed source bundle" ratio="aspect-[4/3]" />
+          <ImageSlot src="/images/image 51.png" alt="Team reviewing a governed source bundle" ratio="aspect-[4/3]" />
         </div>
 
         {/* capability strip */}
@@ -222,7 +222,7 @@ export default function Page() {
               ))}
             </ul>
           </div>
-          <ImageSlot src="/images/Advisors reviewing documents.png" alt="Advisors reviewing documents" ratio="aspect-[3/4]" className="lg:sticky lg:top-8" />
+          <ImageSlot src="/images/image 52.png" alt="Advisors reviewing documents" ratio="aspect-[3/4]" className="lg:sticky lg:top-8" />
         </div>
       </section>
 
@@ -264,7 +264,7 @@ export default function Page() {
                 </tbody>
               </table>
             </div>
-            <ImageSlot src="/images/Reviewing the manifest.png" alt="Reviewing the bundle manifest" ratio="aspect-[3/4]" />
+            <ImageSlot src="/images/image 53 (1).png" alt="Reviewing the bundle manifest" ratio="aspect-[3/4]" />
           </div>
         </div>
       </section>
@@ -287,7 +287,7 @@ export default function Page() {
                 </div>
               ))}
             </div>
-            <ImageSlot src="/images/Scope controls meeting.png" alt="Team applying retrieval scope controls" ratio="aspect-auto" className="h-full min-h-[260px]" />
+            <ImageSlot src="/images/image 54.png" alt="Team applying retrieval scope controls" ratio="aspect-auto" className="h-full min-h-[260px]" />
           </div>
         </div>
       </section>
@@ -309,7 +309,7 @@ export default function Page() {
               </div>
             ))}
           </div>
-          <ImageSlot src="/images/Conflict states meeting.png" alt="Team working through conflicting sources" ratio="aspect-[21/7]" className="mt-6" />
+          <ImageSlot src="/images/image 55.png" alt="Team working through conflicting sources" ratio="aspect-[21/7]" className="mt-6" />
         </div>
       </section>
 
@@ -334,8 +334,8 @@ export default function Page() {
             ))}
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-2">
-            <ImageSlot src="/images/Evidence review 1.png" alt="Evidence review" ratio="aspect-[16/9]" />
-            <ImageSlot src="/images/Evidence review 2.png" alt="Evidence review" ratio="aspect-[16/9]" />
+            <ImageSlot src="/images/image 56.png" alt="Evidence review" ratio="aspect-[16/9]" />
+            <ImageSlot src="/images/image 57.png" alt="Evidence review" ratio="aspect-[16/9]" />
           </div>
         </div>
       </section>
@@ -358,7 +358,7 @@ export default function Page() {
             {/* row 2: card · image · card */}
             <div className="grid gap-6 md:grid-cols-3">
               <TaskCard i={2} />
-              <ImageSlot src="/images/Practitioner at work.png" alt="Practitioner at work" ratio="aspect-auto" className="h-full min-h-[180px]" />
+              <ImageSlot src="/images/image 50.png" alt="Practitioner at work" ratio="aspect-auto" className="h-full min-h-[180px]" />
               <TaskCard i={3} />
             </div>
             {/* row 3: full-width card */}
@@ -399,7 +399,7 @@ export default function Page() {
                 ))}
               </ol>
             </div>
-            <ImageSlot src="/images/Governance console in use.png" alt="Governance console" ratio="aspect-[3/4]" />
+            <ImageSlot src="/images/image 50.png" alt="Governance console" ratio="aspect-[3/4]" />
           </div>
         </div>
       </section>
@@ -438,7 +438,7 @@ export default function Page() {
                 </tbody>
               </table>
             </div>
-            <ImageSlot src="/images/Assessing bundle quality.png" alt="Assessing bundle quality" ratio="aspect-[4/3]" />
+            <ImageSlot src="/images/image 49.png" alt="Assessing bundle quality" ratio="aspect-[4/3]" />
           </div>
         </div>
       </section>
@@ -499,7 +499,7 @@ export default function Page() {
             </div>
             <div>
               <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-500 dark:text-gray-400">Related Routes</p>
-              <ImageSlot src="/images/FAQ related routes.png" alt="Related routes" ratio="aspect-[3/4]" />
+              <ImageSlot src="/images/image 48.png" alt="Related routes" ratio="aspect-[3/4]" />
             </div>
           </div>
         </div>

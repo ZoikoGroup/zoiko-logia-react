@@ -172,7 +172,7 @@ export default function Page() {
                 ))}
               </ul>
             </div>
-            <ImageSlot src="/images/kriton/mode.png" alt={`${active.title} illustration`} ratio="aspect-[4/3]" />
+            <ImageSlot src="/images/div.split-photo.png" alt={`${active.title} illustration`} ratio="aspect-[4/3]" />
           </div>
         </div>
       </section>
