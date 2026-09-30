@@ -2,32 +2,41 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const TEAL = "#0d9488";
+
 type Column = { heading: string; links: { label: string; href: string }[] };
+
+const footerPills = [
+  "Source-backed workflow design",
+  "Privacy & Security controls",
+  "Audit-ready evidence architecture",
+  "Professional-boundary safeguards",
+  "WCAG 2.2 AA design target",
+];
 
 const columns: Column[] = [
   {
     heading: "Platform",
     links: [
-      { label: "Overview", href: "/platform" },
-      { label: "Source-Governed Intelligence", href: "/sourced-governed-intelligence" },
-      { label: "Accounting Knowledge Graph", href: "/platform" },
-      { label: "RAG Source Bundles", href: "/rag-source-bundles" },
-      { label: "Audit Evidence", href: "/audit" },
-      { label: "Evaluation & Benchmarks", href: "/evaluation&benchmark" },
-      { label: "Enterprise Integrations", href: "/enterprise-integrations" },
+      { label: "Source Library", href: "/platform" },
+      { label: "Knowledge Graph", href: "/sourced-governed-intelligence" },
+  
+      { label: "RAG Engine", href: "/rag-source-bundles" },
+  
+      { label: "AI Safety", href: "/ai-safety-page" },
+      { label: "Audit Ledger", href: "/audit" },
     ],
   },
   {
-    heading: "Kriton\u2122 AI Advisor",
+    heading: "Kriton\u2122",
     links: [
-      { label: "Meet Kriton\u2122", href: "/kriton-ai" },
-      { label: "Ask Accounting Questions", href: "/ask-accounting-questions" },
-      { label: "Learning & Practice Mode", href: "/learning-&-practice-mode" },
-      { label: "Workflow Mode", href: "/kriton-ai" },
+      { label: "AI Advisor", href: "/kriton-ai" },
+      { label: "Learning Mode", href: "/learning-&-practice-mode" },
+      { label: "Workflow Mode", href: "/learning-&-practice-mode" },
+     
       { label: "Review Mode", href: "/kriton-ai" },
       { label: "Admin Mode", href: "/admin-mode" },
-      { label: "Human Escalation", href: "/kriton-ai" },
-      { label: "Professional Boundaries", href: "/governance" },
+      
     ],
   },
   {
@@ -35,50 +44,47 @@ const columns: Column[] = [
     links: [
       { label: "Accounting Firms", href: "/accounting-firms" },
       { label: "Enterprise Finance Teams", href: "/enterprise-finance-team" },
-      { label: "Tax Professionals", href: "/tax-professionals" },
-      { label: "Audit & Assurance Teams", href: "/audit-tax-compliance" },
-      { label: "Payroll & Compliance Teams", href: "/payroll-compliance" },
-      { label: "Accounting Education", href: "/educators" },
+      { label: "Tax Teams", href: "/tax-professionals" },
+      { label: "Audit Teams", href: "/audit-tax-compliance" },
+      { label: "Education", href: "/educators" },
       { label: "AI Governance Teams", href: "/ai-governance-teams" },
     ],
   },
   {
-    heading: "Governance",
+    heading: "Trust",
     links: [
-      { label: "Governance Overview", href: "/governance" },
-      { label: "Source Authority", href: "/governance" },
-      { label: "AI Safety", href: "/ai-safety-page" },
-      { label: "Professional Boundaries", href: "/governance" },
-      { label: "Model Evaluation", href: "/evaluation&benchmark" },
-      { label: "Release Controls", href: "/governance" },
-      { label: "Event Governance", href: "/governance" },
-      { label: "Responsible AI", href: "/responsible-ai" },
+      { label: "Trust", href: "/governance" },
+      { label: "Privacy & Security", href: "/privacy-security" },
+      { label: "Provider Due Diligence", href: "/ai-safety-page" },
+      { label: "Accessibility", href: "/tax-professionals" },
+      // { label: "Model Evaluation", href: "/evaluation&benchmark" },
+      // { label: "Release Controls", href: "/governance" },
+      // { label: "Event Governance", href: "/compliance-reports" },
+      // { label: "Responsible AI", href: "/responsible-ai" },
     ],
   },
-  {
-    heading: "Privacy & Security",
-    links: [
-      { label: "Privacy & Security Overview", href: "/privacy-security" },
-      { label: "Privacy Policy", href: "/privacy-security" },
-      { label: "Security Overview", href: "/privacy-security" },
-      { label: "Data Protection", href: "/data-retention" },
-      { label: "Provider Due Diligence", href: "/privacy-security" },
-      { label: "Accessibility Statement", href: "/privacy-security" },
-      { label: "Trust Center", href: "/privacy-security" },
-      { label: "Contact Privacy Team", href: "/contact-us" },
-    ],
-  },
+  // {
+  //   heading: "Privacy & Security",
+  //   links: [
+  //     { label: "Privacy & Security Overview", href: "/privacy-security" },
+  //     { label: "Privacy Policy", href: "/privacy-security" },
+  //     { label: "Security Overview", href: "/privacy-security" },
+  //     { label: "Data Protection", href: "/data-retention" },
+  //     { label: "Provider Due Diligence", href: "/privacy-security" },
+  //     { label: "Accessibility Statement", href: "/privacy-security" },
+  //     { label: "Trust Center", href: "/privacy-security" },
+  //     { label: "Contact Privacy Team", href: "/contact-us" },
+  //   ],
+  // },
+ 
   {
     heading: "Resources",
-    links: [
+     links : [
       { label: "Documentation", href: "/documentation" },
       { label: "API Reference", href: "/documentation" },
-      { label: "Use Cases", href: "/case-studies" },
-      { label: "Blog", href: "/resource" },
-      { label: "Glossary", href: "/glossary" },
+      { label: "Blog", href: "/resource" },,
       { label: "Release Notes", href: "/resource" },
-      { label: "Webinars", href: "/webinars" },
-      { label: "Help Center", href: "/resource" },
+     
     ],
   },
   {
@@ -114,47 +120,67 @@ export default function ZoikoLogiaFooter() {
     <footer className="bg-[#0a1626] text-gray-300">
       <div className="mx-auto max-w-7xl px-6 py-14">
 
-        {/* ── Brand ──
-            Moved above the link grid. With eight columns there is no longer room
-            for the brand block to sit beside them on the same row. */}
-        <div className="max-w-2xl">
-          {/* flex-wrap = safety net: if the two marks can't fit on one line,
-              "with Kriton" drops BELOW the logo instead of overflowing sideways. */}
-          <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
-            <Link href="/" className="flex shrink-0 items-center">
+        {/* ── Brand row: logo/text LEFT, pills RIGHT ── */}
+        <div className="grid items-start gap-8 lg:grid-cols-[1fr_auto]">
+
+          {/* Left — brand block */}
+          <div className="max-w-xl">
+            <div className="flex flex-wrap items-end gap-x-3 gap-y-2">
+              <Link href="/" className="flex shrink-0 items-center">
+                <Image
+                  src="/images/zoikologia-logo-new.png"
+                  alt="ZoikoLogia"
+                  width={210}
+                  height={50}
+                  priority
+                  className="block h-9 w-auto"
+                />
+              </Link>
               <Image
-                src="/images/zoikologia-logo-new.png"
-                alt="ZoikoLogia"
-                width={210}
-                height={50}
-                priority
-                className="block h-9 w-auto"
+                src="/images/with Kriton.png"
+                alt="with Kriton"
+                width={150}
+                height={40}
+                className="block h-5 w-auto shrink-0"
               />
-            </Link>
-            <Image
-              src="/images/with Kriton.png"
-              alt="with Kriton"
-              width={150}
-              height={40}
-              className="block h-5 w-auto shrink-0"
-            />
+            </div>
+
+            <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.15em]" style={{ color: TEAL }}>
+              Governed AI Accounting Intelligence Platform
+            </p>
+
+            <p className="mt-3 text-sm leading-relaxed text-gray-400">
+              ZoikoLogia<sup className="align-super text-[0.6em]">&trade;</sup> with Kriton
+              <sup className="align-super text-[0.6em]">&trade;</sup> is a governed AI accounting intelligence
+              platform designed to support source-backed accounting, tax, audit, payroll, compliance,
+              finance, and learning workflows.
+            </p>
+
+            <p className="mt-3 text-sm leading-relaxed text-gray-500">
+              Built for professional work where source authority, privacy, auditability, risk routing,
+              and human judgment matter.
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-3 ">
+              <Link href="/platform" className="text-sm font-semibold text-teal-500 underline underline-offset-4 hover:no-underline">Explore Platform</Link>
+              <Link href="/kriton-ai" className="text-sm font-semibold text-teal-500 underline underline-offset-4 hover:no-underline">Meet Kriton&trade;</Link>
+              <Link href="/privacy-security" className="text-sm font-semibold text-teal-500 underline underline-offset-4 hover:no-underline">Visit Privacy &amp; Security</Link>
+            </div>
           </div>
 
-          <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.15em] text-[#0d9488]">
-            Governed AI Accounting Intelligence Platform
-          </p>
+          {/* Right — pills */}
+          <div className="flex flex-col items-end gap-2.5">
+            {footerPills.map((pill) => (
+              <span key={pill} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-gray-300">
+                <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: TEAL }} />
+                {pill}
+              </span>
+            ))}
+          </div>
 
-          <p className="mt-3 text-sm leading-relaxed text-gray-400">
-            ZoikoLogia<sup className="align-super text-[0.6em]">™</sup> with Kriton
-            <sup className="align-super text-[0.6em]">™</sup> is a governed AI accounting intelligence
-            platform designed to support source-backed accounting, tax, audit, payroll, compliance,
-            finance and learning workflows.
-          </p>
         </div>
 
-        {/* ── Mega link grid ──
-            Eight columns is too many for one row below ~1280px, so it steps
-            2 → 4 → 8 rather than squeezing. gap-y keeps the wrapped rows apart. */}
+        {/* ── Mega link grid ── */}
         <nav
           aria-label="Footer"
           className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-white/10 pt-10 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-8"
@@ -182,7 +208,7 @@ export default function ZoikoLogiaFooter() {
 
         {/* ── Bottom bar ── */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-xs text-gray-500 sm:flex-row">
-          <p>© {new Date().getFullYear()} ZoikoLogia. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ZoikoLogia. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-5">
             <Link href="/privacy-security" className="hover:text-white">Terms of Service</Link>
             <Link href="/privacy-security" className="hover:text-white">Privacy Policy</Link>
@@ -191,6 +217,7 @@ export default function ZoikoLogiaFooter() {
             <Link href="/" className="hover:text-white">System Status</Link>
           </div>
         </div>
+
       </div>
     </footer>
   );
