@@ -86,7 +86,7 @@ const columns: Column[] = [
     links: [
       { label: "Pricing", href: "/pricing" },
       { label: "Plans", href: "/pricing" },
-      { label: "Book a Demo", href: "/contact-us" },
+      { label: "Book a Demo", href: "/book-a-demo" },
       { label: "Request Pilot", href: "/contact-us" },
       { label: "Request Enterprise Briefing", href: "/contact-us" },
       { label: "Contact Sales", href: "/contact-us" },
