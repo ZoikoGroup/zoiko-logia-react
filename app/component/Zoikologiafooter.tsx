@@ -18,26 +18,25 @@ const columns: Column[] = [
   {
     heading: "Platform",
     links: [
-      { label: "Overview", href: "/platform" },
-      { label: "Source-Governed Intelligence", href: "/sourced-governed-intelligence" },
-      { label: "Accounting Knowledge Graph", href: "/platform" },
-      { label: "RAG Source Bundles", href: "/rag-source-bundles" },
-      { label: "Audit Evidence", href: "/audit" },
-      { label: "Evaluation & Benchmarks", href: "/evaluation&benchmark" },
-      { label: "Enterprise Integrations", href: "/enterprise-integrations" },
+      { label: "Source Library", href: "/platform" },
+      { label: "Knowledge Graph", href: "/sourced-governed-intelligence" },
+  
+      { label: "RAG Engine", href: "/rag-source-bundles" },
+  
+      { label: "AI Safety", href: "/ai-safety-page" },
+      { label: "Audit Ledger", href: "/audit" },
     ],
   },
   {
-    heading: "Kriton\u2122 AI Advisor",
+    heading: "Kriton\u2122",
     links: [
-      { label: "Meet Kriton\u2122", href: "/kriton-ai" },
-      { label: "Ask Accounting Questions", href: "/ask-accounting-questions" },
-      { label: "Learning & Practice Mode", href: "/learning-&-practice-mode" },
-      { label: "Workflow Mode", href: "/kriton-ai" },
+      { label: "AI Advisor", href: "/kriton-ai" },
+      { label: "Learning Mode", href: "/learning-&-practice-mode" },
+      { label: "Workflow Mode", href: "/learning-&-practice-mode" },
+     
       { label: "Review Mode", href: "/kriton-ai" },
       { label: "Admin Mode", href: "/admin-mode" },
-      { label: "Human Escalation", href: "/kriton-ai" },
-      { label: "Professional Boundaries", href: "/governance" },
+      
     ],
   },
   {
@@ -45,57 +44,53 @@ const columns: Column[] = [
     links: [
       { label: "Accounting Firms", href: "/accounting-firms" },
       { label: "Enterprise Finance Teams", href: "/enterprise-finance-team" },
-      { label: "Tax Professionals", href: "/tax-professionals" },
-      { label: "Audit & Assurance Teams", href: "/audit-tax-compliance" },
-      { label: "Payroll & Compliance Teams", href: "/payroll-compliance" },
-      { label: "Accounting Education", href: "/educators" },
+      { label: "Tax Teams", href: "/tax-professionals" },
+      { label: "Audit Teams", href: "/audit-tax-compliance" },
+      { label: "Education", href: "/educators" },
       { label: "AI Governance Teams", href: "/ai-governance-teams" },
     ],
   },
   {
-    heading: "Governance",
+    heading: "Trust",
     links: [
-      { label: "Governance Overview", href: "/governance" },
-      { label: "Source Authority", href: "/governance" },
-      { label: "AI Safety", href: "/ai-safety-page" },
-      { label: "Professional Boundaries", href: "/governance" },
-      { label: "Model Evaluation", href: "/evaluation&benchmark" },
-      { label: "Release Controls", href: "/governance" },
-      { label: "Event Governance", href: "/governance" },
-      { label: "Responsible AI", href: "/responsible-ai" },
+      { label: "Trust", href: "/governance" },
+      { label: "Privacy & Security", href: "/privacy-security" },
+      { label: "Provider Due Diligence", href: "/ai-safety-page" },
+      { label: "Accessibility", href: "/tax-professionals" },
+      // { label: "Model Evaluation", href: "/evaluation&benchmark" },
+      // { label: "Release Controls", href: "/governance" },
+      // { label: "Event Governance", href: "/compliance-reports" },
+      // { label: "Responsible AI", href: "/responsible-ai" },
     ],
   },
-  {
-    heading: "Privacy & Security",
-    links: [
-      { label: "Privacy & Security Overview", href: "/privacy-security" },
-      { label: "Privacy Policy", href: "/privacy-security" },
-      { label: "Security Overview", href: "/privacy-security" },
-      { label: "Data Protection", href: "/data-retention" },
-      { label: "Provider Due Diligence", href: "/privacy-security" },
-      { label: "Accessibility Statement", href: "/privacy-security" },
-      { label: "Trust Center", href: "/privacy-security" },
-      { label: "Contact Privacy Team", href: "/contact-us" },
-    ],
-  },
+  // {
+  //   heading: "Privacy & Security",
+  //   links: [
+  //     { label: "Privacy & Security Overview", href: "/privacy-security" },
+  //     { label: "Privacy Policy", href: "/privacy-security" },
+  //     { label: "Security Overview", href: "/privacy-security" },
+  //     { label: "Data Protection", href: "/data-retention" },
+  //     { label: "Provider Due Diligence", href: "/privacy-security" },
+  //     { label: "Accessibility Statement", href: "/privacy-security" },
+  //     { label: "Trust Center", href: "/privacy-security" },
+  //     { label: "Contact Privacy Team", href: "/contact-us" },
+  //   ],
+  // },
+ 
   {
     heading: "Resources",
-    links: [
+     links : [
       { label: "Documentation", href: "/documentation" },
       { label: "API Reference", href: "/documentation" },
-      { label: "Use Cases", href: "/case-studies" },
-      { label: "Blog", href: "/resource" },
-      { label: "Glossary", href: "/glossary" },
+      { label: "Blog", href: "/resource" },,
       { label: "Release Notes", href: "/resource" },
-      { label: "Webinars", href: "/webinars" },
-      { label: "Help Center", href: "/resource" },
+     
     ],
   },
   {
     heading: "Pricing & Access",
     links: [
-      { label: "Pricing", href: "/pricing" },
-      { label: "Plans", href: "/pricing" },
+      { label: "Plans and Pricing", href: "/pricing" },
       { label: "Book a Demo", href: "/contact-us" },
       { label: "Request Pilot", href: "/contact-us" },
       { label: "Request Enterprise Briefing", href: "/contact-us" },
