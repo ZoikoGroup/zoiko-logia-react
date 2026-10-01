@@ -65,19 +65,19 @@ export default function FirmsHeroSection() {
             {/* Action Buttons */}
             <div className="opacity-0 animate-fade-in-up delay-400 mt-9 flex flex-wrap items-center gap-5">
               <a
-                href="#"
+                href="book-a-demo"
                 className="bg-[#D97706] hover:bg-[#b45309] text-white text-base font-semibold px-6 py-3.5 rounded-md transition-colors duration-200"
               >
                 Book a Demo
               </a>
               <a
-                href="#"
+                href="request-pilot"
                 className="text-[#FFF7ED] text-base font-semibold px-7 py-3.5 rounded-md border border-[#FFF7ED] hover:bg-[#FFFFFF12] transition-colors duration-200"
               >
                 Request Pilot
               </a>
               <a
-                href="#"
+                href="governed-ai-accounting"
                 className="text-[#D97706] hover:text-[#b45309] text-sm font-semibold transition-colors duration-200"
               >
                 See How Governance Works →

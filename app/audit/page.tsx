@@ -166,12 +166,12 @@ export default function Page() {
               AI-supported accounting outcome — with attributable records and professional controls.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-              <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Request Pilot</a>
+              <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+              <a href="request-pilot" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Request Pilot</a>
             </div>
             <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-[#f0a54a]">
-              <a href="#" className="hover:underline">View Governance Framework →</a>
-              <a href="#" className="hover:underline">Visit Privacy &amp; Security →</a>
+              <a href="governed-ai-accounting" className="hover:underline">View Governance Framework →</a>
+              <a href="privacy-security" className="hover:underline">Visit Privacy &amp; Security →</a>
             </div>
           </div>
           <ImageSlot src="/images/Background1.png" alt="Governed AI-assisted workflow" ratio="aspect-[4/3]" />
@@ -446,12 +446,12 @@ export default function Page() {
         <div className="mx-auto max-w-3xl text-center text-white">
           <h2 className={`mx-auto max-w-xl text-[clamp(1.6rem,3vw,2.2rem)] ${serifH}`}>Review evidence continuity before you commit</h2>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-            <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Request Pilot</a>
+            <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+            <a href="request-pilot" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Request Pilot</a>
           </div>
           <div className="mt-5 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-semibold text-[#f0a54a]">
-            <a href="#" className="hover:underline">View Governance Framework →</a>
-            <a href="#" className="hover:underline">Visit Privacy &amp; Security →</a>
+            <a href="governed-ai-accounting" className="hover:underline">View Governance Framework →</a>
+            <a href="privacy-security" className="hover:underline">Visit Privacy &amp; Security →</a>
           </div>
         </div>
       </section>

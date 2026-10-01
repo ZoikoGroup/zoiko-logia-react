@@ -262,9 +262,9 @@ export default function Page() {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a href="#" className="rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-[#0f1a30] transition-opacity hover:opacity-90">Book a Demo</a>
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Request Pilot</a>
-              <a href="#" className="text-sm font-semibold text-[#f0a54a] hover:underline">Explore Assurance Workflow →</a>
+              <a href="book-a-demo" className="rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-[#0f1a30] transition-opacity hover:opacity-90">Book a Demo</a>
+              <a href="request-pilot" className={amberBtn} style={{ backgroundColor: AMBER }}>Request Pilot</a>
+              <a href="audit-tax-compliance" className="text-sm font-semibold text-[#f0a54a] hover:underline">Explore Assurance Workflow →</a>
             </div>
           </div>
           <ImageSlot src="/images/image 126.png" alt="Assurance team reviewing engagement documentation" ratio="aspect-[4/3]" />

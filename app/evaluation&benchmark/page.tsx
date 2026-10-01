@@ -254,8 +254,8 @@ export default function Page() {
               uncertainty, escalation and policy behavior through versioned, evidence-backed tests.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>View Evaluation Methodology</a>
-              <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Request Enterprise Benchmark Review</a>
+              <a href="#method" className={amberBtn} style={{ backgroundColor: AMBER }}>View Evaluation Methodology</a>
+              <a href="request-pilot" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Request Enterprise Benchmark Review</a>
             </div>
           </div>
 
@@ -570,7 +570,7 @@ export default function Page() {
       </section>
 
       {/* ─── Synthetic evaluation demonstrations ─── */}
-      <section className={`px-4 py-16 sm:px-6 md:px-8 ${creamBand}`}>
+      <section id ="method" className={`px-4 py-16 sm:px-6 md:px-8 ${creamBand}`}>
         <div className="mx-auto max-w-6xl">
           <p className={eyebrow} style={{ color: AMBER_DARK }}><span className="h-px w-6" style={{ backgroundColor: AMBER_DARK }} /> Synthetic Evaluation Demonstrations</p>
           <h2 className={`mt-4 max-w-2xl text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Method made concrete — without customer data.</h2>
@@ -654,7 +654,7 @@ export default function Page() {
               Enterprise procurement, model risk and assurance teams can request an evidence pack or benchmark
               review. Access, confidentiality and non-reliance terms apply.
             </p>
-            <a href="#" className={`mt-6 inline-block ${amberBtn}`} style={{ backgroundColor: AMBER }}>Request Enterprise Benchmark Review</a>
+            <a href="request-pilot" className={`mt-6 inline-block ${amberBtn}`} style={{ backgroundColor: AMBER }}>Request Enterprise Benchmark Review</a>
             <p className="mt-3 text-xs text-slate-500 dark:text-gray-400">Qualified form — role, organization, use case, domain and timeline required.</p>
           </div>
           <div className="divide-y divide-black/10 overflow-hidden rounded-xl border border-black/10 bg-white dark:divide-gray-700 dark:border-gray-700 dark:bg-gray-900">

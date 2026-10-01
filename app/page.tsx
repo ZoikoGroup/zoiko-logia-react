@@ -234,7 +234,7 @@ export default function Page() {
           Book a Demo
         </AmberBtn>
 
-        <GhostBtn href="/kriton" dark>
+        <GhostBtn href="/kriton-ai" dark>
           See Kriton&trade; in action
           <ArrowRight className="ml-1 inline h-4 w-4" />
         </GhostBtn>
@@ -615,8 +615,8 @@ export default function Page() {
               <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-gray-300">ZoikoLogia&trade; with Kriton&trade; gives accounting and finance teams a governed way to use AI across learning, research, workflow, review, and compliance — with source authority, privacy, and auditability built in.</p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <AmberBtn href="/book-a-demo">Book a Demo</AmberBtn>
-                <GhostBtn href="/architecture" dark>View Platform Architecture</GhostBtn>
-                <GhostBtn href="/governance-pack" dark>Request Governance Pack <ArrowRight className="ml-1 inline h-4 w-4" /></GhostBtn>
+                <GhostBtn href="/platform-overview" dark>View Platform Architecture</GhostBtn>
+                <GhostBtn href="/governance" dark>Request Governance Pack <ArrowRight className="ml-1 inline h-4 w-4" /></GhostBtn>
               </div>
             </div>
           </div>

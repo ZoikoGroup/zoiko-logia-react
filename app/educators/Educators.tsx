@@ -33,7 +33,7 @@ export default function Educators() {
               classroom or training use.
             </p>
             <Link
-              href="/resources"
+              href="/resource"
               className="mt-8 inline-flex items-center gap-2 rounded-md bg-[#f59a23] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Explore Education Resources

@@ -3,19 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-/**
- * Colour tokens are Tailwind arbitrary values, NOT inline styles.
- *
- * The previous version set section backgrounds with style={{ backgroundColor }}.
- * Inline styles win over every CSS class, so `dark:` variants were silently
- * ignored and dark mode did nothing on this page. Everything below is class-based
- * so the dark variants actually apply.
- *
- *   navy section   →  bg-[#0f1a30]                    (already dark; no variant)
- *   deep navy band →  bg-[#0b1426]
- *   cream section  →  bg-[#f2ece0] dark:bg-[#101a2c]
- *   white card     →  bg-white     dark:bg-[#16233d]
- */
+
 
 function ImageSlot({ src, alt, ratio = "aspect-[4/3]", rounded = "rounded", className = "" }:
   { src: string; alt: string; ratio?: string; rounded?: string; className?: string }) {
@@ -252,10 +240,10 @@ export default function Page() {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <a href="#" className="rounded bg-[#e8912a] px-6 py-2.5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90">
+              <a href="book-a-demo" className="rounded bg-[#e8912a] px-6 py-2.5 text-[13px] font-semibold text-white transition-opacity hover:opacity-90">
                 Book a Demo
               </a>
-              <a href="#" className="rounded border border-white/25 px-6 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
+              <a href="request-pilot" className="rounded border border-white/25 px-6 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
                 Request Pilot
               </a>
             </div>
