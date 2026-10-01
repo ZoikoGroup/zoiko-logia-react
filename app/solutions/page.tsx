@@ -224,7 +224,7 @@ export default function Solutions() {
               payroll teams, educators, and governance teams actually work — not a one-size-fits-all chatbot.
             </p>
             <div className="mt-8">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+              <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
             </div>
             <p className="mt-6 max-w-lg text-xs leading-relaxed text-slate-400/70">
               Every solution below is built on the same governed platform — source authority, risk classification, and

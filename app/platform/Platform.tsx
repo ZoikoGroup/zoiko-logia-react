@@ -280,8 +280,8 @@ export function Platform() {
               human review.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <AmberButton>Book a Demo</AmberButton>
-              <OutlineButton onDark>Request Pilot</OutlineButton>
+                <a href="book-a-demo"><AmberButton>Book a Demo</AmberButton></a>
+              <a href="request-pilot"><OutlineButton onDark>Request Pilot</OutlineButton></a>
             </div>
             <p className="mt-6 max-w-md text-[13px] leading-relaxed text-slate-400">
               Built for accounting, tax, audit, finance, compliance, and
@@ -699,10 +699,10 @@ export function Platform() {
               and procurement teams into an enterprise briefing.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <AmberButton>Book a Demo</AmberButton>
-              <OutlineButton onDark>Request Pilot</OutlineButton>
+              <a href="book-a-demo"><AmberButton>Book a Demo</AmberButton></a>
+            <a href="request-pilot">  <OutlineButton onDark>Request Pilot</OutlineButton></a>
               <a
-                href="#"
+                href="enterprise-finance-team"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-white hover:text-slate-200"
               >
                 Request Enterprise Briefing

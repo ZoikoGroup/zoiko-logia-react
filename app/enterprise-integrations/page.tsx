@@ -210,12 +210,12 @@ export function EnterpriseIntegrations() {
                 preservation, and reviewable, attributable evidence — no exceptions.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <PrimaryButton>Request integration architecture review</PrimaryButton>
-                <GhostButton>Explore integration patterns</GhostButton>
+                <a href="request-pilot"><PrimaryButton>Request integration architecture review</PrimaryButton></a>
+                <a href="documentation"><GhostButton>Explore integration patterns</GhostButton></a>
               </div>
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#8fa1b5]">
-                <span>Read the integration overview →</span>
-                <span>See the governance model →</span>
+            <a href="guides"><span>Read the integration overview →</span></a>
+               <a href="governance"> <span>See the governance model →</span></a>
               </div>
             </div>
             <ImageSlot src="/images/image 61.png" alt="Integration graphic" priority className="h-64 w-full md:h-80" />
@@ -596,37 +596,7 @@ export function EnterpriseIntegrations() {
         </div>
       </section>
 
-      {/* ═══════════ FOOTER (navy) ═══════════ */}
-      <footer style={{ backgroundColor: NAVY }} className="text-white">
-        <div className="mx-auto max-w-6xl px-6 py-14">
-          <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,1fr)]">
-            <div>
-              <p className="text-lg font-bold">
-                Zoiko<span style={{ color: ORANGE }}>Logia</span>™
-              </p>
-              <p className="mt-1 text-xs text-[#8fa1b5]">with Kriton™</p>
-              <p className="mt-4 max-w-xs text-sm leading-6 text-[#9fb0c3]">
-                Governed AI for accounting and finance — controlled access, preserved context and
-                attributable evidence.
-              </p>
-            </div>
-            {footerCols.map((col) => (
-              <div key={col.h}>
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#8fa1b5]">{col.h}</p>
-                <ul className="mt-4 space-y-2 text-sm text-[#b7c4d2]">
-                  {col.links.map((l) => (
-                    <li key={l}><a href="#" className="transition-colors hover:text-white">{l}</a></li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 flex flex-col gap-2 border-t border-white/10 pt-6 text-xs text-[#8fa1b5] sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} Zoiko Group. All rights reserved.</p>
-            <p>ZoikoLogia™ and Kriton™ are trademarks of Zoiko Group.</p>
-          </div>
-        </div>
-      </footer>
+  
     </div>
   );
 }

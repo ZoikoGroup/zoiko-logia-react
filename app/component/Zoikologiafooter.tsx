@@ -82,7 +82,7 @@ const columns: Column[] = [
      links : [
       { label: "Documentation", href: "/documentation" },
       { label: "API Reference", href: "/documentation" },
-      { label: "Blog", href: "/resource" },,
+      { label: "Blog", href: "/resource" },
       { label: "Release Notes", href: "/resource" },
      
     ],

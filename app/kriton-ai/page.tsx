@@ -95,8 +95,8 @@ export default function Page() {
               learn concepts, and review higher-risk matters — all governed by source authority and risk classification.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-              <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">See Kriton™ in Action</a>
+              <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+              <a href="platform-overview" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">See Kriton™ in Action</a>
             </div>
             <p className="mt-6 max-w-md text-xs leading-relaxed text-slate-400/70">
               Kriton™ is designed to support professional judgment, not replace it. It does not issue binding
@@ -297,9 +297,9 @@ export default function Page() {
             Book a demo and bring a real accounting, tax, audit, or workflow question — we'll show you exactly how Kriton™ handles it.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-            <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Explore the Platform</a>
-            <a href="#" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">Visit Trust Center →</a>
+            <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+            <a href="platform" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white hover:bg-white/10">Explore the Platform</a>
+            <a href="privacy-security" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">Visit Trust Center →</a>
           </div>
         </div>
       </section>

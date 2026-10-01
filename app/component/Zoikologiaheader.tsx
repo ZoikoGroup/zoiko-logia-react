@@ -64,14 +64,14 @@ const PLATFORM: MegaMenu = {
       items: [
         { label: "Platform Overview", href: "/platform", desc: "The full architecture, end to end.", Icon: LayoutGrid },
         { label: "Source-Governed Intelligence", href: "/sourced-governed-intelligence", desc: "Approved, versioned, licensed sources.", Icon: FileText },
-        { label: "Accounting Ontology", href: "/platform", desc: "Structured concepts behind every answer.", Icon: Network },
+        { label: "Accounting Ontology", href: "/accounting-firms", desc: "Structured concepts behind every answer.", Icon: Network },
         { label: "RAG Source Bundles", href: "/rag-source-bundles", desc: "Retrieval, scoped to what's approved.", Icon: Layers },
       ],
     },
     {
       label: "Governance & Evidence",
       items: [
-        { label: "Audit Evidence Ledger", href: "/audit", desc: "Every material answer, reconstructable.", Icon: ScrollText },
+        { label: "Audit Evidence Ledger", href: "/audit-&-assurance-terms", desc: "Every material answer, reconstructable.", Icon: ScrollText },
         { label: "Evaluation & Benchmarks", href: "/evaluation&benchmark", desc: "How we test before release.", Icon: BarChart3 },
         { label: "Enterprise Integrations", href: "/enterprise-integrations", desc: "Identity, ERP, document systems.", Icon: Plug },
       ],

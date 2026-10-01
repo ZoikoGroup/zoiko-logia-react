@@ -86,20 +86,20 @@ export default function PayrollHeroSection() {
             {/* Action Buttons */}
             <div className="opacity-0 animate-fade-in-up delay-500 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4 pt-2">
               <a
-                href="#"
+                href="book-a-demo"
                 className="bg-[#C97D2A] hover:bg-[#b06a20] text-white font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-[3px] transition-colors duration-200 shadow-sm text-center"
               >
                 Book a Demo
               </a>
               <a
-                href="#"
+                href="request-pilot"
                 className="bg-transparent hover:bg-[#1B2B45] text-[#FFFFFFCC] border border-[#FFFFFF33] font-medium text-xs sm:text-sm px-6 py-3.5 rounded-[3px] transition-colors duration-200 text-center"
               >
                 Request Pilot
               </a>
               <a
-                href="#"
-                className="bg-transparent hover:bg-[#1B2B45] text-[#FFFFFF80] border border-[#FFFFFF1A] font-medium text-xs sm:text-sm px-6 py-3.5 rounded-[3px] transition-colors duration-200 text-center"
+                href="enterprise-finance-team"
+                className="bg-transparent hover:bg-[#1B2B45] text-[rgb(241,235,235)] border border-[#FFFFFF1A] font-medium text-xs sm:text-sm px-6 py-3.5 rounded-[3px] transition-colors duration-200 text-center"
               >
                 Enterprise Briefing
               </a>

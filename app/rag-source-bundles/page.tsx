@@ -181,9 +181,9 @@ export default function Page() {
               source-backed answer preserves professional judgement.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-              <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Request Pilot</a>
-              <a href="#" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">View Governance Framework →</a>
+              <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+              <a href="request-pilot" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Request Pilot</a>
+              <a href="governed-ai-accounting" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">View Governance Framework →</a>
             </div>
           </div>
           <ImageSlot src="/images/image 51.png" alt="Team reviewing a governed source bundle" ratio="aspect-[4/3]" />
