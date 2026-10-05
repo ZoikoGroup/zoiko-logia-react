@@ -7,9 +7,9 @@ import Link from "next/link";
 type Card = { title: string; desc: string; href: string };
 
 const cards: Card[] = [
-  { title: "Source Authority", desc: "Which sources are approved, at what authority level, and why it's checked before retrieval.", href: "/resources/guides#source-governed" },
-  { title: "Evidence-Ready AI Accounting Workflows Guide", desc: "How the Audit Evidence Ledger preserves traceability.", href: "/resources/guides#evidence-ready" },
-  { title: "AI Safety", desc: "The risk classification levels and what triggers escalation.", href: "/platform/ai-safety" },
+  { title: "Source Authority", desc: "Which sources are approved, at what authority level, and why it's checked before retrieval.", href: "/sourced-governed-intelligence" },
+  { title: "Evidence-Ready AI Accounting Workflows Guide", desc: "How the Audit Evidence Ledger preserves traceability.", href: "/audit-&-assurance-terms" },
+  { title: "AI Safety", desc: "The risk classification levels and what triggers escalation.", href: "/ai-safety-page" },
   { title: "Governance Overview", desc: "The full control architecture, end to end.", href: "/governance" },
 ];
 

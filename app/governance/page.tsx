@@ -233,12 +233,12 @@ export function GovernanceOverview() {
                 into one governed operating model.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <PrimaryButton>Explore the governance framework</PrimaryButton>
-                <GhostButton>See the governance model</GhostButton>
+                <a href="governed-ai-accounting"><PrimaryButton>Explore the governance framework</PrimaryButton></a>
+                <a href="kriton-ai"><GhostButton>See the governance model</GhostButton></a>
               </div>
               <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs text-[#8fa1b5]">
-                <span>View Privacy &amp; Security →</span>
-                <span>Read the FAQ →</span>
+                <a href="privacy-security"><span>View Privacy &amp; Security →</span></a>
+                <a href="ask-accounting-questions"><span>Read the FAQ →</span></a>
               </div>
             </div>
             <ImageSlot src="/images/image 71.png" alt="Governance overview" priority className="h-64 w-full md:h-80" />

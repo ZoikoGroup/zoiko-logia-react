@@ -21,7 +21,7 @@ const webinars: Webinar[] = [
     desc: "For CTOs and security reviewers preparing a vendor assessment — tenant isolation, encryption, provider due diligence, and what to ask for in a compliance report.",
     meta: "32 min · Captioned · Transcript available",
     cta: "Request Access",
-    href: "/request-access?w=security-review",
+    href: "/privacy-security",
   },
   {
     id: "governance",
@@ -30,7 +30,7 @@ const webinars: Webinar[] = [
     desc: "For audit and compliance leaders validating control design — risk classification, escalation paths, and what “evidence-ready” actually means in practice.",
     meta: "41 min · Captioned · Transcript available",
     cta: "Request Access",
-    href: "/request-access?w=governance",
+    href: "/request-pilot",
   },
   {
     id: "kriton-practice",
@@ -39,7 +39,7 @@ const webinars: Webinar[] = [
     desc: "Watching Workflow Mode handle a real revenue recognition question end to end — from source retrieval through citation panel to reviewer sign-off.",
     meta: "28 min · Captioned · Transcript available",
     cta: "Request Access",
-    href: "/request-access?w=kriton-practice",
+    href: "/contact-us",
   },
 ];
 
@@ -131,7 +131,7 @@ function Webinars() {
                 Book a Demo
               </Link>
               <Link
-                href="/resources"
+                href="/resource"
                 className="rounded-md border border-white/25 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/5"
               >
                 Back to Resources

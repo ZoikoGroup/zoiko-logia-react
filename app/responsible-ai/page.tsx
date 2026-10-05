@@ -15,14 +15,13 @@ function ImageSlot({ src, alt, ratio = "aspect-[4/3]", rounded = "rounded-xl", c
     </div>
   );
 }
-
 const PRINCIPLES = [
-  { title: "Source Authority First", body: "Answers are designed to be grounded in approved, versioned sources — not model fluency alone.", link: "Explore Source Authority" },
-  { title: "Human Accountability Remains Central", body: "Kriton™ supports professional work; it does not remove accountable human review from the decision.", link: "Company Overview" },
-  { title: "Escalate Rather Than Guess", body: "When source coverage is weak or a matter is high-risk, Kriton™ is designed to clarify, limit, or hand off — not answer with false confidence.", link: "Platform Limits & Escalation" },
-  { title: "Transparency in Limitations", body: "Limitation language is attached wherever source coverage or context is insufficient — not hidden behind a confident answer.", link: "Explore the Platform" },
-  { title: "Evaluation & Release Discipline", body: "Platform behavior is evaluated, benchmarked, and release-controlled before it reaches production.", link: "Evaluation & Benchmarks" },
-  { title: "Privacy & Security by Design", body: "Tenant boundaries, access controls, and data protection are built in, not added after the fact.", link: "Privacy & Security Overview" },
+  { title: "Source Authority First", body: "Answers are designed to be grounded in approved, versioned sources — not model fluency alone.", label: "Sourced Governed Intelligence", href: "/sourced-governed-intelligence" },
+  { title: "Human Accountability Remains Central", body: "Kriton™ supports professional work; it does not remove accountable human review from the decision.", label: "Company Overview", href: "/about-us" },
+  { title: "Escalate Rather Than Guess", body: "When source coverage is weak or a matter is high-risk, Kriton™ is designed to clarify, limit, or hand off — not answer with false confidence.", label: "Platform Limits & Escalation", href: "/platform-overview  " },
+  { title: "Transparency in Limitations", body: "Limitation language is attached wherever source coverage or context is insufficient — not hidden behind a confident answer.", label: "Explore the Platform", href: "/kriton-ai" },
+  { title: "Evaluation & Release Discipline", body: "Platform behavior is evaluated, benchmarked, and release-controlled before it reaches production.", label: "Evaluation & Benchmarks", href: "/ai-safety-page" },
+  { title: "Privacy & Security by Design", body: "Tenant boundaries, access controls, and data protection are built in, not added after the fact.", label: "Privacy & Security Overview", href: "/privacy-security" },
 ];
 
 const IN_PRACTICE = [
@@ -92,9 +91,9 @@ export default function Page() {
               classified by risk, and designed to clarify, limit, or escalate rather than guess.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Visit Trust Center</a>
-              <a href="#" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Book a Demo</a>
-              <a href="#" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">Request Security Review →</a>
+              <a href="privacy-security" className={amberBtn} style={{ backgroundColor: AMBER }}>Visit Trust Center</a>
+              <a href="book-a-demo" className="rounded-md border border-white/25 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10">Book a Demo</a>
+              <a href="request-pilot" className="px-3 py-2.5 text-sm font-semibold text-[#f0a54a] hover:underline">Request Security Review →</a>
             </div>
             <p className="mt-6 max-w-md text-xs leading-relaxed text-slate-400/70">
               Kriton™ does not impersonate a licensed professional, issue binding determinations, certify compliance, or approve filings.
@@ -125,7 +124,7 @@ export default function Page() {
                 <span className="mb-3 flex h-9 w-9 items-center justify-center rounded-md text-[#0d9488]" style={{ backgroundColor: "#e6f2f0" }}><Shield className="h-4 w-4" /></span>
                 <h3 className="text-base font-bold">{p.title}</h3>
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 dark:text-gray-300">{p.body}</p>
-                <a href="#" className={`${tealLink} mt-4 inline-block text-xs`}>{p.link} →</a>
+                <a href={p.href} className={`${tealLink} mt-4 inline-block text-xs`}>{p.label} →</a>
               </div>
             ))}
           </div>

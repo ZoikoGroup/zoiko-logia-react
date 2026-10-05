@@ -79,13 +79,13 @@ export default function GovernedAiHeroSection() {
             {/* Action Buttons */}
             <div className="opacity-0 animate-fade-in-up delay-500 flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <a
-                href="#"
+                href="contact-us"
                 className="bg-[#C97D2A] hover:bg-[#b06a20] text-white font-medium text-xs sm:text-sm px-6 py-3.5 rounded-[3px] transition-colors duration-200 shadow-sm text-center"
               >
                 Book an AI Governance Briefing
               </a>
               <a
-                href="#"
+                href="request-pilot"
                 className="bg-transparent hover:bg-[#1B2B45] text-white border border-[#2B3E5C] font-medium text-xs sm:text-sm px-6 py-3.5 rounded-[3px] transition-colors duration-200 text-center"
               >
                 Request a Controlled Pilot
