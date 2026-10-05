@@ -34,7 +34,7 @@ export default function ResponsiveImage({
   unoptimized,
   priority,
 }: ResponsiveImageProps) {
-  const common = { alt, fill: true, sizes, unoptimized, priority } as const;
+  const common = { alt, fill: true, sizes, unoptimized: true, priority } as const;
 
   // Desktop-only image. Eager images would download even while hidden, so serve it through a
   // <picture> whose fallback is a transparent pixel: below `lg` nothing is fetched.
