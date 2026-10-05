@@ -313,7 +313,7 @@ export default function Page() {
           <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#0d9488]">Still Deciding?</p>
           <h2 className={`mx-auto mt-3 max-w-xl text-[clamp(1.6rem,3vw,2.2rem)] text-white ${serifH}`}>Talk to us about the right path.</h2>
           <div className="mt-8 flex justify-center">
-            <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+            <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
           </div>
         </div>
       </section>

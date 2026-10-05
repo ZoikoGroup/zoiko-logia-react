@@ -142,7 +142,7 @@ const GOVERNANCE: MegaMenu = {
       label: "Controls",
       items: [
         { label: "AI Safety", href: "/ai-safety-page", desc: "Risk classification and escalation.", Icon: Lock },
-        { label: "Event Catalog", href: "/governance", desc: "Every trackable governance event.", Icon: Calendar },
+        { label: "Event Catalog", href: "/governed-ai-accounting", desc: "Every trackable governance event.", Icon: Calendar },
         { label: "QA Release Gates", href: "/governance", desc: "What has to pass before ship.", Icon: ClipboardCheck },
       ],
     },

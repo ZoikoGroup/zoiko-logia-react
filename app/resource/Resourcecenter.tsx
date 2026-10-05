@@ -221,7 +221,7 @@ export default function ResourceCenter() {
               implementation materials for source-governed accounting AI and Kriton™ advisor workflows.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <AmberButton>Book a Demo</AmberButton>
+             <a href="book-a-demo"> <AmberButton>Book a Demo</AmberButton></a>
               <OutlineButton onDark>Download Buyer Brief</OutlineButton>
             </div>
             <p className="mt-6 max-w-sm text-xs leading-relaxed text-slate-400">
@@ -433,9 +433,9 @@ export default function ResourceCenter() {
             <h2 className="mt-5 font-[family-name:var(--font-serif)] text-3xl leading-tight text-white sm:text-[2.3rem]">Build confidence before you deploy governed accounting AI.</h2>
             <p className="mx-auto mt-4 max-w-xl text-[15px] leading-relaxed text-slate-300">Use ZoikoLogia™ resources to learn the platform, evaluate Kriton™, review governance, prepare security and procurement conversations, and move toward a controlled demo or pilot.</p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <AmberButton>Book a Demo</AmberButton>
-              <OutlineButton onDark>Request Enterprise Briefing</OutlineButton>
-              <OutlineButton onDark>Download Buyer Brief</OutlineButton>
+             <a href="book-a-demo"> <AmberButton>Book a Demo</AmberButton></a>
+              <a href="enterprise-finance-team"><OutlineButton onDark>Request Enterprise Briefing</OutlineButton></a>
+              <a href=""><OutlineButton onDark>Download Buyer Brief</OutlineButton></a>
             </div>
             <p className="mx-auto mt-6 max-w-xl text-xs leading-relaxed text-slate-400">Educational resources support evaluation and responsible use; they do not replace professional or qualified accounting, tax, legal, or compliance judgment.</p>
           </div>

@@ -132,8 +132,8 @@ export default function Page() {
               layer ensures every AI output is grounded in professional boundaries and verifiable evidence.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
-              <a href="#" className={ghostBtn}>Request Pilot</a>
+              <a href="book-a-demo" className={amberBtn} style={{ backgroundColor: AMBER }}>Book a Demo</a>
+              <a href="request-pilot" className={ghostBtn}>Request Pilot</a>
             </div>
           </div>
           <ImageSlot src="/images/stitch-placeholder-300x300.png" alt="Accountant reviewing work with governed AI support" ratio="aspect-[4/3]" />
