@@ -1,0 +1,12 @@
+export { default as Breadcrumb } from "./Breadcrumb";
+export { default as HeroSection } from "./HeroSection";
+export { default as RouterSection } from "./RouterSection";
+export { default as DocumentsSection } from "./DocumentsSection";
+export { default as TermsSection } from "./TermsSection";
+export { default as PrivacySection } from "./PrivacySection";
+export { default as IpBrandSection } from "./IpBrandSection";
+export { default as EnterpriseSection } from "./EnterpriseSection";
+export { default as NoticesSection } from "./NoticesSection";
+export { default as VersionsSection } from "./VersionsSection";
+export { default as FaqSection } from "./FaqSection";
+export { default as CloseSection } from "./CloseSection";
