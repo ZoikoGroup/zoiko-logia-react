@@ -29,17 +29,19 @@ const TOPICS = ["All Topics", "Source Governance", "RAG", "Ontology", "Audit Evi
 
 type Paper = {
   tag: string; access: string; title: string; body: string; chips: string[];
-  read: string; kind: string; topics: string[]; cta: "download" | "request";
+  read: string; kind: string; topics: string[]; cta: "download" | "request"; file: string;
 };
+const pdf = (file: string) => `/white-papers/${file}.pdf`;
+const summaryPdf = (file: string) => `/white-papers/${file}-summary.pdf`;
 const PAPERS: Paper[] = [
-  { tag: "PO · NEW", access: "Free Download", title: "Source-Backed RAG for Accounting Workflows", body: "Explains why accounting AI must cite, rank, and limit sources — and how retrieval-augmented generation should be governed rather than left to model memory alone.", chips: ["CTO", "Accounting Firm", "Enterprise Finance"], read: "14 min read", kind: "Technical Paper", topics: ["Source Governance", "RAG"], cta: "download" },
-  { tag: "PO · GOVERNANCE", access: "Free Download", title: "AI Safety and Professional Boundaries in Accounting", body: "Defines the line between AI assistance and professional judgment — where Kriton™ is designed to clarify, limit, or route rather than answer definitively.", chips: ["AI Governance", "Audit", "Legal"], read: "16 min read", kind: "Governance Paper", topics: ["AI Safety", "Professional Boundaries"], cta: "download" },
-  { tag: "P1", access: "Free Download", title: "Accounting Ontology: The Structural Layer Behind Reliable AI Assistance", body: "Shows how structured accounting concepts, relationships, and definitions improve retrieval accuracy, consistency, and reviewability.", chips: ["Product", "Accounting Firm"], read: "12 min read", kind: "Technical Paper", topics: ["Ontology", "Source Governance"], cta: "download" },
-  { tag: "P1", access: "Enterprise Access", title: "Audit Evidence Ledger for AI-Assisted Accounting Workflows", body: "Explains traceability, event records, review states, and evidence exports — and how audit teams can reconstruct what supported an AI-assisted answer.", chips: ["Audit", "Assurance"], read: "15 min read", kind: "Governance Paper", topics: ["Audit Evidence"], cta: "request" },
-  { tag: "P1", access: "Free Download", title: "How to Evaluate AI Accounting Outputs Before Deployment", body: "Helps buyers understand evaluation, benchmarks, test cases, and go/no-go gates before wider rollout.", chips: ["AI Governance", "CTO", "Procurement"], read: "13 min read", kind: "Implementation Guide", topics: ["Evaluation", "Enterprise Deployment"], cta: "download" },
-  { tag: "P2", access: "Free Download", title: "A Practical Guide to AI Accounting Adoption for Firms", body: "Supports firms evaluating client-service and productivity opportunities, with a realistic view of what changes and what doesn't.", chips: ["Accounting Firm", "Practice Leaders"], read: "17 min read", kind: "Implementation Guide", topics: ["Enterprise Deployment"], cta: "download" },
-  { tag: "P2", access: "Free Download", title: "Responsible AI for Accounting Education", body: "Supports universities and training providers evaluating safe learning support, guided practice, and academic-integrity controls.", chips: ["Educator", "Institution"], read: "11 min read", kind: "Governance Paper", topics: ["Education", "AI Safety"], cta: "download" },
-  { tag: "FEATURED · EXECUTIVE", access: "Free Download", title: "The Executive Guide to Governed AI Accounting Intelligence", body: "The board and C-suite adoption thesis for safe enterprise accounting AI — see the Featured module above for the full abstract.", chips: ["CFO", "Enterprise Finance", "AI Governance"], read: "18 min read", kind: "Executive Brief", topics: ["Enterprise Deployment", "AI Safety"], cta: "download" },
+  { tag: "PO · NEW", access: "Free Download", title: "Source-Backed RAG for Accounting Workflows", body: "Explains why accounting AI must cite, rank, and limit sources — and how retrieval-augmented generation should be governed rather than left to model memory alone.", chips: ["CTO", "Accounting Firm", "Enterprise Finance"], read: "14 min read", kind: "Technical Paper", topics: ["Source Governance", "RAG"], cta: "download", file: "source-backed-rag" },
+  { tag: "PO · GOVERNANCE", access: "Free Download", title: "AI Safety and Professional Boundaries in Accounting", body: "Defines the line between AI assistance and professional judgment — where Kriton™ is designed to clarify, limit, or route rather than answer definitively.", chips: ["AI Governance", "Audit", "Legal"], read: "16 min read", kind: "Governance Paper", topics: ["AI Safety", "Professional Boundaries"], cta: "download", file: "ai-safety-professional-boundaries" },
+  { tag: "P1", access: "Free Download", title: "Accounting Ontology: The Structural Layer Behind Reliable AI Assistance", body: "Shows how structured accounting concepts, relationships, and definitions improve retrieval accuracy, consistency, and reviewability.", chips: ["Product", "Accounting Firm"], read: "12 min read", kind: "Technical Paper", topics: ["Ontology", "Source Governance"], cta: "download", file: "accounting-ontology" },
+  { tag: "P1", access: "Enterprise Access", title: "Audit Evidence Ledger for AI-Assisted Accounting Workflows", body: "Explains traceability, event records, review states, and evidence exports — and how audit teams can reconstruct what supported an AI-assisted answer.", chips: ["Audit", "Assurance"], read: "15 min read", kind: "Governance Paper", topics: ["Audit Evidence"], cta: "request", file: "audit-evidence-ledger" },
+  { tag: "P1", access: "Free Download", title: "How to Evaluate AI Accounting Outputs Before Deployment", body: "Helps buyers understand evaluation, benchmarks, test cases, and go/no-go gates before wider rollout.", chips: ["AI Governance", "CTO", "Procurement"], read: "13 min read", kind: "Implementation Guide", topics: ["Evaluation", "Enterprise Deployment"], cta: "download", file: "evaluate-ai-outputs" },
+  { tag: "P2", access: "Free Download", title: "A Practical Guide to AI Accounting Adoption for Firms", body: "Supports firms evaluating client-service and productivity opportunities, with a realistic view of what changes and what doesn't.", chips: ["Accounting Firm", "Practice Leaders"], read: "17 min read", kind: "Implementation Guide", topics: ["Enterprise Deployment"], cta: "download", file: "ai-adoption-for-firms" },
+  { tag: "P2", access: "Free Download", title: "Responsible AI for Accounting Education", body: "Supports universities and training providers evaluating safe learning support, guided practice, and academic-integrity controls.", chips: ["Educator", "Institution"], read: "11 min read", kind: "Governance Paper", topics: ["Education", "AI Safety"], cta: "download", file: "responsible-ai-education" },
+  { tag: "FEATURED · EXECUTIVE", access: "Free Download", title: "The Executive Guide to Governed AI Accounting Intelligence", body: "The board and C-suite adoption thesis for safe enterprise accounting AI — see the Featured module above for the full abstract.", chips: ["CFO", "Enterprise Finance", "AI Governance"], read: "18 min read", kind: "Executive Brief", topics: ["Enterprise Deployment", "AI Safety"], cta: "download", file: "executive-guide" },
 ];
 
 const FEATURED_CHIPS = ["CFO", "Accounting Firm Partner", "CTO", "AI Governance", "Audit", "Tax", "Enterprise Finance"];
@@ -135,8 +137,8 @@ export default function Page() {
               </div>
               <p className="mt-4 text-xs text-slate-400">18 min read · PDF · Free Download · Updated this quarter</p>
               <div className="mt-5 flex flex-wrap gap-3">
-                <a href="#" className={amberBtn} style={{ backgroundColor: AMBER }}>Download the White Paper</a>
-                <a href="#" className="rounded-md border border-black/15 px-5 py-2.5 text-sm font-semibold text-[#16233d] hover:border-[#0d9488] hover:text-[#0d9488] dark:border-gray-600 dark:text-gray-100">Request Executive Briefing</a>
+                <a href={pdf("executive-guide")} download className={amberBtn} style={{ backgroundColor: AMBER }}>Download the White Paper</a>
+                <a href="/request-enterprise-briefing" className="rounded-md border border-black/15 px-5 py-2.5 text-sm font-semibold text-[#16233d] hover:border-[#0d9488] hover:text-[#0d9488] dark:border-gray-600 dark:text-gray-100">Request Executive Briefing</a>
               </div>
             </div>
           </div>
@@ -168,7 +170,7 @@ export default function Page() {
       <section id="library" className="scroll-mt-20 px-4 py-16 sm:px-6 md:px-8">
         <div className="mx-auto max-w-6xl">
           <p className={eyebrowAmber}><span className="h-px w-6 bg-[#d9720f]" /> White Paper Library</p>
-          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Filter by topic to find what's relevant to you.</h2>
+          <h2 className={`mt-4 text-[clamp(1.5rem,3vw,2rem)] ${serifH}`}>Filter by topic to find what&apos;s relevant to you.</h2>
 
           <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search by title or topic..."
             className="mt-6 w-full rounded-lg border border-black/15 px-4 py-3 text-sm focus:border-[#0d9488] focus:outline-none focus:ring-1 focus:ring-[#0d9488] dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100" />
@@ -203,10 +205,12 @@ export default function Page() {
                   <span>{p.read}</span><span>{p.kind}</span>
                 </div>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <a href="#" className="rounded-md border border-[#e8912a] px-3 py-1.5 text-xs font-semibold text-[#d9720f] hover:bg-amber-50 dark:hover:bg-amber-950/30">
-                    {p.cta === "request" ? "Request Access →" : "Download →"}
-                  </a>
-                  <a href="#" className="rounded-md border border-[#0d9488] px-3 py-1.5 text-xs font-semibold text-[#0d9488] hover:bg-teal-50 dark:hover:bg-teal-950/30">View Summary</a>
+                  {p.cta === "request" ? (
+                    <a href="/request-enterprise-briefing" className="rounded-md border border-[#e8912a] px-3 py-1.5 text-xs font-semibold text-[#d9720f] hover:bg-amber-50 dark:hover:bg-amber-950/30">Request Access →</a>
+                  ) : (
+                    <a href={pdf(p.file)} download className="rounded-md border border-[#e8912a] px-3 py-1.5 text-xs font-semibold text-[#d9720f] hover:bg-amber-50 dark:hover:bg-amber-950/30">Download →</a>
+                  )}
+                  <a href={summaryPdf(p.file)} target="_blank" rel="noopener noreferrer" className="rounded-md border border-[#0d9488] px-3 py-1.5 text-xs font-semibold text-[#0d9488] hover:bg-teal-50 dark:hover:bg-teal-950/30">View Summary</a>
                 </div>
                 <p className="mt-4 border-t border-black/5 pt-3 text-[11px] text-slate-400 dark:border-gray-800">Educational research only; not accounting, tax, legal, or audit advice.</p>
               </article>
