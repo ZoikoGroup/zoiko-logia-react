@@ -8,12 +8,12 @@ import {
   LayoutGrid, FileText, Network, Layers, ScrollText, BarChart3, Plug,
   Building2, Briefcase, ShieldCheck, CalendarDays, GraduationCap,
   Shield, Check, Lock, Calendar, ClipboardCheck,
-  BookOpen, Calculator, PenLine, PlayCircle,
+  BookOpen, Calculator, PenLine, PlayCircle, Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
-const AMBER = "#e0a92e";
-const NAVY = "#0d1b2e";
+const AMBER = "#e59819";
+const TEAL = "#0d9488";
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -49,7 +49,7 @@ interface MegaMenu {
   highlight: Highlight;
 }
 
-// ─── Menu data ─────────────────────────────────────────────────────────────────
+// ─── Menu Data ─────────────────────────────────────────────────────────────────
 
 const PLATFORM: MegaMenu = {
   key: "platform",
@@ -87,13 +87,48 @@ const PLATFORM: MegaMenu = {
   },
 };
 
+const KRITON_AI: MegaMenu = {
+  key: "kriton-ai",
+  label: "Kriton™ AI Advisor",
+  href: "/kriton-ai",
+  title: "Kriton™ AI Advisor",
+  subtitle: "Grounded in authoritative sources, not statistical guessing.",
+  Icon: Sparkles,
+  columns: [
+    {
+      label: "Core Capabilities",
+      items: [
+        { label: "Kriton™ AI Overview", href: "/kriton-ai", desc: "Source-grounded intelligence for professional judgment.", Icon: Sparkles },
+        { label: "Ask Accounting Questions", href: "/ask-accounting-questions", desc: "Multi-tier citation and source verification.", Icon: FileText },
+        { label: "Learning & Practice Mode", href: "/learning-&-practice-mode", desc: "Safe environment for simulation and review.", Icon: GraduationCap },
+      ],
+    },
+    {
+      label: "Audience Workflows",
+      items: [
+        { label: "Tax Professionals", href: "/tax-professionals", desc: "Jurisdiction-aware tax guidance and citation.", Icon: Calculator },
+        { label: "Audit & Assurance", href: "/audit-tax-compliance", desc: "Evidence-ready review and audit support.", Icon: ShieldCheck },
+        { label: "CTO & Security IT", href: "/cto-security-it", desc: "Enterprise integration and boundary controls.", Icon: Lock },
+      ],
+    },
+  ],
+  highlight: {
+    eyebrow: "Kriton™ Highlight",
+    title: "Ground every answer in real sources.",
+    body: "See how citations, confidence scoring, and evidence attach in real time.",
+    img: "/images/div.role-hero-photo.png",
+    cta: "Explore Kriton™ AI",
+    ctaHref: "/kriton-ai",
+  },
+};
+
 const SOLUTIONS: MegaMenu = {
   key: "solutions",
   label: "Solutions",
   href: "/solutions",
   title: "Solutions",
   subtitle: "Built around who's actually asking the question.",
-  Icon: LayoutGrid,
+  Icon: Building2,
   columns: [
     {
       label: "By Team",
@@ -119,6 +154,78 @@ const SOLUTIONS: MegaMenu = {
     img: "/images/Container (6).png",
     cta: "Book a Demo",
     ctaHref: "/book-a-demo",
+  },
+};
+
+const RESOURCES: MegaMenu = {
+  key: "resources",
+  label: "Resources",
+  href: "/resource",
+  title: "Resources",
+  subtitle: "Research, education, and proof — organized by what you need.",
+  Icon: BookOpen,
+  columns: [
+    {
+      label: "Learn",
+      items: [
+        { label: "Resource Center", href: "/resource", desc: "The full hub, all in one place.", Icon: LayoutGrid },
+        { label: "Guides", href: "/guides", desc: "Practical implementation reading.", Icon: FileText },
+        { label: "White Papers", href: "/white-papers", desc: "Executive-grade research.", Icon: ScrollText },
+        { label: "Webinars", href: "/webinars", desc: "Live and on-demand sessions.", Icon: PlayCircle },
+      ],
+    },
+    {
+      label: "Evaluate",
+      items: [
+        { label: "Case Studies", href: "/case-studies", desc: "Proof, filtered by your use case.", Icon: BarChart3 },
+        { label: "ROI Calculator", href: "/roi-calculator", desc: "Model your own directional value.", Icon: Calculator },
+        { label: "Blog", href: "/resource", desc: "Shorter-form perspective pieces.", Icon: PenLine },
+        { label: "Glossary", href: "/glossary", desc: "Every term, defined plainly.", Icon: BookOpen },
+      ],
+    },
+  ],
+  highlight: {
+    eyebrow: "Resource Highlight",
+    title: "Try the ROI Calculator.",
+    body: "Model directional value for your team's actual workflow volume.",
+    img: "/images/Container (8).png",
+    cta: "Calculate My ROI",
+    ctaHref: "/roi-calculator",
+  },
+};
+
+const COMPANY: MegaMenu = {
+  key: "company",
+  label: "Company",
+  href: "/about",
+  title: "Company",
+  subtitle: "Building the standard for governed financial intelligence.",
+  Icon: Building2,
+  columns: [
+    {
+      label: "About ZoikoLogia",
+      items: [
+        { label: "About Us", href: "/about", desc: "Our mission, philosophy, and approach.", Icon: Building2 },
+        { label: "Leadership", href: "/leadership", desc: "Accounting and AI domain experts.", Icon: Briefcase },
+        { label: "Press & Media", href: "/press-media", desc: "Brand assets, logos, and press releases.", Icon: FileText },
+      ],
+    },
+    {
+      label: "Connect & Trust",
+      items: [
+        { label: "Contact Us", href: "/contact-us", desc: "Connect with our specialist team.", Icon: Plug },
+        { label: "Partner Network", href: "/partners", desc: "Ecosystem and technology partners.", Icon: Network },
+        { label: "Request Pilot", href: "/request-pilot", desc: "Evaluate in your firm environment.", Icon: ShieldCheck },
+      ],
+    },
+  ],
+  highlight: {
+    eyebrow: "Company Highlight",
+    title: "Governed AI for accounting.",
+    body: "Learn how we build trust into every layer of our platform.",
+    img: "/images/About.png",
+    cta: "Meet the Team",
+    ctaHref: "/leadership",
   },
 };
 
@@ -153,105 +260,74 @@ const GOVERNANCE: MegaMenu = {
     body: "Every governance page ends with the same honesty: here's exactly where the boundary is.",
     img: "/images/Container (7).png",
     cta: "Visit Trust Center",
-    ctaHref: "/trust-center",
+    ctaHref: "/privacy-security",
   },
 };
 
-const RESOURCES: MegaMenu = {
-  key: "resources",
-  label: "Resources",
-  href: "/resource",
-  title: "Resources",
-  subtitle: "Research, education, and proof — organized by what you need.",
-  Icon: LayoutGrid,
-  columns: [
-    {
-      label: "Learn",
-      items: [
-        { label: "Resource Center", href: "/resource", desc: "The full hub, all in one place.", Icon: LayoutGrid },
-        { label: "Guides", href: "/guides", desc: "Practical implementation reading.", Icon: FileText },
-        { label: "White Papers", href: "/white-papers", desc: "Executive-grade research.", Icon: ScrollText },
-        { label: "Webinars", href: "/webinars", desc: "Live and on-demand sessions.", Icon: PlayCircle },
-      ],
-    },
-    {
-      label: "Evaluate",
-      items: [
-        { label: "Case Studies", href: "/case-studies", desc: "Proof, filtered by your use case.", Icon: BarChart3 },
-        { label: "ROI Calculator", href: "/roi-calculator", desc: "Model your own directional value.", Icon: Calculator },
-        { label: "Blog", href: "/resource", desc: "Shorter-form perspective pieces.", Icon: PenLine },
-        { label: "Glossary", href: "/glossary", desc: "Every term, defined plainly.", Icon: BookOpen },
-      ],
-    },
-  ],
-  highlight: {
-    eyebrow: "Resource Highlight",
-    title: "Try the ROI Calculator.",
-    body: "Model directional value for your team's actual workflow volume.",
-    img: "/images/Container (8).png",
-    cta: "Calculate My ROI",
-    ctaHref: "/resources/roi-calculator",
-  },
-};
-
-const MEGA_MENUS: MegaMenu[] = [PLATFORM, SOLUTIONS, GOVERNANCE, RESOURCES];
-
-/** Nav entries with no dropdown */
-const FLAT_LINKS: { label: string; href: string }[] = [
-  { label: "Kriton™ AI Advisor", href: "/kriton-ai" },
-  { label: "Privacy & Security", href: "/privacy-security" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Company", href: "/about" },
+const ALL_MEGA_MENUS: MegaMenu[] = [
+  PLATFORM,
+  KRITON_AI,
+  SOLUTIONS,
+  RESOURCES,
+  COMPANY,
+  GOVERNANCE,
 ];
 
-/** Order of the desktop nav bar */
-const NAV_ORDER: string[] = [
-  "Platform", "Kriton™ AI Advisor", "Solutions", "Governance",
-  "Privacy & Security", "Pricing", "Resources", "Company",
+// Main navigation items shown in header bar
+const MAIN_NAV_ITEMS: { key?: string; label: string; href?: string; isMega?: boolean }[] = [
+  { key: "platform", label: "Platform", isMega: true },
+  { key: "kriton-ai", label: "Kriton™ AI Advisor", isMega: true },
+  { key: "solutions", label: "Solutions", isMega: true },
+  { key: "resources", label: "Resources", isMega: true },
+  { label: "Pricing", href: "/pricing", isMega: false },
 ];
 
-const TOP_LINKS = [
-  { label: "Compliance", href: "/compliance" },
-  { label: "Trust Center", href: "/privacy-security" },
-  { label: "Support", href: "/contact-us" },
+// Top strip navigation items
+const TOP_NAV_ITEMS: { key?: string; label: string; href?: string; isMega?: boolean }[] = [
+  { key: "company", label: "Company", isMega: true },
+  { key: "governance", label: "Governance", isMega: true },
+  { label: "Privacy & Security", href: "/privacy-security", isMega: false },
 ];
 
-// ─── Mega panel ────────────────────────────────────────────────────────────────
+// ─── Mega panel component ──────────────────────────────────────────────────────
 
 function MegaPanel({ menu, onNavigate }: { menu: MegaMenu; onNavigate: () => void }) {
   const { Icon } = menu;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-[#e8d9b8] bg-white shadow-2xl dark:border-gray-700 dark:bg-gray-900">
+    <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-2xl shadow-slate-900/10">
       {/* Panel header */}
-      <div className="flex items-start gap-3 border-b border-black/10 p-5 dark:border-gray-700">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#dfeee6] text-[#0d9488] dark:bg-teal-900/40">
-          <Icon size={17} strokeWidth={1.9} />
+      <div className="flex items-center gap-3.5 border-b border-slate-100 bg-slate-50/60 px-6 py-4">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-[#0d9488] border border-teal-100/80">
+          <Icon size={18} strokeWidth={2} />
         </span>
-        <span>
-          <span className="block font-serif text-base font-bold text-[#16233d] dark:text-white">{menu.title}</span>
-          <span className="mt-0.5 block text-[13px] text-slate-500 dark:text-gray-400">{menu.subtitle}</span>
-        </span>
+        <div>
+          <span className="block font-serif text-[15px] font-bold text-[#16233d]">{menu.title}</span>
+          <span className="block text-[12.5px] text-slate-500">{menu.subtitle}</span>
+        </div>
       </div>
 
       {/* Columns */}
       <div className="grid md:grid-cols-3">
         {menu.columns.map((col) => (
-          <div key={col.label} className="border-b border-black/10 p-5 md:border-b-0 md:border-r dark:border-gray-700">
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d9488]">{col.label}</p>
-            <ul className="space-y-4">
+          <div key={col.label} className="border-b border-slate-100 p-5 md:border-b-0 md:border-r">
+            <p className="mb-3.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d9488]">{col.label}</p>
+            <ul className="space-y-3">
               {col.items.map((item) => (
                 <li key={item.label}>
-                  <Link href={item.href} onClick={onNavigate}
-                    className="group flex gap-3 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-[#0d9488]">
-                    <span className="mt-0.5 shrink-0 text-slate-400 transition-colors group-hover:text-[#0d9488] dark:text-gray-500">
+                  <Link
+                    href={item.href}
+                    onClick={onNavigate}
+                    className="group flex gap-3 rounded-lg p-1.5 -mx-1.5 transition-colors hover:bg-teal-50/40 outline-none focus-visible:ring-2 focus-visible:ring-[#0d9488]"
+                  >
+                    <span className="mt-0.5 shrink-0 text-slate-400 transition-colors group-hover:text-[#0d9488]">
                       <item.Icon size={16} strokeWidth={1.8} />
                     </span>
                     <span>
-                      <span className="block text-[14px] font-bold leading-snug text-[#16233d] transition-colors group-hover:text-[#0d9488] dark:text-white">
+                      <span className="block text-[13.5px] font-semibold leading-snug text-[#16233d] transition-colors group-hover:text-[#0d9488]">
                         {item.label}
                       </span>
-                      <span className="mt-0.5 block text-[12.5px] leading-relaxed text-slate-500 dark:text-gray-400">
+                      <span className="mt-0.5 block text-[12px] leading-relaxed text-slate-500">
                         {item.desc}
                       </span>
                     </span>
@@ -262,23 +338,28 @@ function MegaPanel({ menu, onNavigate }: { menu: MegaMenu; onNavigate: () => voi
           </div>
         ))}
 
-        {/* Highlight */}
-        <div className="bg-[#f5efe0] p-5 dark:bg-gray-800">
-          <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.12em] text-[#c8791a]">
-            {menu.highlight.eyebrow}
-          </p>
-          <p className="text-[15px] font-bold leading-snug text-[#16233d] dark:text-white">
-            {menu.highlight.title}
-          </p>
-          <p className="mt-2 text-[12.5px] leading-relaxed text-slate-600 dark:text-gray-300">
-            {menu.highlight.body}
-          </p>
-          <div className="relative mt-4 aspect-[16/10] w-full overflow-hidden rounded-md bg-slate-200 dark:bg-gray-700">
-            <Image src={menu.highlight.img} alt="" fill sizes="240px" className="object-cover" />
+        {/* Highlight Card */}
+        <div className="bg-gradient-to-br from-[#faf7f0] to-[#f5efe0] p-5 flex flex-col justify-between">
+          <div>
+            <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#c8791a]">
+              {menu.highlight.eyebrow}
+            </p>
+            <p className="text-[14px] font-bold leading-snug text-[#16233d]">
+              {menu.highlight.title}
+            </p>
+            <p className="mt-1.5 text-[12px] leading-relaxed text-slate-600">
+              {menu.highlight.body}
+            </p>
+            <div className="relative mt-3.5 aspect-[16/10] w-full overflow-hidden rounded-lg border border-black/5 bg-slate-200 shadow-sm">
+              <Image src={menu.highlight.img} alt="" fill sizes="280px" className="object-cover" />
+            </div>
           </div>
-          <Link href={menu.highlight.ctaHref} onClick={onNavigate}
-            className="mt-3 block rounded-md py-2.5 text-center text-[13px] font-semibold text-[#16233d] transition-opacity hover:opacity-90"
-            style={{ backgroundColor: AMBER }}>
+          <Link
+            href={menu.highlight.ctaHref}
+            onClick={onNavigate}
+            className="mt-3.5 block rounded-lg py-2.5 px-4 text-center text-[13px] font-semibold text-white shadow-sm transition-opacity hover:opacity-90"
+            style={{ backgroundColor: AMBER }}
+          >
             {menu.highlight.cta}
           </Link>
         </div>
@@ -287,14 +368,14 @@ function MegaPanel({ menu, onNavigate }: { menu: MegaMenu; onNavigate: () => voi
   );
 }
 
-// ─── Header ────────────────────────────────────────────────────────────────────
+// ─── Header Component ──────────────────────────────────────────────────────────
 
 export default function ZoikoLogiaHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
 
-  // Delay on mouse-leave so the pointer can travel from trigger to panel
+  // Delay on mouse-leave so pointer can travel comfortably between trigger and panel
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const cancelClose = useCallback(() => {
@@ -306,7 +387,7 @@ export default function ZoikoLogiaHeader() {
 
   const scheduleClose = useCallback(() => {
     cancelClose();
-    closeTimer.current = setTimeout(() => setOpenKey(null), 140);
+    closeTimer.current = setTimeout(() => setOpenKey(null), 160);
   }, [cancelClose]);
 
   const closeNow = useCallback(() => {
@@ -314,7 +395,7 @@ export default function ZoikoLogiaHeader() {
     setOpenKey(null);
   }, [cancelClose]);
 
-  // Escape closes any open menu
+  // Escape key closes any open menu
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -326,206 +407,336 @@ export default function ZoikoLogiaHeader() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // Clean up the pending timer on unmount
+  // Clean up pending timer on unmount
   useEffect(() => () => cancelClose(), [cancelClose]);
 
-  // Lock body scroll while the mobile menu is open
+  // Lock body scroll while mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
-  const activeMenu = MEGA_MENUS.find((m) => m.key === openKey) ?? null;
+  const activeMenu = ALL_MEGA_MENUS.find((m) => m.key === openKey) ?? null;
 
   return (
-    <>
-      {/* Top strip — scrolls away with the page */}
-      <div className="hidden border-b border-white/10 lg:block" style={{ backgroundColor: NAVY }}>
-        <div className="mx-auto flex max-w-7xl items-center justify-end gap-6 px-6 py-1.5">
-          {TOP_LINKS.map((l) => (
-            <Link key={l.label} href={l.href} className="text-xs text-gray-400 transition-colors hover:text-white">
-              {l.label}
-            </Link>
-          ))}
-          <Link href="/request-pilot"
-            className="rounded-md border border-white/25 px-3 py-1 text-xs font-semibold text-white transition-colors hover:bg-white/10">
-            Request Pilot
-          </Link>
-        </div>
-      </div>
-
-      {/* Main bar — sticky */}
-      <header
-        className="sticky top-0 z-50 border-b border-white/10"
-        style={{ backgroundColor: NAVY }}
-        onMouseLeave={scheduleClose}
-      >
-        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
-        <Link href="/" className="flex shrink-0 items-center">
-          <Image
-            src="/images/zoikologia-logo-new.png"
-            alt="ZoikoLogia"
-            width={180}
-            height={50}
-            priority
-            className="h-10 w-auto"
-          />
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-6 xl:flex">
-          {NAV_ORDER.map((label) => {
-            const mega = MEGA_MENUS.find((m) => m.label === label);
-
-            if (mega) {
-              const isOpen = openKey === mega.key;
+    <div className="relative z-50 w-full" onMouseLeave={scheduleClose}>
+      {/* ─── Top Utility Strip ──────────────────────────────────────────────── */}
+      <div className="hidden border-b border-gray-200 bg-[#f8f9fa] lg:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-end gap-7 px-6 py-2">
+          {TOP_NAV_ITEMS.map((item) => {
+            if (item.isMega && item.key) {
+              const mega = ALL_MEGA_MENUS.find((m) => m.key === item.key);
+              if (!mega) return null;
+              const isOpen = openKey === item.key;
               return (
-                <div key={label} onMouseEnter={() => { cancelClose(); setOpenKey(mega.key); }}>
+                <div key={item.label} onMouseEnter={() => { cancelClose(); setOpenKey(mega.key); }}>
                   <button
                     type="button"
                     aria-haspopup="true"
                     aria-expanded={isOpen}
                     onClick={() => setOpenKey(isOpen ? null : mega.key)}
                     onFocus={() => { cancelClose(); setOpenKey(mega.key); }}
-                    className={`flex items-center gap-1 whitespace-nowrap text-sm font-medium transition-colors ${
-                      isOpen ? "text-white" : "text-gray-200 hover:text-white"
+                    className={`flex items-center gap-1 text-[13px] font-normal transition-colors ${
+                      isOpen ? "text-[#16233d] font-medium" : "text-[#5a6578] hover:text-[#16233d]"
                     }`}
                   >
-                    {label}
-                    <ChevronDown size={14} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                    {item.label}
+                    <ChevronDown size={13} className={`text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180 text-slate-700" : ""}`} />
                   </button>
                 </div>
               );
             }
 
-            const flat = FLAT_LINKS.find((f) => f.label === label);
-            if (!flat) return null;
             return (
-              <Link key={label} href={flat.href}
+              <Link
+                key={item.label}
+                href={item.href || "#"}
                 onMouseEnter={scheduleClose}
-                className="whitespace-nowrap text-sm font-medium text-gray-200 transition-colors hover:text-white">
-                {flat.label}
+                className="text-[13px] font-normal text-[#5a6578] transition-colors hover:text-[#16233d]"
+              >
+                {item.label}
               </Link>
             );
           })}
-        </nav>
-
-        {/* Right actions */}
-        <div className="flex shrink-0 items-center gap-3">
-          <Link href="/about" className="hidden text-sm font-medium text-gray-200 transition-colors hover:text-white sm:inline-block">
-            Sign in
-          </Link>
-          <Link href="/book-a-demo"
-            className="hidden rounded-md px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-90 sm:inline-block"
-            style={{ backgroundColor: AMBER, color: NAVY }}>
-            Book a Demo
-          </Link>
-          <button type="button" onClick={() => setMobileOpen((o) => !o)} aria-label="Toggle menu" aria-expanded={mobileOpen}
-            className="flex h-9 w-9 items-center justify-center rounded-md text-white hover:bg-white/10 xl:hidden">
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
         </div>
-
-        {/* Mega panel — the pt-2 wrapper is a hover bridge between trigger and panel */}
-        {activeMenu && (
-          <div
-            className="absolute left-1/2 top-full z-50 hidden w-[min(880px,calc(100vw-3rem))] -translate-x-1/2 pt-2 xl:block"
-            onMouseEnter={cancelClose}
-            onMouseLeave={scheduleClose}
-          >
-            <MegaPanel menu={activeMenu} onNavigate={closeNow} />
-          </div>
-        )}
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <nav className="max-h-[calc(100vh-5rem)] overflow-y-auto border-t border-white/10 xl:hidden" style={{ backgroundColor: NAVY }}>
-          {NAV_ORDER.map((label) => {
-            const mega = MEGA_MENUS.find((m) => m.label === label);
+      {/* ─── Main Header Bar ─────────────────────────────────────────────────── */}
+      <header className="sticky top-0 z-50 border-b border-gray-200/80 bg-white shadow-xs">
+        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-3.5">
+          {/* Logo */}
+          <Link href="/" className="flex shrink-0 items-center focus-visible:outline-none" onClick={closeNow}>
+            <Image
+              src="/images/zoikologia-logo.png"
+              alt="ZoikoLogia"
+              width={195}
+              height={33}
+              priority
+              className="h-8 w-auto md:h-9"
+            />
+          </Link>
 
-            if (mega) {
-              const expanded = mobileSection === mega.key;
+          {/* Desktop Navigation Links */}
+          <nav className="hidden items-center gap-7 xl:flex">
+            {MAIN_NAV_ITEMS.map((item) => {
+              if (item.isMega && item.key) {
+                const mega = ALL_MEGA_MENUS.find((m) => m.key === item.key);
+                if (!mega) return null;
+                const isOpen = openKey === item.key;
+                return (
+                  <div key={item.label} onMouseEnter={() => { cancelClose(); setOpenKey(mega.key); }}>
+                    <button
+                      type="button"
+                      aria-haspopup="true"
+                      aria-expanded={isOpen}
+                      onClick={() => setOpenKey(isOpen ? null : mega.key)}
+                      onFocus={() => { cancelClose(); setOpenKey(mega.key); }}
+                      className={`flex items-center gap-1.5 py-1 text-[14px] font-medium transition-colors ${
+                        isOpen ? "text-[#0d9488]" : "text-[#16233d] hover:text-[#0d9488]"
+                      }`}
+                    >
+                      {item.label}
+                      <ChevronDown
+                        size={14}
+                        className={`text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180 text-[#0d9488]" : ""}`}
+                      />
+                    </button>
+                  </div>
+                );
+              }
+
               return (
-                <div key={label} className="border-b border-white/10">
-                  <button type="button" aria-expanded={expanded}
-                    onClick={() => setMobileSection(expanded ? null : mega.key)}
-                    className="flex w-full items-center justify-between px-6 py-3.5 text-left text-sm font-medium text-gray-200 active:bg-white/5">
-                    {label}
-                    <ChevronDown size={16} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
-                  </button>
-
-                  {expanded && (
-                    <div className="bg-white/5 pb-3">
-                      {mega.columns.map((col) => (
-                        <div key={col.label} className="px-6 pt-3">
-                          <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#7fd4c1]">{col.label}</p>
-                          <ul className="space-y-2.5">
-                            {col.items.map((item) => (
-                              <li key={item.label}>
-                                <Link href={item.href} onClick={() => setMobileOpen(false)}
-                                  className="flex gap-2.5 text-gray-200 active:text-white">
-                                  <span className="mt-0.5 shrink-0 text-gray-500"><item.Icon size={15} strokeWidth={1.8} /></span>
-                                  <span>
-                                    <span className="block text-[13px] font-semibold">{item.label}</span>
-                                    <span className="mt-0.5 block text-[11.5px] leading-snug text-gray-400">{item.desc}</span>
-                                  </span>
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-
-                      <div className="mt-4 px-6">
-                        <Link href={mega.highlight.ctaHref} onClick={() => setMobileOpen(false)}
-                          className="block rounded-md py-2.5 text-center text-[13px] font-semibold"
-                          style={{ backgroundColor: AMBER, color: NAVY }}>
-                          {mega.highlight.cta}
-                        </Link>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                <Link
+                  key={item.label}
+                  href={item.href || "#"}
+                  onMouseEnter={scheduleClose}
+                  className="py-1 text-[14px] font-medium text-[#16233d] transition-colors hover:text-[#0d9488]"
+                >
+                  {item.label}
+                </Link>
               );
-            }
+            })}
+          </nav>
 
-            const flat = FLAT_LINKS.find((f) => f.label === label);
-            if (!flat) return null;
-            return (
-              <Link key={label} href={flat.href} onClick={() => setMobileOpen(false)}
-                className="block border-b border-white/10 px-6 py-3.5 text-sm font-medium text-gray-200 active:bg-white/5">
-                {flat.label}
-              </Link>
-            );
-          })}
-
-          {TOP_LINKS.map((l) => (
-            <Link key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
-              className="block border-b border-white/10 px-6 py-3 text-xs text-gray-400 active:bg-white/5">
-              {l.label}
+          {/* Right Action Buttons */}
+          <div className="flex shrink-0 items-center gap-3">
+            <Link
+              href="/about"
+              className="hidden text-[14px] font-medium text-[#16233d] transition-colors hover:text-[#0d9488] sm:inline-block px-2 py-1.5"
+            >
+              Sign In
             </Link>
-          ))}
 
-          <div className="space-y-2 p-4">
-            <Link href="/book-a-demo" onClick={() => setMobileOpen(false)}
-              className="block rounded-md py-2.5 text-center text-sm font-semibold"
-              style={{ backgroundColor: AMBER, color: NAVY }}>
+            <Link
+              href="/book-a-demo"
+              className="hidden rounded-lg px-5 py-2.5 text-[14px] font-semibold text-white shadow-sm transition-all hover:opacity-95 sm:inline-block"
+              style={{ backgroundColor: AMBER }}
+            >
               Book a Demo
             </Link>
-            <Link href="/contact-us" onClick={() => setMobileOpen(false)}
-              className="block rounded-md border border-white/25 py-2.5 text-center text-sm font-semibold text-white">
+
+            <Link
+              href="/request-pilot"
+              className="hidden rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-[14px] font-semibold text-[#16233d] transition-colors hover:bg-slate-50 sm:inline-block"
+            >
               Request Pilot
             </Link>
-            <Link href="/about" onClick={() => setMobileOpen(false)}
-              className="block py-2 text-center text-sm text-gray-300">
-              Sign in
-            </Link>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen((o) => !o)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-slate-800 hover:bg-slate-100 xl:hidden"
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
           </div>
-        </nav>
-      )}
+
+          {/* Desktop MegaPanel Floating Dropdown */}
+          {activeMenu && (
+            <div
+              className="absolute left-1/2 top-full z-50 hidden w-[min(920px,calc(100vw-3rem))] -translate-x-1/2 pt-2 xl:block"
+              onMouseEnter={cancelClose}
+              onMouseLeave={scheduleClose}
+            >
+              <MegaPanel menu={activeMenu} onNavigate={closeNow} />
+            </div>
+          )}
+        </div>
+
+        {/* ─── Mobile / Tablet Drawer Menu ───────────────────────────────────── */}
+        {mobileOpen && (
+          <nav className="max-h-[calc(100vh-4.5rem)] overflow-y-auto border-t border-slate-200 bg-white shadow-xl xl:hidden">
+            <div className="divide-y divide-slate-100">
+              {/* Main Nav Items */}
+              {MAIN_NAV_ITEMS.map((item) => {
+                if (item.isMega && item.key) {
+                  const mega = ALL_MEGA_MENUS.find((m) => m.key === item.key);
+                  if (!mega) return null;
+                  const expanded = mobileSection === mega.key;
+                  return (
+                    <div key={item.label}>
+                      <button
+                        type="button"
+                        aria-expanded={expanded}
+                        onClick={() => setMobileSection(expanded ? null : mega.key)}
+                        className="flex w-full items-center justify-between px-6 py-4 text-left text-[14px] font-semibold text-slate-900 active:bg-slate-50"
+                      >
+                        {item.label}
+                        <ChevronDown size={16} className={`text-slate-400 transition-transform ${expanded ? "rotate-180" : ""}`} />
+                      </button>
+
+                      {expanded && (
+                        <div className="bg-slate-50/70 px-6 pb-4 pt-1">
+                          {mega.columns.map((col) => (
+                            <div key={col.label} className="pt-3">
+                              <p className="mb-2 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0d9488]">{col.label}</p>
+                              <ul className="space-y-2.5">
+                                {col.items.map((it) => (
+                                  <li key={it.label}>
+                                    <Link
+                                      href={it.href}
+                                      onClick={() => setMobileOpen(false)}
+                                      className="flex gap-3 text-slate-700 active:text-[#0d9488]"
+                                    >
+                                      <span className="mt-0.5 shrink-0 text-slate-400">
+                                        <it.Icon size={15} strokeWidth={1.8} />
+                                      </span>
+                                      <span>
+                                        <span className="block text-[13px] font-semibold text-slate-900">{it.label}</span>
+                                        <span className="mt-0.5 block text-[11.5px] leading-snug text-slate-500">{it.desc}</span>
+                                      </span>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+
+                          <div className="mt-4 pt-2">
+                            <Link
+                              href={mega.highlight.ctaHref}
+                              onClick={() => setMobileOpen(false)}
+                              className="block rounded-lg py-2.5 text-center text-[13px] font-semibold text-white shadow-sm"
+                              style={{ backgroundColor: AMBER }}
+                            >
+                              {mega.highlight.cta}
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href || "#"}
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-6 py-4 text-[14px] font-semibold text-slate-900 active:bg-slate-50"
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+
+              {/* Top Nav Items on Mobile (Company, Governance, Privacy) */}
+              <div className="bg-slate-50/50 py-1">
+                {TOP_NAV_ITEMS.map((item) => {
+                  if (item.isMega && item.key) {
+                    const mega = ALL_MEGA_MENUS.find((m) => m.key === item.key);
+                    if (!mega) return null;
+                    const expanded = mobileSection === mega.key;
+                    return (
+                      <div key={item.label}>
+                        <button
+                          type="button"
+                          aria-expanded={expanded}
+                          onClick={() => setMobileSection(expanded ? null : mega.key)}
+                          className="flex w-full items-center justify-between px-6 py-3 text-left text-[13px] font-medium text-slate-700 active:bg-slate-100"
+                        >
+                          {item.label}
+                          <ChevronDown size={14} className={`text-slate-400 transition-transform ${expanded ? "rotate-180" : ""}`} />
+                        </button>
+
+                        {expanded && (
+                          <div className="bg-slate-100/60 px-6 pb-3 pt-1">
+                            {mega.columns.map((col) => (
+                              <div key={col.label} className="pt-2">
+                                <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-[#0d9488]">{col.label}</p>
+                                <ul className="space-y-2">
+                                  {col.items.map((it) => (
+                                    <li key={it.label}>
+                                      <Link
+                                        href={it.href}
+                                        onClick={() => setMobileOpen(false)}
+                                        className="flex gap-2.5 text-slate-700 active:text-[#0d9488]"
+                                      >
+                                        <span className="mt-0.5 shrink-0 text-slate-400">
+                                          <it.Icon size={14} strokeWidth={1.8} />
+                                        </span>
+                                        <span>
+                                          <span className="block text-[12.5px] font-semibold text-slate-900">{it.label}</span>
+                                          <span className="block text-[11px] text-slate-500">{it.desc}</span>
+                                        </span>
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      key={item.label}
+                      href={item.href || "#"}
+                      onClick={() => setMobileOpen(false)}
+                      className="block px-6 py-3 text-[13px] font-medium text-slate-700 active:bg-slate-100"
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile Actions Bottom CTA */}
+            <div className="space-y-2.5 border-t border-slate-200 bg-white p-6">
+              <Link
+                href="/book-a-demo"
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-lg py-3 text-center text-[14px] font-semibold text-white shadow-sm"
+                style={{ backgroundColor: AMBER }}
+              >
+                Book a Demo
+              </Link>
+              <Link
+                href="/request-pilot"
+                onClick={() => setMobileOpen(false)}
+                className="block rounded-lg border border-slate-300 py-3 text-center text-[14px] font-semibold text-slate-800 active:bg-slate-50"
+              >
+                Request Pilot
+              </Link>
+              <Link
+                href="/about"
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 text-center text-[14px] font-medium text-slate-600 active:text-slate-900"
+              >
+                Sign In
+              </Link>
+            </div>
+          </nav>
+        )}
       </header>
-    </>
+    </div>
   );
 }
 
