@@ -430,7 +430,7 @@ export default function ZoikoLogiaHeader() {
               const isOpen = openKey === item.key;
               return (
                 <div key={item.label} onMouseEnter={() => { cancelClose(); setOpenKey(mega.key); }}>
-                  <button
+                  <button suppressHydrationWarning
                     type="button"
                     aria-haspopup="true"
                     aria-expanded={isOpen}
@@ -485,7 +485,7 @@ export default function ZoikoLogiaHeader() {
                 const isOpen = openKey === item.key;
                 return (
                   <div key={item.label} onMouseEnter={() => { cancelClose(); setOpenKey(mega.key); }}>
-                    <button
+                    <button suppressHydrationWarning
                       type="button"
                       aria-haspopup="true"
                       aria-expanded={isOpen}
@@ -543,7 +543,7 @@ export default function ZoikoLogiaHeader() {
             </Link>
 
             {/* Mobile Hamburger Button */}
-            <button
+            <button suppressHydrationWarning
               type="button"
               onClick={() => setMobileOpen((o) => !o)}
               aria-label="Toggle menu"
@@ -578,7 +578,7 @@ export default function ZoikoLogiaHeader() {
                   const expanded = mobileSection === mega.key;
                   return (
                     <div key={item.label}>
-                      <button
+                      <button suppressHydrationWarning
                         type="button"
                         aria-expanded={expanded}
                         onClick={() => setMobileSection(expanded ? null : mega.key)}
@@ -652,7 +652,7 @@ export default function ZoikoLogiaHeader() {
                     const expanded = mobileSection === mega.key;
                     return (
                       <div key={item.label}>
-                        <button
+                        <button suppressHydrationWarning
                           type="button"
                           aria-expanded={expanded}
                           onClick={() => setMobileSection(expanded ? null : mega.key)}

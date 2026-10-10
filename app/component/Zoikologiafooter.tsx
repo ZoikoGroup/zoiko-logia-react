@@ -241,7 +241,7 @@ export default function ZoikoLogiaFooter() {
 
           {/* Region / Language Selector */}
           <div className="shrink-0">
-            <button
+            <button suppressHydrationWarning
               type="button"
               className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800/50 px-3.5 py-1.5 text-[12px] font-medium text-slate-300 transition-colors hover:border-slate-500 hover:text-white"
             >
