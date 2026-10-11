@@ -260,7 +260,7 @@ const GOVERNANCE: MegaMenu = {
     body: "Every governance page ends with the same honesty: here's exactly where the boundary is.",
     img: "/images/Container (7).png",
     cta: "Visit Trust Center",
-    ctaHref: "/privacy-security",
+    ctaHref: "/trust-center",
   },
 };
 

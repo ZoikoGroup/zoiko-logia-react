@@ -74,7 +74,7 @@ const columns: Column[] = [
       { label: "AI Advisor", href: "/kriton-ai" },
       { label: "Learning Mode", href: "/learning-&-practice-mode" },
       { label: "Workflow Mode", href: "/learning-&-practice-mode" },
-      { label: "Review Mode", href: "/audit-tax-compliance" },
+      { label: "Review Mode", href: "/review-mode" },
       { label: "Admin Mode", href: "/admin-mode" },
     ],
   },
@@ -91,7 +91,7 @@ const columns: Column[] = [
   {
     heading: "TRUST",
     links: [
-      { label: "Trust Center", href: "/privacy-security" },
+      { label: "Trust Center", href: "/trust-center" },
       { label: "Privacy & Security", href: "/privacy-security" },
       { label: "Provider Due Diligence", href: "/compliance" },
       { label: "Accessibility", href: "/accessibility" },
@@ -159,12 +159,13 @@ export default function ZoikoLogiaFooter() {
                 <Image
                   src="/images/zoikologia-logo.png"
                   alt="ZoikoLogia"
-                  width={195}
-                  height={33}
+                  width={216}
+                  height={39}
                   className="block h-8 w-auto md:h-9"
+                  priority
                 />
               </Link>
-              <span className="text-lg font-bold text-white tracking-tight flex items-center">
+              <span className="text-[17px] font-normal text-white tracking-tight flex items-center">
                 with Kriton <span className="text-[11px] align-super ml-0.5 text-slate-400">™</span>
               </span>
             </div>
