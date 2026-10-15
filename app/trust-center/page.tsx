@@ -1,19 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Inter, Source_Serif_4 } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const sourceSerif4 = Source_Serif_4({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-source-serif",
-  display: "swap",
-});
+import { inter, sourceSerifTrust as sourceSerif4 } from "../fonts/fonts";
 
 export const metadata: Metadata = {
   title: "Trust Center — ZoikoLogia",

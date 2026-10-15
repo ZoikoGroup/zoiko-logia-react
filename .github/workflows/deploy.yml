@@ -3,8 +3,24 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
   deploy:
+    needs: build
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
       - name: Deploy over SSH
@@ -19,6 +35,16 @@ jobs:
             cd ~/zoikologia-react
             git pull origin main
             npm ci
-            npm run build
+            # next build wipes .next before compiling; keep the live build so a
+            # failed build does not leave the running server without its CSS/JS.
+            rm -rf .next.prev
+            if [ -d .next ]; then cp -r .next .next.prev; fi
+            if ! npm run build; then
+              echo "Build failed - restoring previous build"
+              rm -rf .next
+              if [ -d .next.prev ]; then mv .next.prev .next; fi
+              exit 1
+            fi
+            rm -rf .next.prev
             pm2 restart zoikologia-react
             pm2 save

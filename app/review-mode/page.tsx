@@ -2,27 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-playfair",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["700"],
-  variable: "--font-mono",
-  display: "swap",
-});
+import { inter, playfair, jetbrainsMono } from "../fonts/fonts";
 
 // ─── TAB DATA FOR SECTION 3 ───────────────────────────────────────────────────
 interface TabContract {
