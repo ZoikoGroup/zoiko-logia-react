@@ -2,11 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import { inter } from "../fonts/fonts";
+import { sourceSerif as serif } from "../fonts/sourceSerif";
 import { Clock, Check, MessageSquare, Shield, Plus, Minus } from "lucide-react";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const serif = Source_Serif_4({ subsets: ["latin"], weight: ["600", "700"], variable: "--font-serif4" });
 
 // ─── TOKENS ─────────────────────────────────────────────────────────────────────
 // #F7F3EA page · #FFFFFF card · #E3DED2 border · #071A33 label · #0C2440 heading

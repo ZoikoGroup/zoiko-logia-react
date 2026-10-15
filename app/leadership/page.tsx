@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { inter } from "../fonts/fonts";
 import { sourceSerif } from "../fonts/sourceSerif";
 import {
   Breadcrumb,
@@ -14,8 +14,6 @@ import {
   FaqSection,
   ConversionBandSection,
 } from "./components";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Leadership — ZoikoLogia",
